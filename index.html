@@ -1,0 +1,2553 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<!--
+SIRCUS HOMEPAGE MERGE NOTES
+Visual source of truth: sircus-index.html.
+Preserved from newer Claude version: the scroll-driven Detonation issue fan effect.
+Do not perform full-page rewrites. Make surgical edits by section only.
+-->
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SIRCUS Magazine | Cinematic Fashion Editorial</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&amp;display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+:root {
+  --white: #FFFFFF;
+  --off:   #F5F3F0;
+  --stone: #E8E4DE;
+  --warm:  #C8C2BA;
+  --mid:   #8A8480;
+  --dim:   #5A5652;
+  --ink:   #1A1916;
+  --gold:  #B8820E;
+  --obsidian: #080808;
+  --obsidian-soft: #0f0f0f;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'Myriad Pro', 'Trebuchet MS', sans-serif;
+  --pad:   max(4rem, calc((100vw - 820px) / 2));
+}
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.8rem var(--pad);
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(0,0,0,.82);
+  transition: padding .4s, background .4s;
+}
+nav.stuck {
+  padding: 1.3rem var(--pad);
+  background: rgba(8,8,8,.98);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+nav.stuck .logo { color: var(--white); }
+nav.stuck .nav-links a { color: rgba(255,255,255,.85); }
+nav.stuck .nav-links a:hover { color: var(--gold); }
+nav.stuck .nav-btn { border-color: rgba(255,255,255,.4); }
+.logo { font-family:var(--sans); font-size:1.15rem; font-weight:700; letter-spacing:.4em; text-transform:uppercase; color:var(--white); text-decoration:none; }
+.nav-links { display:flex; gap:2.8rem; list-style:none; }
+.nav-links a { font-size:.75rem; letter-spacing:.15em; text-transform:uppercase; color:rgba(255,255,255,.92); text-decoration:none; transition:color .3s; font-weight:600; }
+.nav-links a:hover { color:var(--gold); }
+.nav-btn { font-size:.65rem; letter-spacing:.2em; text-transform:uppercase; color:var(--white); background:transparent; border:1px solid rgba(255,255,255,.5); padding:.65rem 1.6rem; text-decoration:none; transition:all .3s; }
+.nav-btn:hover { background:var(--gold); border-color:var(--gold); color:var(--white); }
+.logo sup { font-size:.4em; color:var(--gold); vertical-align:super; }
+
+
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  width: 100vw; height: 100vh; min-height: 680px;
+  overflow: hidden;
+  display: flex; align-items: flex-start;
+}
+.hero-media {
+  position: absolute; inset: 0;
+}
+.hero-media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+/* Bottom-left text zone only — right side stays clear for face/subject */
+.hero-vignette {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to top,
+      rgba(0,0,0,.78) 0%,
+      rgba(0,0,0,.45) 20%,
+      rgba(0,0,0,.1)  38%,
+      transparent     55%
+    ),
+    linear-gradient(to right,
+      rgba(0,0,0,.35) 0%,
+      rgba(0,0,0,.1)  35%,
+      transparent     60%
+    ),
+    linear-gradient(to bottom,
+      rgba(0,0,0,.3) 0%,
+      transparent    12%
+    );
+}
+.hero-body { position:relative; z-index:2; padding:8rem var(--pad) 7rem calc(var(--pad) - 1.2rem); max-width:780px; display:flex; flex-direction:column; justify-content:flex-start; }
+
+.hero-title {
+  font-family: var(--sans);
+  font-size: clamp(2.8rem, 5.5vw, 5.5rem);
+  font-weight: 700;
+  line-height: .95;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: up 1s ease .5s forwards;
+}
+/* The cycling word */
+.cycle-wrap {
+  display: inline-block;
+  position: relative;
+  color: var(--gold);
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: .93em;
+  letter-spacing: .01em;
+  overflow: hidden;
+  vertical-align: baseline;
+  min-width: 6ch;
+}
+.cycle-word {
+  display: inline-block;
+  transition: opacity .25s ease, transform .25s ease;
+}
+.hero-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: rgba(255,255,255,.7);
+  line-height: 1.8;
+  max-width: 400px;
+  margin-bottom: 4rem;
+  opacity: 0;
+  animation: up .8s ease .75s forwards;
+}
+.hero-actions {
+  display: flex; align-items: center; gap: 3rem;
+  opacity: 0; animation: up .8s ease 1s forwards;
+}
+.btn-light {
+  font-size: .56rem; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--ink); background: var(--white);
+  padding: 1.05rem 2.8rem; text-decoration: none;
+  transition: background .3s, color .3s;
+}
+.btn-light:hover { background: var(--gold); color: var(--white); }
+.btn-ghost {
+  font-size: .52rem; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(255,255,255,.65); text-decoration: none;
+  transition: color .3s;
+}
+.btn-ghost:hover { color: var(--white); }
+
+/* Scroll mark */
+.scroll-mark {
+  position: absolute; right: var(--pad); bottom: 3rem; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: .6rem;
+  opacity: 0; animation: fade 1s ease 1.6s forwards;
+}
+.scroll-mark span { font-size:.42rem; letter-spacing:.38em; text-transform:uppercase; color:rgba(255,255,255,.45); writing-mode:vertical-rl; }
+.scroll-bar { width:1px; height:48px; background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent); animation:pulse 2.2s ease infinite; }
+
+@keyframes up   { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fade { from{opacity:0} to{opacity:1} }
+@keyframes pulse{ 0%,100%{opacity:.3} 50%{opacity:1} }
+
+
+
+.issues .issue-num { color:var(--gold); }
+.issues .issue-name { color:#E4DDD3; }
+.card-buy { display:block; margin-top:.8rem; margin-bottom:.5rem; font-size:.52rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); text-decoration:none; font-weight:600; transition:color .3s; }
+.card-buy:hover { color:#fff; }
+.card-amazon { display:block; margin-top:.3rem; margin-bottom:1.5rem; font-size:.46rem; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.4); text-decoration:none; transition:color .3s; }
+.card-amazon:hover { color:#fff; }
+.issue-card { cursor: pointer; }
+
+/* ── SHARED ── */
+.eyebrow { display:block; font-size:.62rem; letter-spacing:.5em; text-transform:uppercase; color:var(--gold); margin-bottom:2.5rem; font-weight:600; }
+.section-hed { font-family:var(--sans); font-size:clamp(2.5rem,5vw,4rem); font-weight:700; text-transform:uppercase; letter-spacing:-.01em; line-height:1; color:var(--ink); }
+.section-hed em { font-family:var(--serif); font-style:italic; font-weight:300; color:var(--gold); text-transform:none; font-size:1.05em; }
+.sec-body { font-family:var(--serif); font-style:italic; font-size:1.2rem; font-weight:300; color:var(--dim); line-height:1.85; max-width:480px; }
+.sec-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:4rem; }
+.view-all { font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:var(--mid); text-decoration:none; transition:color .3s; font-weight:500; }
+.view-all:hover { color:var(--gold); }
+hr.rule { border:none; border-top:1px solid var(--stone); }
+.reveal { opacity:0; transform:translateY(24px); transition:opacity .9s ease,transform .9s ease; }
+.reveal.in { opacity:1; transform:translateY(0); }
+
+/* ── ESSENCE ── */
+.essence { padding:7rem var(--pad); background:var(--white); }
+.essence-grid { display:grid; grid-template-columns:1fr 1fr; gap:8rem; align-items:start; }
+.essence-sub { font-family:var(--serif); font-style:italic; font-size:2rem; font-weight:300; color:var(--dim); line-height:1.5; }
+.essence-body { font-family:var(--serif); font-size:1.2rem; font-weight:400; color:var(--ink); line-height:1.85; opacity:.8; }
+
+/* ── ISSUES ── */
+.issues { padding:7rem var(--pad) 10rem; background:var(--obsidian); }
+.covers-grid { display:grid; grid-template-columns:repeat(3, 240px); gap:2rem; }
+.issue-card { width:240px; cursor:pointer; perspective:1200px; }
+.issue-cover {
+  aspect-ratio: 3/4;
+  margin-bottom: 1.8rem;
+  position: relative;
+  background: var(--stone);
+  transform-origin: left center;
+  will-change: transform;
+  overflow: hidden;
+}
+.issue-cover img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+.cover-text { position:absolute; inset:0; padding:1.3rem; display:flex; flex-direction:column; justify-content:space-between; z-index:1; background:linear-gradient(to top, rgba(0,0,0,.65) 0%, rgba(0,0,0,.1) 50%, transparent 100%); }
+.cover-brand { font-size:1.3rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--white); }
+.cover-lines { display:flex; flex-direction:column; gap:.22rem; }
+.cover-line { font-size:.52rem; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.7); }
+.cover-line.a { color:var(--gold); }
+.issue-num { display:block; font-size:.52rem; letter-spacing:.35em; text-transform:uppercase; color:var(--gold); margin-bottom:.65rem; }
+.issues .issue-name { color: var(--white); }
+.issue-name { font-family:var(--serif); font-style:italic; font-size:1.15rem; color:var(--ink); line-height:1.3; }
+.carousel-nav { display:flex; gap:.8rem; justify-content:flex-end; margin-top:3.5rem; }
+.ctrl { width:40px; height:40px; border:1px solid var(--warm); background:transparent; color:var(--ink); cursor:pointer; font-size:.9rem; display:flex; align-items:center; justify-content:center; transition:all .3s; }
+.ctrl:hover { background:var(--ink); color:var(--white); border-color:var(--ink); }
+
+/* ── FEATURED ── */
+.featured { display:grid; grid-template-columns:1fr 1fr; min-height:75vh; }
+.feat-img { position:relative; overflow:hidden; background:var(--stone); }
+.feat-img img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; transition:transform .8s ease; }
+.featured:hover .feat-img img { transform:scale(1.03); }
+.feat-img-label { position:absolute; bottom:2rem; left:2rem; font-size:.42rem; letter-spacing:.4em; text-transform:uppercase; color:rgba(255,255,255,.5); z-index:1; }
+.feat-body { padding:9rem 6rem; background:var(--white); display:flex; flex-direction:column; justify-content:center; border-left:1px solid var(--stone); }
+.feat-title { font-family:var(--sans); font-size:clamp(2rem,3.5vw,3rem); font-weight:700; text-transform:uppercase; line-height:1; letter-spacing:-.01em; color:var(--ink); margin-bottom:3rem; }
+.feat-title em { font-family:var(--serif); font-style:italic; font-weight:300; color:var(--gold); text-transform:none; font-size:1.05em; }
+.feat-dek { font-family:var(--serif); font-style:italic; font-size:1.05rem; font-weight:300; color:var(--dim); line-height:1.85; margin-bottom:3.5rem; max-width:360px; }
+.feat-byline { font-size:.44rem; letter-spacing:.28em; text-transform:uppercase; color:var(--warm); margin-bottom:4rem; }
+.read-link { font-size:.52rem; letter-spacing:.28em; text-transform:uppercase; color:var(--ink); text-decoration:none; display:inline-flex; align-items:center; gap:1rem; transition:gap .3s,color .3s; }
+.read-link::after { content:'→'; font-size:1rem; }
+.read-link:hover { gap:1.6rem; color:var(--gold); }
+
+/* ── MANIFESTO ── */
+.manifesto { padding:16rem var(--pad); background:var(--obsidian); text-align:center; position:relative; }
+.manifesto::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:1px; height:5rem; background:linear-gradient(to bottom,transparent,rgba(196,137,31,.4)); }
+.manifesto::after  { content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:1px; height:5rem; background:linear-gradient(to top,transparent,rgba(196,137,31,.4)); }
+.manifesto-q { font-family:var(--serif); font-style:italic; font-size:clamp(1.5rem,3vw,2.6rem); font-weight:300; color:var(--white); line-height:1.65; max-width:700px; margin:0 auto 3rem; letter-spacing:.01em; }
+.manifesto-attr { font-size:.44rem; letter-spacing:.6em; text-transform:uppercase; color:var(--gold); opacity:.65; }
+
+/* ── STORIES ── */
+.stories { padding:7rem var(--pad); background:var(--white); }
+.stories-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; }
+.story-card { position:relative; overflow:hidden; cursor:pointer; }
+.story-img { aspect-ratio:2/3; position:relative; overflow:hidden; background:var(--stone); display:block; }
+.story-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; display:block; transition:transform .7s ease; }
+.story-card:hover .story-img img { transform:scale(1.04); }
+.story-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.3) 45%, transparent 70%); display:flex; flex-direction:column; justify-content:flex-end; padding:2.5rem; }
+.s-cat { font-size:.55rem; letter-spacing:.45em; text-transform:uppercase; color:var(--gold); margin-bottom:.9rem; font-weight:600; }
+.s-title { font-size:1.05rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; line-height:1.25; color:var(--white); margin-bottom:.7rem; }
+.s-excerpt { font-family:var(--serif); font-style:italic; font-size:.82rem; color:rgba(255,255,255,.65); line-height:1.6; opacity:0; transform:translateY(8px); transition:opacity .4s,transform .4s; }
+.story-card:hover .s-excerpt { opacity:1; transform:translateY(0); }
+
+/* ── VIDEO ── */
+.video-section { padding:8rem var(--pad); background:var(--obsidian); }
+.video-grid { display:grid; grid-template-columns:5fr 3fr; gap:4px; height:480px; }
+.v-feature { position:relative; overflow:hidden; cursor:pointer; background:#111; height:480px; }
+.v-feature img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; transition:transform .7s ease; }
+.v-feature:hover img { transform:scale(1.03); }
+.v-feature::after { content:''; position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 55%); pointer-events:none; }
+.play-wrap { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; z-index:3; }
+.play-circle { width:56px; height:56px; border:1px solid rgba(255,255,255,.5); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:all .3s; background:rgba(255,255,255,.15); }
+.play-circle svg { fill:var(--white); width:16px; margin-left:3px; }
+.v-feature:hover .play-circle { background:var(--white); border-color:var(--white); }
+.v-feature:hover .play-circle svg { fill:var(--ink); }
+.v-cap { position:absolute; bottom:0; left:0; right:0; padding:2rem 2.2rem; z-index:3; }
+.v-cap-title { font-size:.82rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--white); margin-bottom:.3rem; }
+.v-cap-meta { font-size:.42rem; letter-spacing:.28em; text-transform:uppercase; color:rgba(255,255,255,.55); }
+.v-list { display:flex; flex-direction:column; gap:3px; }
+.v-item { background:#111111; padding:2rem 1.8rem; display:flex; gap:1.5rem; align-items:center; border-left:2px solid transparent; transition:border-color .3s,background .3s; cursor:pointer; }
+.v-item:hover { border-left-color:var(--gold); background:#1a1a1a; }
+.v-thumb { width:88px; aspect-ratio:16/9; flex-shrink:0; overflow:hidden; background:var(--stone); }
+.v-thumb img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+.v-item-title { font-size:.66rem; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:var(--white); margin-bottom:.4rem; line-height:1.3; }
+.v-item-meta { font-size:.42rem; letter-spacing:.25em; text-transform:uppercase; color:rgba(255,255,255,.4); }
+
+/* ── FOOTER — full styles defined below at the footer element ── */
+
+/* ── MANIFESTO SPLIT — SIRCUS signature layout system ── */
+.manifesto-strip {
+  background:#f8f6f2;
+  padding:0;
+  position:relative;
+  overflow:hidden;
+  min-height:74vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  isolation:isolate;
+}
+.manifesto-strip::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:.7;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 280 280' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.84' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+}
+.manifesto-strip::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:
+    linear-gradient(100deg, rgba(248,246,242,0) 0%, rgba(248,246,242,.08) 28%, rgba(248,246,242,.55) 55%, #f8f6f2 86%),
+    radial-gradient(ellipse at 50% 50%, rgba(255,255,255,.12) 0%, rgba(248,246,242,0) 45%);
+}
+.manifesto-lines {
+  position:absolute;
+  inset:-12% 42% -12% -6%;
+  z-index:0;
+  pointer-events:none;
+  opacity:1;
+}
+.manifesto-lines span {
+  position:absolute;
+  left:-10%;
+  width:104%;
+  height:1px;
+  background:linear-gradient(to right, rgba(184,130,14,.55), rgba(184,130,14,.38) 42%, rgba(184,130,14,.14) 68%, rgba(184,130,14,0) 100%);
+  transform-origin:left center;
+}
+.manifesto-lines span:nth-child(1){ top:7%;  transform:rotate(7deg); }
+.manifesto-lines span:nth-child(2){ top:18%; transform:rotate(-4deg); }
+.manifesto-lines span:nth-child(3){ top:30%; transform:rotate(11deg); }
+.manifesto-lines span:nth-child(4){ top:43%; transform:rotate(-8deg); }
+.manifesto-lines span:nth-child(5){ top:57%; transform:rotate(9deg); }
+.manifesto-lines span:nth-child(6){ top:72%; transform:rotate(-5deg); }
+.manifesto-lines span:nth-child(7){ top:86%; transform:rotate(6deg); }
+.manifesto-lines span:nth-child(8){ top:-2%; left:4%; width:76%; transform:rotate(79deg); }
+.manifesto-lines span:nth-child(9){ top:0%; left:24%; width:82%; transform:rotate(74deg); }
+.manifesto-lines span:nth-child(10){ top:20%; left:-4%; width:78%; transform:rotate(98deg); }
+.manifesto-lines span:nth-child(11){ top:38%; left:38%; width:68%; transform:rotate(83deg); }
+.manifesto-lines span:nth-child(12){ top:63%; left:10%; width:74%; transform:rotate(103deg); }
+.manifesto-split {
+  width:100%;
+  max-width:1400px;
+  margin:0 auto;
+  padding:7rem clamp(3rem,6vw,8rem);
+  display:grid;
+  grid-template-columns:minmax(460px, 1fr) minmax(380px, .85fr);
+  gap:clamp(3rem,5vw,7rem);
+  align-items:center;
+  position:relative;
+  z-index:2;
+}
+.manifesto-image-wrap {
+  position:relative;
+  width:100%;
+  justify-self:stretch;
+  aspect-ratio:4/5;
+  overflow:hidden;
+  box-shadow:0 3rem 7rem rgba(8,8,8,.28);
+  transform:none;
+}
+.manifesto-image-wrap::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  border:1px solid rgba(255,255,255,.35);
+  pointer-events:none;
+}
+.manifesto-image-wrap img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 25%;
+  display:block;
+  filter:saturate(.97) contrast(1.04);
+}
+.manifesto-copy {
+  position:relative;
+  max-width:520px;
+  justify-self:start;
+  transform:translateX(0);
+}
+.manifesto-copy::before {
+  content:'';
+  display:block;
+  width:1px;
+  height:4.4rem;
+  background:linear-gradient(to bottom, transparent, rgba(184,130,14,.95));
+  margin:0 0 2.2rem .25rem;
+}
+.manifesto-line {
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:clamp(2.35rem,3.45vw,3.45rem);
+  font-weight:300;
+  color:#111111;
+  line-height:1.36;
+  max-width:520px;
+  margin:0 0 2.1rem;
+  letter-spacing:.005em;
+}
+.manifesto-line em { color:var(--gold); font-style:italic; }
+.manifesto-sig { font-size:.56rem; letter-spacing:.55em; text-transform:uppercase; color:rgba(0,0,0,.40); }
+
+@media(max-width:1080px) {
+  .manifesto-strip { min-height:auto; }
+  .manifesto-split { grid-template-columns:1fr; max-width:760px; padding:6rem var(--pad); gap:3rem; }
+  .manifesto-image-wrap { justify-self:center; width:min(600px,100%); aspect-ratio:3/4; }
+  .manifesto-copy { transform:none; max-width:560px; }
+  .manifesto-line { max-width:560px; }
+  .manifesto-lines { inset:-6% -10% 42% -18%; opacity:.9; }
+}
+/* ── EDITORIAL GRID ── */
+.ed-grid-section { padding:8rem var(--pad); background:var(--white); }
+.ed-header { margin-bottom:4rem; }
+.ed-header .eyebrow { margin-bottom:1.2rem; }
+.ed-grid { display:grid; grid-template-columns:3fr 2fr; gap:4px; align-items:stretch; }
+.ed-hero { position:relative; overflow:hidden; background:#0a0a0a; min-height:600px; }
+.ed-hero img { width:100%; height:100%; object-fit:cover; object-position:center 42%; display:block; transition:opacity .35s ease; }
+.ed-grid:hover .ed-hero img { opacity:.96; }
+.ed-secondary { display:grid; grid-template-columns:1fr 1fr; gap:4px; align-self:stretch; }
+.ed-cell { position:relative; overflow:hidden; background:#0a0a0a; min-height:298px; }
+.ed-cell img { width:100%; height:100%; object-fit:cover; display:block; transition:opacity .35s ease; }
+.ed-cell:hover img { opacity:.96; }
+.ed-secondary .ed-cell:nth-child(1) img { object-position:center 35%; }
+.ed-secondary .ed-cell:nth-child(2) img { object-position:center 48%; }
+.ed-secondary .ed-cell:nth-child(3) img { object-position:center 52%; }
+.ed-secondary .ed-cell:nth-child(4) img { object-position:center 55%; }
+.ed-caption { position:absolute; bottom:0; left:0; right:0; padding:1.2rem 1.4rem; background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 100%); }
+.ed-caption-sm { padding:.9rem 1rem; }
+.ed-credit { display:block; font-size:.46rem; letter-spacing:.35em; text-transform:uppercase; color:rgba(255,255,255,.75); }
+.ed-issue { display:block; font-size:.42rem; letter-spacing:.25em; text-transform:uppercase; color:rgba(255,255,255,.45); margin-top:.2rem; }
+
+/* ── FULLSCREEN EDITORIAL LIGHTBOX ── */
+/* editorial-wall items handle zoom cursor via .editorial-wall__item { cursor: zoom-in } */
+.image-lightbox {
+  position:fixed;
+  inset:0;
+  z-index:4000;
+  background:rgba(3,3,3,.94);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:4rem;
+}
+.image-lightbox.open { display:flex; }
+.image-lightbox img { max-width:min(92vw,1300px); max-height:84vh; object-fit:contain; box-shadow:0 2rem 6rem rgba(0,0,0,.55); }
+.image-lightbox__caption { position:absolute; left:4rem; bottom:2.5rem; color:rgba(255,255,255,.65); font-size:.55rem; letter-spacing:.3em; text-transform:uppercase; }
+.image-lightbox__close { position:absolute; top:2rem; right:2rem; color:#fff; font-size:2rem; line-height:1; opacity:.8; border:0; background:transparent; cursor:pointer; }
+
+/* ── YOUTUBE / ON-SITE FILM CARDS ── */
+.yt-three-act { display:grid; grid-template-columns:3fr 2fr; gap:4px; margin-top:4rem; }
+.yt-primary, .yt-secondary-pair { min-width:0; }
+.yt-secondary-pair { display:grid; grid-template-rows:1fr 1fr; gap:4px; }
+.yt-card {
+  display:block;
+  text-decoration:none; position:relative; display:block; width:100%; aspect-ratio:16/9; overflow:hidden; background:#111; cursor:pointer; }
+.yt-card img { width:100%; height:100%; object-fit:cover; display:block; filter:saturate(.9) contrast(1.03); transition:transform .65s ease, opacity .35s ease; }
+.yt-card:hover img { transform:scale(1.035); opacity:.86; }
+.yt-card::after { content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.72), transparent 58%); pointer-events:none; }
+.yt-play { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:2; width:58px; height:58px; border:1px solid rgba(255,255,255,.62); border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,.12); transition:all .3s ease; }
+.yt-play::before { content:''; margin-left:4px; border-left:15px solid #fff; border-top:9px solid transparent; border-bottom:9px solid transparent; }
+.yt-card:hover .yt-play { background:#fff; border-color:#fff; }
+.yt-card:hover .yt-play::before { border-left-color:#111; }
+.yt-label { padding:1.4rem 0 .6rem; }
+.yt-num { font-size:.44rem; letter-spacing:.4em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:.5rem; }
+.yt-title { font-size:.78rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--white); display:block; margin-bottom:.4rem; }
+.yt-desc { font-family:var(--serif); font-style:italic; font-size:.82rem; color:rgba(255,255,255,.5); display:block; }
+.yt-cta { text-align:center; margin-top:3.5rem; }
+.yt-cta-btn { font-size:.56rem; letter-spacing:.28em; text-transform:uppercase; color:var(--white); background:transparent; border:1px solid rgba(255,255,255,.4); padding:1rem 2.6rem; text-decoration:none; transition:all .3s; display:inline-block; }
+.yt-cta-btn:hover { background:var(--gold); border-color:var(--gold); }
+.video-modal { position:fixed; inset:0; z-index:5000; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.92); padding:4rem; }
+.video-modal.open { display:flex; }
+.video-modal__frame { width:min(1100px,92vw); aspect-ratio:16/9; background:#000; box-shadow:0 2rem 6rem rgba(0,0,0,.65); }
+.video-modal__frame iframe { width:100%; height:100%; border:none; display:block; }
+.video-modal__close { position:absolute; top:2rem; right:2rem; color:#fff; font-size:2rem; line-height:1; opacity:.8; }
+.video-modal__fallback { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); color:rgba(255,255,255,.58); font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; text-align:center; }
+.video-modal__fallback a { color:var(--gold); }
+
+/* ── CINEMATIC FOOTER ── */
+/* ── FINAL EDITORIAL CTA ── */
+.final-cta {
+  position: relative;
+  height: 72vh;
+  min-height: 520px;
+  background: #000;
+  overflow: hidden;
+  border-top: 1px solid rgba(184,130,14,.18);
+}
+.final-cta__image {
+  position: absolute;
+  inset: 0;
+}
+.final-cta__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: contrast(1.05) saturate(.95);
+  transform-origin: center center;
+  animation: ctaSlowZoom 18s ease-in-out infinite alternate;
+}
+.final-cta__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 5rem var(--pad);
+  background:
+    linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.42) 42%, transparent 72%),
+    linear-gradient(to right, rgba(0,0,0,.34) 0%, transparent 55%);
+}
+.final-cta__kicker {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: .56rem;
+  letter-spacing: .42em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+}
+.final-cta__line {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.7rem, 2.7vw, 2.35rem);
+  font-weight: 300;
+  color: rgba(255,255,255,.78);
+  line-height: 1.35;
+  margin-bottom: 2rem;
+  max-width: 560px;
+}
+.final-cta__button {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .6rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.5);
+  padding: 1.1rem 2.6rem;
+  text-decoration: none;
+  transition: background .3s ease, border-color .3s ease, color .3s ease;
+}
+.final-cta__button:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #fff;
+}
+@keyframes ctaSlowZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.06); }
+}
+@media(max-width:860px) {
+  .final-cta { height: 62vh; min-height: 460px; }
+  .final-cta__overlay { padding: 4rem var(--pad); }
+}
+@media(max-width:860px) {
+  .manifesto-strip { min-height:auto; }
+  .manifesto-split { grid-template-columns:1fr; padding:6rem var(--pad); gap:3rem; }
+  .manifesto-image-wrap { justify-self:start; width:min(360px,100%); }
+  .manifesto-lines { inset:-4% 0 -4% -16%; opacity:.65; }
+  .yt-three-act { grid-template-columns:1fr; }
+  .yt-secondary-pair { grid-template-rows:auto auto; }
+  .ed-grid { grid-template-columns:1fr; }
+  .ed-hero { min-height:520px; }
+  .ed-secondary { grid-template-columns:1fr 1fr; }
+  .ed-cell { min-height:280px; }
+  :root{ --pad:2rem; }
+  .nav-links{ display:none; }
+}
+
+footer {
+  padding: 6rem 0 3rem;
+  background: #080808;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 4rem;
+}
+.footer-brand {}
+.f-logo { font-size:.95rem; font-weight:700; letter-spacing:.42em; text-transform:uppercase; color:#E4DDD3; text-decoration:none; display:block; margin-bottom:1.8rem; }
+.f-logo sup { font-size:.4em; color:var(--gold); vertical-align:super; }
+.f-tag { font-family:var(--serif); font-style:italic; font-size:1rem; font-weight:300; color:rgba(255,255,255,.5); line-height:1.7; max-width:280px; margin-bottom:2rem; }
+.f-social { display:flex; flex-wrap:wrap; gap:.6rem; }
+.f-s { font-size:.5rem; letter-spacing:.15em; text-transform:uppercase; color:rgba(255,255,255,.6); text-decoration:none; padding:.45rem .9rem; border:1px solid rgba(255,255,255,.2); transition:all .3s; }
+.f-s:hover { color:var(--gold); border-color:var(--gold); }
+.footer-col h4 { font-size:.52rem; font-weight:600; letter-spacing:.42em; text-transform:uppercase; color:var(--gold); margin-bottom:2rem; }
+.footer-links { list-style:none; display:flex; flex-direction:column; gap:1.1rem; }
+.footer-links a { font-size:.68rem; letter-spacing:.06em; color:rgba(255,255,255,.55); text-decoration:none; transition:color .3s; }
+.footer-links a:hover { color:#E4DDD3; }
+.footer-bottom { padding-top:2rem; border-top:1px solid rgba(255,255,255,.07); display:flex; justify-content:space-between; align-items:center; }
+.f-copy { font-size:.5rem; letter-spacing:.15em; text-transform:uppercase; color:rgba(255,255,255,.3); white-space:nowrap; }
+.f-buy { font-size:.5rem; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); text-decoration:none; white-space:nowrap; transition:opacity .3s; }
+.f-buy:hover { opacity:.7; }
+
+
+
+
+/* ── EDITORIAL TO CURRENT ISSUE TRANSITION ───────────────────────────── */
+.editorial-to-detonation {
+  display: none;
+}
+
+
+/* ── DETONATION TOKEN ADAPTER ───────────────────────────────────────────── */
+:root {
+  --font-display: var(--serif);
+  --font-ui: var(--sans);
+  --weight-light: 300;
+  --weight-semibold: 600;
+  --ivory: #F2EDE4;
+  --ivory-dim: #C8BFB0;
+  --platinum-dim: #7A7470;
+  --gold-dim: #8A6218;
+  --obsidian-raised: #1e1e1e;
+}
+.section-header__eyebrow {
+  font-family: var(--font-ui);
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .5em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+.section-header__eyebrow::before,
+.section-header__eyebrow::after {
+  content: '';
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: rgba(184,130,14,.45);
+}
+.section-header__title {
+  font-family: var(--sans);
+  font-size: clamp(2.2rem, 4vw, 3.7rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -.01em;
+  color: var(--white);
+}
+.section-header__title em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold) !important;
+  text-transform: none;
+}
+@media (max-width: 860px) {
+  .detonation-section { height: 300vh; }
+  .detonation-header { top: 5.25rem; width: calc(100% - 2rem); }
+  .det-progress { display: none; }
+  .det-card { width: clamp(160px, 44vw, 240px); }
+  .det-card--spread { width: clamp(230px, 66vw, 360px); }
+  .det-cta { bottom: 2rem; width: calc(100% - 2rem); text-align: center; }
+  .det-cta__issue { white-space: normal; line-height: 1.5; }
+}
+
+/* ============================================================
+       THE DETONATION — Scroll-driven exploded issue component
+       Named effect. To update each issue:
+         1. Edit DETONATION_CONFIG in the script block (number, title, magcloud URL)
+         2. Swap the five img[src] URLs in the Detonation HTML block below
+         3. Update the ambient issue numeral text node
+       ============================================================ */
+
+    .detonation-section {
+      position: relative;
+      height: 400vh;
+      background: var(--obsidian);
+    }
+
+    .detonation-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .detonation-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 55%, rgba(201,146,42,0.055) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .detonation-grain {
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    }
+
+    .detonation-ambient {
+      position: absolute;
+      font-family: var(--font-display);
+      font-size: clamp(10rem, 24vw, 20rem);
+      font-weight: var(--weight-light);
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(201,146,42,0.055);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+    }
+
+    .detonation-header {
+      position: absolute;
+      top: 48px; left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 20;
+      white-space: nowrap;
+    }
+
+    .detonation-stage {
+      position: relative;
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .det-card {
+      position: absolute;
+      width: clamp(200px, 22vw, 340px);
+      aspect-ratio: 3 / 4;
+      border-radius: 1px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04);
+      transform-origin: center bottom;
+      will-change: transform, box-shadow;
+    }
+
+    .det-card--spread {
+      width: clamp(300px, 36vw, 560px);
+      aspect-ratio: 3 / 2;
+    }
+
+    .det-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .det-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 40px rgba(0,0,0,0.3);
+      pointer-events: none;
+    }
+
+    .det-card--spread::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0; left: 50%;
+      width: 1px;
+      background: linear-gradient(to bottom,
+        transparent 5%, rgba(0,0,0,0.4) 20%,
+        rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.4) 80%, transparent 95%
+      );
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .det-card__info {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.0) 50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: 3;
+    }
+    .det-card:hover .det-card__info { opacity: 1; }
+
+    .det-card__info-label {
+      font-family: var(--font-ui);
+      font-size: 0.58rem;
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .det-card__info-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: var(--weight-light);
+      color: var(--ivory);
+      line-height: 1.3;
+    }
+
+    .det-progress {
+      position: absolute;
+      right: 40px; top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      z-index: 20;
+    }
+
+    .det-progress__track {
+      width: 1px; height: 80px;
+      background: var(--obsidian-raised);
+      position: relative; overflow: hidden;
+    }
+
+    .det-progress__fill {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 0%;
+      background: var(--gold);
+      transition: height 0.1s linear;
+    }
+
+    .det-progress__label {
+      font-family: var(--font-ui);
+      font-size: 0.5rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--platinum-dim);
+      writing-mode: vertical-rl;
+    }
+
+    .det-cta {
+      position: absolute;
+      bottom: 52px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      white-space: nowrap;
+    }
+    .det-cta.visible { opacity: 1; }
+
+    .det-cta__issue {
+      font-family: var(--font-ui);
+      font-size: 0.6rem;
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--platinum-dim);
+    }
+
+    .det-cta__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 10px 28px;
+      text-decoration: none;
+      transition: background 0.35s ease, color 0.35s ease;
+      cursor: pointer;
+    }
+    .det-cta__btn:hover { background: var(--gold); color: var(--obsidian); }
+.det-card { transition: box-shadow .3s ease; }
+
+
+
+
+/* ── CINEMATIC SOCIAL PANEL ───────────────────────────────────── */
+.social-panel {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3000;
+  display: flex;
+  align-items: stretch;
+  font-family: var(--sans);
+}
+.social-panel__tab {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  background: rgba(8,8,8,.88);
+  color: rgba(255,255,255,.76);
+  border: 1px solid rgba(184,130,14,.35);
+  border-right: none;
+  padding: 1rem .58rem;
+  font-size: .52rem;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color .35s ease, background .35s ease, border-color .35s ease;
+}
+.social-panel:hover .social-panel__tab,
+.social-panel.open .social-panel__tab {
+  color: var(--gold);
+  background: rgba(8,8,8,.96);
+  border-color: rgba(184,130,14,.7);
+}
+.social-panel__drawer {
+  width: 0;
+  overflow: hidden;
+  background: rgba(8,8,8,.96);
+  border-top: 1px solid rgba(184,130,14,.32);
+  border-bottom: 1px solid rgba(184,130,14,.32);
+  border-left: 1px solid rgba(184,130,14,.32);
+  box-shadow: -1.2rem 1.6rem 4rem rgba(0,0,0,.35);
+  transition: width .42s cubic-bezier(.22,1,.36,1);
+}
+.social-panel:hover .social-panel__drawer,
+.social-panel.open .social-panel__drawer {
+  width: min(286px, 76vw);
+}
+.social-panel__inner {
+  width: min(286px, 76vw);
+  padding: 1.65rem 1.55rem 1.5rem;
+  position: relative;
+}
+.social-panel__inner::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.10;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.20'/%3E%3C/svg%3E");
+}
+.social-panel__kicker {
+  position:relative;
+  display:block;
+  margin-bottom:.85rem;
+  font-size:.5rem;
+  letter-spacing:.4em;
+  text-transform:uppercase;
+  color:var(--gold);
+}
+.social-panel__line {
+  position:relative;
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:1.06rem;
+  line-height:1.45;
+  color:rgba(255,255,255,.62);
+  margin-bottom:1.25rem;
+}
+.social-panel__links {
+  position:relative;
+  display:grid;
+  gap:.52rem;
+}
+.social-panel__links a {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:1rem;
+  padding:.68rem 0;
+  border-top:1px solid rgba(255,255,255,.09);
+  color:rgba(255,255,255,.78);
+  text-decoration:none;
+  font-size:.58rem;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  transition:color .3s ease, padding-left .3s ease;
+}
+.social-panel__links a::after { content:'→'; color:var(--gold); letter-spacing:0; opacity:.75; }
+.social-panel__links a:hover { color:var(--gold); padding-left:.35rem; }
+.social-panel__links a:last-child { border-bottom:1px solid rgba(255,255,255,.09); }
+@media(max-width:860px) {
+  .social-panel { top:auto; bottom:1.2rem; right:1rem; transform:none; }
+  .social-panel__tab { writing-mode:horizontal-tb; transform:none; border:1px solid rgba(184,130,14,.42); padding:.68rem .9rem; }
+  .social-panel__drawer { position:absolute; right:0; bottom:100%; margin-bottom:.5rem; border-right:1px solid rgba(184,130,14,.32); }
+}
+
+
+/* ── EXPANDABLE STORIES PANEL ─────────────────────────────────── */
+.stories-expand {
+  padding: 7rem var(--pad);
+  background: #ffffff;
+}
+
+.stories-expand .section-hed {
+  color: var(--ink);
+}
+
+.story-expand-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.story-expand-card {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--sans);
+}
+
+.story-expand-card__image {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.story-expand-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: saturate(.95) contrast(1.02);
+  transition: transform .8s ease, opacity .4s ease;
+}
+
+.story-expand-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.9) 0%, rgba(0,0,0,.48) 42%, transparent 72%);
+  pointer-events: none;
+}
+
+.story-expand-card:hover .story-expand-card__image img {
+  transform: scale(1.045);
+  opacity: .9;
+}
+
+.story-expand-card__body {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  padding: 2.5rem;
+  display: block;
+}
+
+.story-expand-card .s-cat,
+.story-expand-card .s-title,
+.story-expand-card .s-excerpt {
+  display: block;
+}
+
+.story-expand-card .s-excerpt {
+  opacity: 1;
+  transform: none;
+  margin-top: .85rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: .92rem;
+  color: rgba(255,255,255,.66);
+  line-height: 1.65;
+}
+
+.story-reveal {
+  position: fixed;
+  inset: 0;
+  z-index: 7000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+}
+
+.story-reveal.open {
+  display: flex;
+}
+
+.story-reveal__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.86);
+  backdrop-filter: blur(10px);
+}
+
+.story-reveal__panel {
+  position: relative;
+  z-index: 2;
+  width: min(1120px, 94vw);
+  min-height: min(680px, 82vh);
+  background: #080808;
+  color: #fff;
+  display: grid;
+  grid-template-columns: .82fr 1.18fr;
+  border: 1px solid rgba(184,130,14,.32);
+  box-shadow: 0 2rem 7rem rgba(0,0,0,.72);
+  overflow: hidden;
+  transform: scale(.96) translateY(16px);
+  opacity: 0;
+  animation: storyPanelIn .55s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+@keyframes storyPanelIn {
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.story-reveal__media {
+  min-height: 100%;
+  background: #111;
+  position: relative;
+  overflow: hidden;
+}
+
+.story-reveal__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: saturate(.95) contrast(1.04);
+}
+
+.story-reveal__copy {
+  position: relative;
+  padding: clamp(2.4rem, 5vw, 5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.story-reveal__issue {
+  font-size: .56rem;
+  letter-spacing: .36em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 1.6rem;
+}
+
+.story-reveal h3 {
+  font-size: clamp(2.2rem, 4vw, 4.2rem);
+  line-height: .95;
+  letter-spacing: -.03em;
+  text-transform: uppercase;
+  max-width: 720px;
+  margin-bottom: 2rem;
+}
+
+.story-reveal__excerpt {
+  position: relative;
+  white-space: pre-line;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.32rem, 2.1vw, 2rem);
+  line-height: 1.58;
+  color: rgba(255,255,255,.78);
+  max-width: 720px;
+  max-height: 10.2em;
+  overflow: hidden;
+}
+
+.story-reveal__fade {
+  width: 100%;
+  height: 4rem;
+  margin-top: -3.8rem;
+  background: linear-gradient(to bottom, rgba(8,8,8,0), #080808 82%);
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.story-reveal__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .9rem;
+  margin-top: 2.2rem;
+  position: relative;
+  z-index: 3;
+}
+
+.story-reveal__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.35rem;
+  text-decoration: none;
+  font-size: .56rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255,255,255,.34);
+  color: rgba(255,255,255,.8);
+  transition: all .3s ease;
+}
+
+.story-reveal__btn--primary {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #fff;
+}
+
+.story-reveal__btn:hover {
+  background: #fff;
+  border-color: #fff;
+  color: #080808;
+}
+
+.story-reveal__close {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.25rem;
+  z-index: 5;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: .75;
+}
+
+.story-reveal__close:hover {
+  opacity: 1;
+}
+
+@media(max-width: 980px) {
+  .story-expand-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .story-expand-card {
+    min-height: 420px;
+  }
+
+  .story-reveal {
+    padding: 1.2rem;
+  }
+
+  .story-reveal__panel {
+    grid-template-columns: 1fr;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .story-reveal__media {
+    min-height: 300px;
+  }
+
+  .story-reveal__copy {
+    padding: 2.2rem;
+  }
+
+  .story-reveal__cta {
+    flex-direction: column;
+  }
+
+  .story-reveal__btn {
+    width: 100%;
+  }
+}
+
+
+/* ── DETONATION PURCHASE PATHS ─────────────────────────────────── */
+.det-cta__buttons {
+  display: flex;
+  gap: .9rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.det-cta__btn--primary {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #fff;
+}
+
+.det-cta__btn--primary:hover {
+  background: #fff;
+  border-color: #fff;
+  color: var(--obsidian);
+}
+
+.det-cta__btn--collector {
+  color: rgba(255,255,255,.78);
+  border-color: rgba(255,255,255,.34);
+}
+
+.det-cta__btn--collector:hover {
+  background: rgba(255,255,255,.92);
+  border-color: rgba(255,255,255,.92);
+  color: var(--obsidian);
+}
+
+.det-cta__note {
+  max-width: 720px;
+  margin: .15rem auto 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: .92rem;
+  line-height: 1.55;
+  color: rgba(255,255,255,.48);
+  text-align: center;
+  white-space: normal;
+}
+
+@media(max-width:860px) {
+  .det-cta__buttons {
+    flex-direction: column;
+    width: min(92vw, 360px);
+  }
+
+  .det-cta__btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .det-cta__note {
+    font-size: .82rem;
+    max-width: 88vw;
+  }
+}
+
+
+/* ── EDITORIAL WALL REBUILD ──────────────────────────────────────
+   Restores the reference-style image wall:
+   full-width, image-led, no boxed placeholders, no gradient caption bars.
+*/
+.editorial-wall-section {
+  padding: 7rem 0 8rem;
+  background: #fff;
+  overflow: hidden;
+}
+
+.editorial-wall__header {
+  padding: 0 var(--pad);
+  margin-bottom: 3.5rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem 2rem;
+  align-items: end;
+}
+
+.editorial-wall__header .eyebrow {
+  grid-column: 1 / -1;
+  margin-bottom: .2rem;
+}
+
+.editorial-wall__header .section-hed {
+  margin: 0;
+}
+
+/* ── EDITORIAL WALL — 18px gap everywhere, cover fill, rows size to content ── */
+.editorial-wall {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-flow: dense;
+  gap: 18px;
+  padding: 0 18px;
+}
+
+.editorial-wall__item {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  background: #080808;
+  cursor: zoom-in;
+  min-height: 260px;
+}
+
+.editorial-wall__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: opacity .35s ease;
+}
+
+.editorial-wall__item:hover img { opacity: .88; }
+
+/* Row 1 — large portrait | tall portrait | two stacked right */
+.ew-large        { grid-column: 1 / 6;  grid-row: 1 / 3; min-height: 520px; }
+.ew-tall         { grid-column: 6 / 9;  grid-row: 1 / 3; min-height: 520px; }
+.ew-stack-top    { grid-column: 9 / 13; grid-row: 1 / 2; min-height: 252px; }
+.ew-stack-bottom { grid-column: 9 / 13; grid-row: 2 / 3; min-height: 252px; }
+
+/* Row 2 — three equal across, no explicit row so dense fills gap */
+.ew-mid-a { grid-column: 1 / 5;  min-height: 340px; }
+.ew-mid-b { grid-column: 5 / 9;  min-height: 340px; }
+.ew-mid-c { grid-column: 9 / 13; min-height: 340px; }
+
+/* Row 3 — full bleed */
+.ew-full  { grid-column: 1 / -1; min-height: 520px; }
+
+@media(max-width:1080px) {
+  .editorial-wall {
+    grid-auto-rows: minmax(150px, 18vw);
+    gap: 12px;
+    padding: 0 12px;
+  }
+
+  .ew-large, .ew-tall, .ew-stack-top, .ew-stack-bottom,
+  .ew-mid-a, .ew-mid-b, .ew-mid-c {
+    grid-column: span 6;
+  }
+  .ew-full { grid-column: 1 / -1; }
+}
+
+@media(max-width:700px) {
+  .editorial-wall__header {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+
+  .editorial-wall {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .editorial-wall__item,
+  .ew-large, .ew-tall, .ew-stack-top, .ew-stack-bottom,
+  .ew-mid-a, .ew-mid-b, .ew-mid-c, .ew-full {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* ── MOBILE NAV ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.3);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: border-color .3s;
+}
+.nav-hamburger:hover { border-color: var(--gold); }
+.nav-hamburger span {
+  display: block;
+  width: 18px;
+  height: 1px;
+  background: var(--white);
+  transition: transform .35s ease, opacity .35s ease, width .35s ease;
+  transform-origin: center;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.mobile-drawer {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 99;
+  background: rgba(8,8,8,.98);
+  border-bottom: 1px solid rgba(184,130,14,.25);
+  padding: 7rem 2rem 3rem;
+  transform: translateY(-100%);
+  transition: transform .4s cubic-bezier(.22,1,.36,1);
+}
+.mobile-drawer.open {
+  transform: translateY(0);
+}
+.mobile-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.mobile-links li {
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.mobile-links a {
+  display: block;
+  padding: 1.2rem 0;
+  font-size: .72rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.82);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color .3s, padding-left .3s;
+}
+.mobile-links a:hover { color: var(--gold); padding-left: .5rem; }
+.mobile-cta {
+  display: inline-block;
+  margin-top: 2rem;
+  font-size: .58rem;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: transparent;
+  border: 1px solid rgba(184,130,14,.6);
+  padding: .9rem 2rem;
+  text-decoration: none;
+  transition: all .3s;
+}
+.mobile-cta:hover { background: var(--gold); border-color: var(--gold); }
+
+@media(max-width:860px) {
+  .nav-links { display: none; }
+  .desktop-only { display: none; }
+  .nav-hamburger { display: flex; }
+  .mobile-drawer { display: block; }
+  :root { --pad: 2rem; }
+}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav id="nav">
+<a class="logo" href="#">Sircus<sup>™</sup></a>
+<ul class="nav-links" id="nav-links">
+<li><a href="#issues">Issues</a></li>
+<li><a href="#editorials">Editorials</a></li>
+<li><a href="#stories">Stories</a></li>
+<li><a href="#video">Video</a></li>
+<li><a href="#manifesto">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+<a class="nav-btn desktop-only" href="https://www.magcloud.com/browse/magazine/599779" target="_blank">Get the Issue</a>
+<button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false" type="button">
+<span></span><span></span><span></span>
+</button>
+</nav>
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+<ul class="mobile-links">
+<li><a href="#issues">Issues</a></li>
+<li><a href="#editorials">Editorials</a></li>
+<li><a href="#stories">Stories</a></li>
+<li><a href="#video">Video</a></li>
+<li><a href="#manifesto">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+<a class="mobile-cta" href="https://www.magcloud.com/browse/magazine/599779" target="_blank">Get the Issue</a>
+</div>
+<!-- CINEMATIC SOCIAL PANEL -->
+<aside aria-label="SIRCUS social channels" class="social-panel">
+<button aria-expanded="false" class="social-panel__tab" type="button">Social</button>
+<div class="social-panel__drawer">
+<div class="social-panel__inner">
+<span class="social-panel__kicker">Follow the Signal</span>
+<p class="social-panel__line">Films, fragments, issue drops, and the world around SIRCUS.</p>
+<div class="social-panel__links">
+<a href="https://www.youtube.com/@SircusMagazine" rel="noopener" target="_blank">YouTube</a>
+<a href="https://www.tiktok.com/@sircusmagazine" rel="noopener" target="_blank">TikTok</a>
+<a href="https://www.instagram.com/sircusmagazine" rel="noopener" target="_blank">Instagram</a>
+<a href="https://www.facebook.com/profile.php?id=61572041751355" rel="noopener" target="_blank">Facebook</a>
+<a href="https://www.pinterest.com/sircusmagazine" rel="noopener" target="_blank">Pinterest</a>
+</div>
+</div>
+</div>
+</aside>
+<!-- HERO -->
+<section class="hero">
+<div class="hero-media">
+<video autoplay="" id="hero-video" muted="" playsinline="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;">
+<source src="https://res.cloudinary.com/dk8dxerks/video/upload/f_auto,q_auto/v1777730278/Sircus_Site_Header_szmu3l.mp4" type="video/mp4"/>
+<source src="https://res.cloudinary.com/dk8dxerks/video/upload/v1777730278/Sircus_Site_Header_szmu3l.mov" type="video/quicktime"/>
+</video>
+</div>
+<div class="hero-vignette"></div>
+<div class="hero-body">
+<h1 class="hero-title">Where <span class="cycle-wrap"><span class="cycle-word" id="cw">Beauty</span></span><br/><span id="bw">Becomes</span> Legend</h1>
+<p class="hero-sub">Cinematic editorials, cultural stories, and photography that stops time.</p>
+<div class="hero-actions">
+<a class="btn-light" href="#issues">Explore Issues</a>
+<a class="btn-ghost" href="#stories">Read the Stories</a>
+</div>
+</div>
+<div class="scroll-mark">
+<div class="scroll-bar"></div>
+<span>Scroll</span>
+</div>
+</section>
+<!-- CURRENT LIVE ISSUE DETONATION -->
+<section aria-label="The Detonation — Issue 15" class="detonation-section" id="detonation">
+<div class="detonation-sticky" id="det-sticky">
+<div aria-hidden="true" class="detonation-bg"></div>
+<div aria-hidden="true" class="detonation-grain"></div>
+<!-- UPDATE: Change this numeral each issue -->
+<div aria-hidden="true" class="detonation-ambient">15</div>
+<!-- Section header -->
+<div class="detonation-header">
+<div class="section-header__eyebrow reveal reveal--fade">Current Live Issue</div>
+<h2 class="section-header__title reveal reveal--up reveal-delay-2">Issue 15: <em>Electric Baroque</em></h2>
+</div>
+<!-- Scroll progress -->
+<div aria-hidden="true" class="det-progress">
+<div class="det-progress__track">
+<div class="det-progress__fill" id="det-fill"></div>
+</div>
+<span class="det-progress__label">Explore</span>
+</div>
+<!-- Stage -->
+<div class="detonation-stage" id="det-stage">
+<!-- Card order in DOM: back-to-front (back cover lowest z, front cover highest) -->
+<!-- Fan order in animation: front fans left, back fans right -->
+<!-- Back cover -->
+<div aria-label="Back cover" class="det-card" id="det-back">
+<img alt="Sircus Issue 15 back cover" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_800/v1777728059/i.15_back_cover_ra8nmm.jpg"/>
+<div class="det-card__info">
+<span class="det-card__info-label">Back Cover</span>
+<span class="det-card__info-title">Issue 15</span>
+</div>
+</div>
+<!-- Spread 3 — pp. 6–7 -->
+<div aria-label="Pages 6 and 7" class="det-card det-card--spread" id="det-spread3">
+<img alt="Sircus Issue 15 pages 6 and 7" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1200/v1777728061/i.15_Spread_3_qlfc42.jpg"/>
+<div class="det-card__info">
+<span class="det-card__info-label">Pages 6–7</span>
+<span class="det-card__info-title">Spread III</span>
+</div>
+</div>
+<!-- Spread 2 — pp. 4–5 -->
+<div aria-label="Pages 4 and 5" class="det-card det-card--spread" id="det-spread2">
+<img alt="Sircus Issue 15 pages 4 and 5" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1200/v1777728060/i.15_Spread_2_vzzcb8.jpg"/>
+<div class="det-card__info">
+<span class="det-card__info-label">Pages 4–5</span>
+<span class="det-card__info-title">Spread II</span>
+</div>
+</div>
+<!-- Spread 1 — pp. 2–3 -->
+<div aria-label="Pages 2 and 3" class="det-card det-card--spread" id="det-spread1">
+<img alt="Sircus Issue 15 pages 2 and 3" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1200/v1777728060/i.15_Spread_1_urmoda.jpg"/>
+<div class="det-card__info">
+<span class="det-card__info-label">Pages 2–3</span>
+<span class="det-card__info-title">Opening Spread</span>
+</div>
+</div>
+<!-- Front cover — top of stack, fans furthest left -->
+<div aria-label="Front cover" class="det-card" id="det-front">
+<img alt="Sircus Issue 15 front cover" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_800/v1777728065/i.15_front_cover_brg5qb.jpg"/>
+<div class="det-card__info">
+<span class="det-card__info-label">Cover</span>
+<span class="det-card__info-title">Issue 15 — Electric Baroque</span>
+</div>
+</div>
+</div><!-- /det-stage -->
+<!-- CTA -->
+<div class="det-cta" id="det-cta">
+<span class="det-cta__issue">Current live issue — Issue 15: Electric Baroque</span>
+<div class="det-cta__buttons">
+<a class="det-cta__btn det-cta__btn--primary" href="https://a.co/d/041TdfVq" rel="noopener" target="_blank">
+            Buy Issue 15 — Amazon
+          </a>
+<a class="det-cta__btn det-cta__btn--collector" href="https://www.magcloud.com/browse/issue/3260300" rel="noopener" target="_blank">
+            Collector Edition — MagCloud
+          </a>
+</div>
+<p class="det-cta__note">Amazon is the easiest purchase path. MagCloud is the collector edition with premium paper, glossier pages, richer saturation, and refined print quality.</p>
+</div></div><!-- /detonation-sticky -->
+</section>
+<!-- MANIFESTO SPLIT -->
+<section class="manifesto-strip reveal" id="manifesto">
+<div aria-hidden="true" class="manifesto-lines">
+<span></span><span></span><span></span><span></span>
+<span></span><span></span><span></span><span></span>
+<span></span><span></span><span></span><span></span>
+</div>
+<div class="manifesto-split">
+<figure class="manifesto-image-wrap">
+<img alt="Sircus editorial portrait" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777768581/ChatGPT_Image_Apr_19_2026_at_11_26_21_AM_nptgzq.png"/>
+</figure>
+<div class="manifesto-copy">
+<p class="manifesto-line">They made fashion safe, beauty obedient, and culture disposable.<br/>We are not here to fix it. <em>We are here to replace it.</em></p>
+<span class="manifesto-sig">— Sircus</span>
+</div>
+</div>
+</section>
+<!-- ISSUES -->
+<section class="issues reveal" id="issues">
+<div class="sec-header" style="border-color:rgba(255,255,255,.08)">
+<div>
+<span class="eyebrow">The Collection</span>
+<h2 class="section-hed" style="color:var(--white);">The Issues.<br/><em>The Vision.</em></h2>
+</div>
+<a class="view-all" href="https://www.magcloud.com" style="color:rgba(255,255,255,.45);" target="_blank">All Issues on MagCloud →</a>
+</div>
+<div class="covers-grid" id="covers-grid">
+<div class="issue-card">
+<div class="issue-cover">
+<img alt="Sircus Issue 15" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777380124/Sircus_Issue_15_Cover_nz6p2v.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
+</div>
+<span class="issue-num">Issue 15  ·  February 2026</span>
+<span class="issue-name">Electric Baroque</span>
+<a class="card-buy" href="https://www.magcloud.com/browse/issue/3260300" target="_blank">Collector's Edition →</a>
+<a class="card-amazon" href="https://a.co/d/00E2bWb3" target="_blank">Buy on Amazon →</a>
+</div>
+<div class="issue-card">
+<div class="issue-cover">
+<img alt="Sircus Issue 14 — A Velvet Fevered Bloom" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777379985/Sircus_Issue_13_Cover_ctjsjq.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
+</div>
+<span class="issue-num">Issue 14  ·  December 2025</span>
+<span class="issue-name">A Velvet Fevered Bloom</span>
+<a class="card-buy" href="https://www.magcloud.com/browse/issue/3214194" target="_blank">Collector's Edition →</a>
+<a class="card-amazon" href="https://a.co/d/0e3BHp55" target="_blank">Buy on Amazon →</a>
+</div>
+<div class="issue-card">
+<div class="issue-cover">
+<img alt="Sircus Issue 13 — Opulence &amp; Desire" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777379985/Sircus_Magazine_Issue_14_Cover_rpuf6h.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
+</div>
+<span class="issue-num">Issue 13  ·  November 2025</span>
+<span class="issue-name">Opulence &amp; Desire</span>
+<a class="card-buy" href="https://www.magcloud.com/browse/issue/3195632" target="_blank">Collector's Edition →</a>
+<a class="card-amazon" href="https://a.co/d/094DDUGE" target="_blank">Buy on Amazon →</a>
+</div>
+<div class="issue-card">
+<div class="issue-cover">
+<img alt="Sircus Issue 12" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777379985/Sircus_Issue_12_Cover_oy2wxd.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
+</div>
+<span class="issue-num">Issue 12  ·  2024</span>
+<span class="issue-name">Fashion &amp; Beauty</span>
+<a class="card-buy" href="https://www.magcloud.com/browse/issue/1007780" target="_blank">Collector's Edition →</a>
+</div>
+<div class="issue-card">
+<div class="issue-cover">
+<img alt="Sircus Issue 11" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777379985/Sircus_Issue_11_Cover_t9eqts.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
+</div>
+<span class="issue-num">Issue 11  ·  2024</span>
+<span class="issue-name">Fitness in Fashion</span>
+<a class="card-buy" href="https://www.magcloud.com/browse/issue/1003806" target="_blank">Collector's Edition →</a>
+</div>
+<div class="issue-card">
+<div class="issue-cover">
+<img alt="Sircus Issue 10" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777380217/Sircus_Issue_10_Cover_cvscnd.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
+</div>
+<span class="issue-num">Issue 10  ·  2023</span>
+<span class="issue-name">Art &amp; Beauty</span>
+<a class="card-buy" href="https://www.magcloud.com/browse/issue/915187" target="_blank">Collector's Edition →</a>
+</div>
+<div class="issue-card">
+<div class="issue-cover">
+<img alt="Sircus Issue 8" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777380470/Sircus_Issue_8_Cover_hdepn7.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
+</div>
+<span class="issue-num">Issue 8  ·  2023</span>
+<span class="issue-name">The Dark &amp; The Light</span>
+<a class="card-buy" href="https://www.magcloud.com/browse/issue/728107" target="_blank">Collector's Edition →</a>
+</div>
+<div class="issue-card">
+<div class="issue-cover">
+<img alt="Sircus Issue 7" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777385817/Sircus_Issue_7_Cover_afcxgp.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
+</div>
+<span class="issue-num">Issue 7  ·  2022</span>
+<span class="issue-name">Rock the Color Block</span>
+<a class="card-buy" href="https://www.magcloud.com/browse/issue/680849" target="_blank">Collector's Edition →</a>
+</div>
+<div class="issue-card">
+<div class="issue-cover">
+<img alt="Sircus Issue 6" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777386227/Sircus_Issue_6_Cover_cgsn5a.png" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
+</div>
+<span class="issue-num">Issue 6  ·  2022</span>
+<span class="issue-name">Football &amp; Fitness</span>
+<a class="card-buy" href="https://www.magcloud.com/browse/issue/629602" target="_blank">Collector's Edition →</a>
+</div>
+<div class="issue-card">
+<div class="issue-cover">
+<img alt="Sircus Issue 9" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777380463/Sircus_Issue_9_Cover_zibqbx.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
+</div>
+<span class="issue-num">Issue 9  ·  2023</span>
+<span class="issue-name">Special Swimwear Edition</span>
+<a class="card-buy" href="https://www.magcloud.com/browse/issue/792686" target="_blank">Collector's Edition →</a>
+</div>
+</div>
+</section>
+<!-- EDITORIAL GRID -->
+<section class="editorial-wall-section reveal" id="editorials">
+<div class="editorial-wall__header">
+<span class="eyebrow">From the Issues</span>
+<h2 class="section-hed">Editorial <em>Vision</em></h2>
+<a class="view-all" href="#editorials">All Editorials →</a>
+</div>
+<div aria-label="SIRCUS editorial image gallery" class="editorial-wall">
+<!-- Row 1: large portrait | tall portrait | two stacked right -->
+<button aria-label="Open editorial image" class="editorial-wall__item ew-large" type="button">
+<img alt="Editorial" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777432630/Nora_j7lvcb.png"/>
+</button>
+<button aria-label="Open editorial image" class="editorial-wall__item ew-tall" type="button">
+<img alt="Editorial" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777432565/op-207_hwb2n1.jpg"/>
+</button>
+<button aria-label="Open editorial image" class="editorial-wall__item ew-stack-top" type="button">
+<img alt="Editorial" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777766885/Jasmine_military_uma8tr.jpg"/>
+</button>
+<!-- Row 2: three across -->
+<button aria-label="Open editorial image" class="editorial-wall__item ew-stack-bottom" type="button">
+<img alt="Editorial" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777778345/Marisol_2_divxx3.jpg"/>
+</button>
+<button aria-label="Open editorial image" class="editorial-wall__item ew-mid-a" type="button">
+<img alt="Editorial" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777768382/osiris_01_high_fashion_editorial_model_Nayla_Persian_woman_Ir_53586da5-5533-4f17-a60b-961cab4f712d_3_q4piag.png"/>
+</button>
+<button aria-label="Open editorial image" class="editorial-wall__item ew-mid-b" type="button">
+<img alt="Editorial" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777432087/cw-142_bfkh2b.jpg"/>
+</button>
+<!-- Row 3: full bleed cinematic -->
+<button aria-label="Open editorial image" class="editorial-wall__item ew-mid-c" type="button">
+<img alt="Editorial" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777779362/heather_mf5qtk.jpg"/>
+</button>
+<!-- Row 3: full bleed cinematic -->
+<button aria-label="Open editorial image" class="editorial-wall__item ew-full" type="button">
+<img alt="Editorial" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777778027/Nayla_10b_zzmo0p.jpg"/>
+</button>
+</div>
+</section>
+<div aria-hidden="true" class="editorial-to-detonation"></div>
+<!-- /The Detonation -->
+<div aria-hidden="true" style="height:1px;background:linear-gradient(to right,transparent,rgba(184,130,14,.35) 30%,rgba(184,130,14,.35) 70%,transparent);margin:0;"></div>
+<!-- STORIES -->
+<section class="stories stories-expand reveal" id="stories">
+<div class="sec-header">
+<div>
+<span class="eyebrow">From the Issues</span>
+<h2 class="section-hed">Stories <em>that open.</em></h2>
+</div>
+<a class="view-all" href="https://a.co/d/041TdfVq" rel="noopener" target="_blank">Read Issue 15 →</a>
+</div>
+<div class="story-expand-grid">
+<button class="story-expand-card" data-amazon="https://a.co/d/041TdfVq" data-excerpt="I had not wanted Derrick.
+
+I had wanted myself reflected back.
+Affirmed. Exceptional. Absolved.
+
+He refused.
+
+That refusal cracked something…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/v1777760141/Melanie_Stalker2_a9fkqc.jpg" data-issue="Issue 15 — Electric Baroque" data-magcloud="https://www.magcloud.com/browse/issue/3260300" data-title="Married to the Racist That Is Me" type="button">
+<span class="story-expand-card__image">
+<img alt="Married to the Racist That Is Me story preview" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777760141/Melanie_Stalker2_a9fkqc.jpg"/>
+</span>
+<span class="story-expand-card__body">
+<span class="s-cat">Issue 15</span>
+<span class="s-title">Married to the Racist That Is Me</span>
+<span class="s-excerpt">A psychological fracture from Electric Baroque. Click to reveal a short excerpt.</span>
+</span>
+</button>
+<button class="story-expand-card" data-excerpt="Perhaps baldness is not a sign of what humans have lost, but of what they have gained:
+
+the freedom to exist without the biological trappings that once defined survival.
+
+Evolution often reveals its elegance in subtraction, not addition…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/v1777758939/Bald3_oooccj.jpg" data-amazon="https://a.co/d/0e3BHp55" data-issue="Issue 14" data-magcloud="https://www.magcloud.com/browse/issue/3214194" data-title="Bald By Design" type="button">
+<span class="story-expand-card__image">
+<img alt="Bald By Design story preview" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777758939/Bald3_oooccj.jpg"/>
+</span>
+<span class="story-expand-card__body">
+<span class="s-cat">Issue 14</span>
+<span class="s-title">Bald By Design</span>
+<span class="s-excerpt">A philosophical reframing from the archive. Click to reveal a short excerpt.</span>
+</span>
+</button>
+<button class="story-expand-card" data-amazon="https://a.co/d/094DDUGE" data-excerpt="It is not about God.
+
+It is about optics.
+
+The cross no longer testifies to conviction,
+but to the intention to be seen…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/v1777759337/woman_cross_ugf0na.jpg" data-issue="Issue 13" data-magcloud="https://www.magcloud.com/browse/issue/3195632" data-title="Crosses &amp; Cleavage" type="button">
+<span class="story-expand-card__image">
+<img alt="Crosses and Cleavage story preview" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777759337/woman_cross_ugf0na.jpg"/>
+</span>
+<span class="story-expand-card__body">
+<span class="s-cat">Issue 13</span>
+<span class="s-title">Crosses &amp; Cleavage</span>
+<span class="s-excerpt">A cultural provocation from the archive. Click to reveal a short excerpt.</span>
+</span>
+</button>
+</div>
+</section>
+<!-- VIDEO -->
+<section class="video-section reveal" id="video">
+<div class="sec-header">
+<div>
+<span class="eyebrow" style="color:var(--gold);">Video</span>
+<h2 class="section-hed" style="color:var(--white);">Sircus on <em>Film</em></h2>
+</div>
+<a class="view-all" href="https://www.youtube.com/@SircusMagazine" style="color:rgba(255,255,255,.45);" target="_blank">Watch on YouTube →</a>
+</div>
+<div class="yt-three-act">
+<div class="yt-primary">
+<a aria-label="Watch Sircus Magazine — The Introduction on YouTube" class="yt-card" href="https://www.youtube.com/watch?v=u1-lX5SkD5U" rel="noopener" target="_blank">
+<img alt="Sircus Magazine — The Introduction" loading="lazy" src="https://img.youtube.com/vi/u1-lX5SkD5U/maxresdefault.jpg"/>
+<span aria-hidden="true" class="yt-play"></span>
+</a>
+<div class="yt-label"><span class="yt-num">01</span><span class="yt-title">The Introduction</span><span class="yt-desc">The founder on what Sircus is and why it exists.</span></div>
+</div>
+<div class="yt-secondary-pair">
+<div class="yt-secondary-item">
+<a aria-label="Watch Own the Room on YouTube" class="yt-card" href="https://www.youtube.com/watch?v=u3JdGc7WE40" rel="noopener" target="_blank">
+<img alt="Own the Room" loading="lazy" src="https://img.youtube.com/vi/u3JdGc7WE40/maxresdefault.jpg"/>
+<span aria-hidden="true" class="yt-play"></span>
+</a>
+<div class="yt-label"><span class="yt-num">02</span><span class="yt-title">Own the Room</span><span class="yt-desc">Kinetic. Relentless. The Sircus aesthetic in motion.</span></div>
+</div>
+<div class="yt-secondary-item">
+<a aria-label="Watch A New Era — Trexie on YouTube" class="yt-card" href="https://www.youtube.com/watch?v=I2UJaykjGbU" rel="noopener" target="_blank">
+<img alt="A New Era — Trexie" loading="lazy" src="https://img.youtube.com/vi/I2UJaykjGbU/maxresdefault.jpg"/>
+<span aria-hidden="true" class="yt-play"></span>
+</a>
+<div class="yt-label"><span class="yt-num">03</span><span class="yt-title">A New Era</span><span class="yt-desc">Trexie on the Sircus world from inside it.</span></div>
+</div>
+</div>
+</div>
+<div class="yt-cta">
+<a class="yt-cta-btn" href="https://www.youtube.com/@SircusMagazine" target="_blank">Subscribe on YouTube →</a>
+</div>
+</section>
+<!-- MEDIA MODALS -->
+<div aria-hidden="true" class="image-lightbox" id="imageLightbox">
+<button aria-label="Close image" class="image-lightbox__close" type="button">×</button>
+<img alt="Expanded Sircus editorial image"/>
+<div class="image-lightbox__caption">From the Sircus archive · Full editorial lives inside the issue</div>
+</div>
+<!-- CINEMATIC FOOTER -->
+<section aria-label="Own SIRCUS Issue 15" class="final-cta">
+<div class="final-cta__image">
+<img alt="SIRCUS editorial still" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777432859/Ksenia_J_vztyhj.jpg"/>
+</div>
+<div class="final-cta__overlay">
+<span class="final-cta__kicker">Issue 15 — Electric Baroque</span>
+<p class="final-cta__line">The issue is the experience.</p>
+<a class="final-cta__button" href="https://www.magcloud.com/browse/issue/3260300" rel="noopener" target="_blank">Own Issue 15</a>
+</div>
+</section>
+<!-- FOOTER -->
+<footer>
+<div class="footer-inner">
+<div class="footer-grid">
+<div class="footer-brand">
+<a class="f-logo" href="#">Sircus<sup>™</sup></a>
+<p class="f-tag">The uncompromising editorial. Cinematic fashion, cultural stories, and photography that stops time.</p>
+<div class="f-social">
+<a class="f-s" href="https://www.youtube.com/@SircusMagazine" rel="noopener" target="_blank">YouTube</a>
+<a class="f-s" href="https://www.tiktok.com/@sircusmagazine" rel="noopener" target="_blank">TikTok</a>
+<a class="f-s" href="https://www.instagram.com/sircusmagazine" rel="noopener" target="_blank">Instagram</a>
+<a class="f-s" href="https://www.facebook.com/profile.php?id=61572041751355" rel="noopener" target="_blank">Facebook</a>
+<a class="f-s" href="https://www.pinterest.com/sircusmagazine" rel="noopener" target="_blank">Pinterest</a>
+</div>
+</div>
+<div class="footer-col">
+<h4>Magazine</h4>
+<ul class="footer-links">
+<li><a href="#issues">Browse Issues</a></li>
+<li><a href="https://www.magcloud.com/browse/issue/3260300" rel="noopener" target="_blank">Own Issue 15</a></li>
+<li><a href="https://a.co/d/041TdfVq" rel="noopener" target="_blank">Buy on Amazon</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Content</h4>
+<ul class="footer-links">
+<li><a href="#editorials">Editorials</a></li>
+<li><a href="#stories">Stories</a></li>
+<li><a href="#video">Video</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Sircus</h4>
+<ul class="footer-links">
+<li><a href="#manifesto">About</a></li>
+<li><a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">The Manifesto</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<span class="f-copy">© 2026 Sircus™ Magazine. All rights reserved.</span>
+<a class="f-buy" href="https://www.magcloud.com/browse/magazine/599779" target="_blank">Get the Print Issue →</a>
+</div>
+</div>
+</footer>
+<script>
+
+
+(function(){
+  const panel = document.querySelector('.social-panel');
+  const tab = document.querySelector('.social-panel__tab');
+  if (!panel || !tab) return;
+  tab.addEventListener('click', () => {
+    const open = panel.classList.toggle('open');
+    tab.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.addEventListener('click', (e) => {
+    if (!panel.contains(e.target)) {
+      panel.classList.remove('open');
+      tab.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
+
+// ── VIDEO ROTATION ────────────────────────────────────────────────────────
+const vids = [
+  'https://res.cloudinary.com/dk8dxerks/video/upload/v1777375759/osiris_01_sunlit_desert_close-up_of_a_Persian_supermodel_with_fd5c3047-d866-4ce6-b868-44b6b6601a2d_0_cq6aim.mp4',
+  'https://res.cloudinary.com/dk8dxerks/video/upload/v1777375755/osiris_01_A_high-fashion_cinematic_video_of_Jasmine_a_command_c2dc23df-a05b-4ed1-8d6a-fa8b1d81214c_2_f5fkcg.mp4',
+  'https://res.cloudinary.com/dk8dxerks/video/upload/v1777375751/osiris_01_Persian_supermodel_slowly_lifting_herself_from_the__7d195353-36b0-4dfa-bdfd-7696eea17bf9_0_oee4yn.mp4'
+];
+const vEl = document.getElementById('hero-video');
+if (vEl) {
+  let vi = 0;
+  vEl.addEventListener('ended', () => {
+    vi = (vi + 1) % vids.length;
+    vEl.src = vids[vi];
+    vEl.load();
+    vEl.play();
+  });
+}
+
+// ── NAV SCROLL ────────────────────────────────────────────────────────────
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('stuck', scrollY > 60));
+
+// ── SCROLL REVEAL ─────────────────────────────────────────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+  });
+}, { threshold: .08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// ── PAGE CURL ON HOVER ────────────────────────────────────────────────────
+document.querySelectorAll('.issue-card').forEach(card => {
+  const cover = card.querySelector('.issue-cover');
+  card.addEventListener('mouseenter', () => {
+    cover.style.transition = 'transform .5s cubic-bezier(.23,1,.32,1), box-shadow .5s ease';
+    cover.style.transform = 'perspective(900px) rotateY(-28deg) translateX(10px)';
+    cover.style.boxShadow = '18px 24px 80px rgba(0,0,0,.5)';
+  });
+  card.addEventListener('mouseleave', () => {
+    cover.style.transition = 'transform .45s cubic-bezier(.23,1,.32,1), box-shadow .45s ease';
+    cover.style.transform = 'perspective(900px) rotateY(0deg) translateX(0)';
+    cover.style.boxShadow = 'none';
+  });
+});
+
+// ── WORD CYCLING ──────────────────────────────────────────────────────────
+const words = [
+  'Beauty','Vision','Story','Light','Craft',
+  'Truth','Style','Form','Grace','Art',
+  'Power','Depth','Soul','Edge','Bold',
+  'YOU'
+];
+const schedule = [
+  2800,2400,2000,1700,1400,
+  1100,850,620,420,300,
+  200,150,120,100,80,
+  0
+];
+const el = document.getElementById('cw');
+
+function showWord(i, delay) {
+  setTimeout(() => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(-6px)';
+    setTimeout(() => {
+      const isYou = words[i] === 'YOU';
+      const bw = document.getElementById('bw');
+      if (bw) bw.textContent = isYou ? 'Become' : 'Becomes';
+      el.textContent = words[i];
+      if (isYou) {
+        el.style.color = '#FFFFFF';
+        el.style.fontFamily = "'Myriad Pro','Trebuchet MS',sans-serif";
+        el.style.fontStyle = 'normal';
+        el.style.fontWeight = '700';
+        el.style.fontSize = '1em';
+      } else {
+        el.style.color = 'var(--gold)';
+        el.style.fontFamily = "'Cormorant Garamond',Georgia,serif";
+        el.style.fontStyle = 'italic';
+        el.style.fontWeight = '300';
+        el.style.fontSize = '.93em';
+      }
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+      el.style.transition = 'opacity .2s ease, transform .2s ease';
+      if (isYou) setTimeout(() => runCycle(), 3200);
+    }, 120);
+  }, delay);
+}
+
+function runCycle() {
+  showWord(0, 0);
+  let cum = schedule[0];
+  for (let i = 1; i < words.length; i++) {
+    showWord(i, cum);
+    cum += schedule[i];
+  }
+}
+
+setTimeout(runCycle, 1800);
+
+
+// ── DETONATION SCROLL FAN ───────────────────────────────────────────────
+// ============================================================
+    // THE DETONATION — Scroll-driven fan animation (Option B)
+    //
+    // All cards begin stacked perfectly behind the front cover —
+    // invisible, same position, same scale. As scroll progresses,
+    // each card peels away from the stack in sequence, emerging
+    // and rotating to its final fanned position. The cover is the
+    // last to settle. One object becomes five.
+    //
+    // To update each issue: edit DETONATION_CONFIG and swap the
+    // five img[src] attributes in the HTML block above.
+    // ============================================================
+    (function() {
+
+      // ---- ISSUE CONFIG — UPDATE THIS EACH ISSUE ----
+      var DETONATION_CONFIG = {
+        number:   'XV',
+        title:    'Light & Consequence',
+        magcloud: 'https://www.magcloud.com',
+      };
+      // -----------------------------------------------
+
+      var section = document.getElementById('detonation');
+      var fill    = document.getElementById('det-fill');
+      var cta     = document.getElementById('det-cta');
+
+      if (!section) return;
+
+      var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Each card has:
+      //   targetRotate / targetX / targetY / targetScale — final fanned state
+      //   revealStart — scroll progress at which this card begins peeling (0–1)
+      //   revealEnd   — scroll progress at which this card reaches full fan position
+      //   z           — z-index (front cover highest)
+      //
+      // Peel sequence is staggered: back cover peels first (it needs to
+      // travel furthest), front cover peels last (it stays on top longest,
+      // maintaining the illusion of a single object as long as possible).
+
+      var cards = [
+        {
+          el: document.getElementById('det-front'),
+          targetRotate: -28, targetX: -420, targetY: -20, targetScale: 0.88,
+          revealStart: 0.30, revealEnd: 0.60,   // last to peel
+          z: 5,
+        },
+        {
+          el: document.getElementById('det-spread1'),
+          targetRotate: -14, targetX: -180, targetY: -35, targetScale: 0.93,
+          revealStart: 0.18, revealEnd: 0.52,
+          z: 4,
+        },
+        {
+          el: document.getElementById('det-spread2'),
+          targetRotate:   0, targetX:   20, targetY: -50, targetScale: 1.00,
+          revealStart: 0.08, revealEnd: 0.46,   // center spread rises first/highest
+          z: 3,
+        },
+        {
+          el: document.getElementById('det-spread3'),
+          targetRotate:  14, targetX:  220, targetY: -35, targetScale: 0.93,
+          revealStart: 0.14, revealEnd: 0.50,
+          z: 2,
+        },
+        {
+          el: document.getElementById('det-back'),
+          targetRotate:  28, targetX:  400, targetY: -20, targetScale: 0.88,
+          revealStart: 0.04, revealEnd: 0.44,   // first to peel, fans furthest right
+          z: 1,
+        },
+      ];
+
+      // Set initial state: all cards stacked perfectly under the cover.
+      // opacity 0 except front cover, transform identity.
+      cards.forEach(function(c) {
+        if (!c.el) return;
+        c.el.style.zIndex   = c.z;
+        c.el.style.transform = 'translateX(0px) translateY(0px) rotate(0deg) scale(1)';
+        c.el.style.opacity  = (c.z === 5) ? '1' : '0';  // only front cover visible
+        c.el.style.boxShadow = '0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04)';
+      });
+
+      function lerp(a, b, t) { return a + (b - a) * t; }
+
+      // Ease: slow start, fast middle, slow settle — cinematic, not snappy
+      function easeOutQuart(t) {
+        return 1 - Math.pow(1 - t, 4);
+      }
+
+      // Separate ease for opacity reveal — quick fade in, then holds
+      function easeOutQuad(t) {
+        return 1 - (1 - t) * (1 - t);
+      }
+
+      function applyCard(c, globalProgress) {
+        if (!c.el) return;
+
+        // Per-card local progress: 0 before revealStart, 1 at revealEnd
+        var localRaw = (globalProgress - c.revealStart) / (c.revealEnd - c.revealStart);
+        var local    = Math.min(Math.max(localRaw, 0), 1);
+
+        // Front cover is always fully visible; others fade in at peel start
+        var opacityLocal = (globalProgress - c.revealStart) / 0.08; // quick fade
+        var opacity = (c.z === 5) ? 1 : Math.min(Math.max(opacityLocal, 0), 1);
+
+        var p = easeOutQuart(local);
+
+        var r = lerp(0, c.targetRotate, p);
+        var x = lerp(0, c.targetX,      p);
+        var y = lerp(0, c.targetY,      p);
+        var s = lerp(1, c.targetScale,  p);
+
+        c.el.style.opacity   = easeOutQuad(opacity).toFixed(3);
+        c.el.style.transform = 'translateX('+x.toFixed(1)+'px) translateY('+y.toFixed(1)+'px) rotate('+r.toFixed(2)+'deg) scale('+s.toFixed(3)+')';
+
+        // Shadow builds as card separates
+        var shadowX = Math.round(x * 0.06);
+        var shadowY = Math.round(lerp(20, 55, p));
+        var shadowB = Math.round(lerp(40, 110, p));
+        var shadowO = lerp(0.5, 0.82, p).toFixed(2);
+        c.el.style.boxShadow = shadowX+'px '+shadowY+'px '+shadowB+'px rgba(0,0,0,'+shadowO+'), 0 0 0 1px rgba(255,255,255,0.04)';
+      }
+
+      function onScroll() {
+        var rect     = section.getBoundingClientRect();
+        var total    = section.offsetHeight - window.innerHeight;
+        var scrolled = -rect.top;
+        var progress = Math.min(Math.max(scrolled / total, 0), 1);
+
+        // Progress bar
+        if (fill) fill.style.height = (progress * 100) + '%';
+
+        // Animate each card against global scroll progress
+        cards.forEach(function(c) { applyCard(c, progress); });
+
+        // CTA appears once all cards are near-settled
+        if (cta) {
+          if (progress > 0.68) cta.classList.add('visible');
+          else cta.classList.remove('visible');
+        }
+      }
+
+      if (reducedMotion) {
+        // Skip animation — show fully fanned, all visible
+        cards.forEach(function(c) {
+          if (!c.el) return;
+          c.el.style.opacity = '1';
+          applyCard(c, 1);
+        });
+        if (cta) cta.classList.add('visible');
+      } else {
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll(); // run once on load — ensures stacked state renders before scroll
+      }
+
+    })();
+
+
+    // ============================================================
+    // SCROLL VELOCITY TILT — The Detonation cards
+    // Cards tilt subtly in scroll direction, snap back on stop.
+    // ============================================================
+    (function() {
+      var detStage   = document.getElementById('det-stage');
+      if (!detStage) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var lastY      = window.scrollY;
+      var velocity   = 0;
+      var tiltTarget = 0;
+      var tiltCurrent = 0;
+      var rafId;
+
+      function tick() {
+        // Smooth tilt toward target
+        tiltCurrent += (tiltTarget - tiltCurrent) * 0.12;
+
+        var cards = detStage.querySelectorAll('.det-card');
+        cards.forEach(function(card) {
+          // Read existing transform and append tilt
+          var existing = card.style.transform || '';
+          // Remove any previous skewY we applied
+          existing = existing.replace(/\s*skewY\([^)]*\)/, '');
+          if (Math.abs(tiltCurrent) > 0.01) {
+            card.style.transform = existing + ' skewY(' + tiltCurrent.toFixed(3) + 'deg)';
+          }
+        });
+
+        rafId = requestAnimationFrame(tick);
+      }
+
+      window.addEventListener('scroll', function() {
+        var currentY = window.scrollY;
+        velocity     = currentY - lastY;
+        lastY        = currentY;
+        // Clamp tilt to ±1.8deg — subtle, not seasick
+        tiltTarget   = Math.min(Math.max(velocity * 0.09, -1.8), 1.8);
+      }, { passive: true });
+
+      // Decay velocity to zero — cards snap back when scroll stops
+      setInterval(function() {
+        velocity   *= 0.78;
+        tiltTarget  = Math.min(Math.max(velocity * 0.09, -1.8), 1.8);
+      }, 60);
+
+      tick();
+    })();
+
+    // ============================================================
+    // WIPE REVEAL — Manifesto body text
+    // Horizontal clip-path reveal on scroll entry.
+    // Works alongside IntersectionObserver already running above.
+    // ============================================================
+    (function() {
+      var wipeEls = document.querySelectorAll('.wipe-reveal');
+      if (!wipeEls.length) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        wipeEls.forEach(function(el) { el.classList.add('is-visible'); });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            // Slight delay so the eyebrow lands first
+            setTimeout(function() {
+              entry.target.classList.add('is-visible');
+            }, 180);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      wipeEls.forEach(function(el) { observer.observe(el); });
+    })();
+</script>
+<!-- Fullscreen editorial image viewer (ed-hero / ed-cell targets) handled by editorial wall lightbox below -->
+<script>
+  // Soft image protection: disables right-click/context menu without interrupting the SIRCUS experience.
+  document.addEventListener('contextmenu', function(event) {
+    event.preventDefault();
+  });
+</script>
+<div aria-hidden="true" class="story-reveal" id="storyReveal">
+<div class="story-reveal__scrim"></div>
+<article aria-labelledby="storyRevealTitle" aria-modal="true" class="story-reveal__panel" role="dialog">
+<button aria-label="Close story preview" class="story-reveal__close" type="button">×</button>
+<div class="story-reveal__media">
+<img alt="" src=""/>
+</div>
+<div class="story-reveal__copy">
+<span class="story-reveal__issue"></span>
+<h3 id="storyRevealTitle"></h3>
+<p class="story-reveal__excerpt"></p>
+<div aria-hidden="true" class="story-reveal__fade"></div>
+<div class="story-reveal__cta">
+<a class="story-reveal__btn story-reveal__btn--primary" href="https://www.amazon.com/s?k=sircus+magazine" rel="noopener" target="_blank">Continue on Amazon</a>
+<a class="story-reveal__btn story-reveal__btn--ghost" href="https://www.magcloud.com/browse/magazine/599779" rel="noopener" target="_blank">Collector Edition — MagCloud</a>
+</div>
+</div>
+</article>
+</div>
+<script>
+(function () {
+  function initStoryReveal() {
+    const overlay = document.getElementById('storyReveal');
+    if (!overlay) return;
+
+    const panel = overlay.querySelector('.story-reveal__panel');
+    const image = overlay.querySelector('.story-reveal__media img');
+    const title = overlay.querySelector('#storyRevealTitle');
+    const issue = overlay.querySelector('.story-reveal__issue');
+    const excerpt = overlay.querySelector('.story-reveal__excerpt');
+    const amazon = overlay.querySelector('.story-reveal__btn--primary');
+    const magcloud = overlay.querySelector('.story-reveal__btn--ghost');
+    const close = overlay.querySelector('.story-reveal__close');
+    const scrim = overlay.querySelector('.story-reveal__scrim');
+
+    function openCard(card) {
+      image.src = card.dataset.image || '';
+      image.alt = card.dataset.title || 'SIRCUS story preview';
+      title.textContent = card.dataset.title || '';
+      issue.textContent = card.dataset.issue || '';
+      excerpt.textContent = card.dataset.excerpt || '';
+      amazon.href = card.dataset.amazon || 'https://www.amazon.com/s?k=sircus+magazine';
+      amazon.textContent = 'Continue in ' + ((card.dataset.issue || 'the issue').split(' — ')[0]) + ' — Amazon';
+      magcloud.href = card.dataset.magcloud || 'https://www.magcloud.com/browse/magazine/599779';
+
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+
+      panel.style.animation = 'none';
+      panel.offsetHeight;
+      panel.style.animation = '';
+    }
+
+    function closeOverlay() {
+      overlay.classList.remove('open');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      setTimeout(function () {
+        if (!overlay.classList.contains('open')) image.src = '';
+      }, 160);
+    }
+
+    document.querySelectorAll('.story-expand-card').forEach(function (card) {
+      card.addEventListener('click', function () { openCard(card); });
+    });
+
+    close.addEventListener('click', closeOverlay);
+    scrim.addEventListener('click', closeOverlay);
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && overlay.classList.contains('open')) closeOverlay();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initStoryReveal);
+  } else {
+    initStoryReveal();
+  }
+})();
+</script>
+<script>
+(function () {
+  function initEditorialWallLightbox() {
+    const lightbox = document.getElementById('imageLightbox');
+    if (!lightbox) return;
+    const lightboxImg = lightbox.querySelector('img');
+    const closeBtn = lightbox.querySelector('.image-lightbox__close');
+
+    document.querySelectorAll('.editorial-wall__item img').forEach(function (img) {
+      img.addEventListener('click', function () {
+        lightboxImg.src = img.currentSrc || img.src;
+        lightboxImg.alt = img.alt || 'SIRCUS editorial image';
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      setTimeout(function () {
+        if (!lightbox.classList.contains('open')) lightboxImg.src = '';
+      }, 150);
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function (event) {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initEditorialWallLightbox);
+  } else {
+    initEditorialWallLightbox();
+  }
+})();
+</script>
+
+<script>
+/* ── MOBILE NAV ── */
+(function () {
+  var hamburger = document.getElementById('nav-hamburger');
+  var drawer    = document.getElementById('mobile-drawer');
+  if (!hamburger || !drawer) return;
+
+  function openMenu() {
+    hamburger.classList.add('open');
+    drawer.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    drawer.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    drawer.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    drawer.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', function () {
+    hamburger.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  /* Close on any drawer link tap */
+  drawer.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', closeMenu);
+  });
+
+  /* Close on Escape */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+})();
+</script>
+</body>
+</html>
