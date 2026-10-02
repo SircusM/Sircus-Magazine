@@ -798,7 +798,7 @@ hr.rule { border:none; border-top:1px solid var(--stone); }
 /* ── FINAL EDITORIAL CTA ── */
 .final-cta {
   position: relative;
-  height: 72vh;
+  height: min(100vh, 66.67vw);
   min-height: 520px;
   background: #000;
   overflow: hidden;
@@ -826,8 +826,8 @@ hr.rule { border:none; border-top:1px solid var(--stone); }
   justify-content: flex-end;
   padding: 5rem var(--pad);
   background:
-    linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.42) 42%, transparent 72%),
-    linear-gradient(to right, rgba(0,0,0,.34) 0%, transparent 55%);
+    linear-gradient(to top, rgba(0,0,0,.5) 0%, rgba(0,0,0,.16) 36%, transparent 60%),
+    linear-gradient(to right, rgba(0,0,0,.12) 0%, transparent 45%);
 }
 .final-cta__kicker {
   display: block;
@@ -837,13 +837,15 @@ hr.rule { border:none; border-top:1px solid var(--stone); }
   text-transform: uppercase;
   color: var(--gold);
   font-weight: 600;
+  text-shadow: 0 1px 12px rgba(0,0,0,.7);
 }
 .final-cta__line {
   font-family: var(--serif);
   font-style: italic;
   font-size: clamp(1.7rem, 2.7vw, 2.35rem);
   font-weight: 300;
-  color: rgba(255,255,255,.78);
+  color: #fff;
+  text-shadow: 0 1px 16px rgba(0,0,0,.6);
   line-height: 1.35;
   margin-bottom: 2rem;
   max-width: 560px;
@@ -857,6 +859,7 @@ hr.rule { border:none; border-top:1px solid var(--stone); }
   letter-spacing: .28em;
   text-transform: uppercase;
   color: #fff;
+  background: rgba(0,0,0,.32);
   border: 1px solid rgba(255,255,255,.5);
   padding: 1.1rem 2.6rem;
   text-decoration: none;
@@ -1750,6 +1753,8 @@ footer {
 
 /* Row 3 — full bleed */
 .ew-full  { grid-column: 1 / -1; min-height: 520px; }
+.ew-wide     { grid-column: 1 / 9;  min-height: 520px; }
+.ew-portrait { grid-column: 9 / 13; min-height: 520px; }
 
 @media(max-width:1080px) {
   .editorial-wall {
@@ -1762,7 +1767,8 @@ footer {
   .ew-mid-a, .ew-mid-b, .ew-mid-c {
     grid-column: span 6;
   }
-  .ew-full { grid-column: 1 / -1; }
+  .ew-full, .ew-wide { grid-column: 1 / -1; }
+  .ew-portrait { grid-column: span 6; min-height: 340px; }
 }
 
 @media(max-width:700px) {
@@ -1780,7 +1786,7 @@ footer {
 
   .editorial-wall__item,
   .ew-large, .ew-tall, .ew-stack-top, .ew-stack-bottom,
-  .ew-mid-a, .ew-mid-b, .ew-mid-c, .ew-full {
+  .ew-mid-a, .ew-mid-b, .ew-mid-c, .ew-full, .ew-wide, .ew-portrait {
     grid-column: 1 / -1;
   }
 }
@@ -2172,8 +2178,11 @@ footer {
 <img alt="SIRCUS editorial — Heather, full-bleed cinematic fashion portrait" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777779362/heather_mf5qtk.jpg"/>
 </button>
 <!-- Row 3: full bleed cinematic -->
-<button aria-label="Open editorial image" class="editorial-wall__item ew-full" type="button">
+<button aria-label="Open editorial image" class="editorial-wall__item ew-wide" type="button">
 <img alt="SIRCUS editorial — Nayla, full-bleed editorial photograph from the archive" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777778027/Nayla_10b_zzmo0p.jpg"/>
+</button>
+<button aria-label="Open editorial image" class="editorial-wall__item ew-portrait" type="button">
+<img alt="SIRCUS editorial: Namara in gold, full-length fashion portrait" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1790914687/Namara_golden_pntmnu.png"/>
 </button>
 </div>
 </section>
@@ -2285,7 +2294,7 @@ but to the intention to be seen…" data-image="https://res.cloudinary.com/dk8dx
 <!-- CINEMATIC FOOTER -->
 <section aria-label="Own SIRCUS Issue 16" class="final-cta">
 <div class="final-cta__image">
-<img alt="SIRCUS editorial still: cinematic fashion portrait of Namara" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto/v1790914222/hf_20260927_030636_17ae4654-bf8e-46d2-b997-9b33cb7ca3c8_kg52la.png" style="object-position:22% top;"/>
+<img alt="SIRCUS editorial still: cinematic fashion portrait of Namara" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto/v1790914222/hf_20260927_030636_17ae4654-bf8e-46d2-b997-9b33cb7ca3c8_kg52la.png" style="object-position:22% 30%;"/>
 </div>
 <div class="final-cta__overlay">
 <span class="final-cta__kicker">Issue 16: Sunlit Reverie</span>
