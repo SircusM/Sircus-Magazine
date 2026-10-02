@@ -766,9 +766,9 @@ hr.rule { border:none; border-top:1px solid var(--stone); }
 .image-lightbox__close { position:absolute; top:2rem; right:2rem; color:#fff; font-size:2rem; line-height:1; opacity:.8; border:0; background:transparent; cursor:pointer; }
 
 /* ── YOUTUBE / ON-SITE FILM CARDS ── */
-.yt-three-act { display:grid; grid-template-columns:3fr 2fr; gap:4px; margin-top:4rem; }
+.yt-three-act { display:grid; grid-template-columns:1fr; gap:4px; margin-top:4rem; }
 .yt-primary, .yt-secondary-pair { min-width:0; }
-.yt-secondary-pair { display:grid; grid-template-rows:1fr 1fr; gap:4px; }
+.yt-secondary-pair { display:grid; grid-template-columns:repeat(3, 1fr); gap:4px; }
 .yt-card {
   display:block;
   text-decoration:none; position:relative; display:block; width:100%; aspect-ratio:16/9; overflow:hidden; background:#111; cursor:pointer; }
@@ -884,7 +884,7 @@ hr.rule { border:none; border-top:1px solid var(--stone); }
   .manifesto-image-wrap { justify-self:start; width:min(360px,100%); }
   .manifesto-lines { inset:-4% 0 -4% -16%; opacity:.65; }
   .yt-three-act { grid-template-columns:1fr; }
-  .yt-secondary-pair { grid-template-rows:auto auto; }
+  .yt-secondary-pair { grid-template-columns:1fr; }
   .ed-grid { grid-template-columns:1fr; }
   .ed-hero { min-height:520px; }
   .ed-secondary { grid-template-columns:1fr 1fr; }
@@ -2278,6 +2278,13 @@ but to the intention to be seen…" data-image="https://res.cloudinary.com/dk8dx
 <span aria-hidden="true" class="yt-play"></span>
 </a>
 <div class="yt-label"><span class="yt-num">03</span><span class="yt-title">A New Era</span><span class="yt-desc">Trexie on the Sircus world from inside it.</span></div>
+</div>
+<div class="yt-secondary-item">
+<a aria-label="Watch I Made a Fool of Myself on YouTube" class="yt-card" href="https://www.youtube.com/watch?v=qfWOrsiCqdg" rel="noopener" target="_blank">
+<img alt="I Made a Fool of Myself" loading="lazy" src="https://img.youtube.com/vi/qfWOrsiCqdg/maxresdefault.jpg"/>
+<span aria-hidden="true" class="yt-play"></span>
+</a>
+<div class="yt-label"><span class="yt-num">04</span><span class="yt-title">I Made a Fool of Myself</span><span class="yt-desc">A cinematic short from Melanie's story in Electric Baroque.</span></div>
 </div>
 </div>
 </div>
