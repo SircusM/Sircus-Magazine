@@ -1617,29 +1617,42 @@ footer {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1rem;
+  gap: .7rem;
   margin-top: 1.6rem;
   position: relative;
   z-index: 3;
 }
 
+.story-reveal__share-label {
+  font-size: .5rem;
+  letter-spacing: .36em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-right: .3rem;
+}
+
 .story-reveal__share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: none;
-  border: 0;
-  border-bottom: 1px solid rgba(184,130,14,.7);
-  padding: 0 0 .4rem;
+  border: 1px solid rgba(255,255,255,.34);
+  padding: .62rem .95rem;
   font-family: var(--sans);
-  font-size: .56rem;
+  font-size: .5rem;
   letter-spacing: .22em;
   text-transform: uppercase;
+  text-decoration: none;
   color: #fff;
   cursor: pointer;
-  transition: color .3s ease, border-color .3s ease;
+  transition: color .3s ease, border-color .3s ease, background .3s ease;
 }
 
 .story-reveal__share-btn:hover {
-  color: var(--gold);
+  background: var(--gold);
   border-color: var(--gold);
+  color: #fff;
 }
 
 .story-reveal__share-note {
@@ -2341,7 +2354,7 @@ Affirmed. Exceptional. Absolved.
 
 He refused.
 
-That refusal cracked something…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/v1777760141/Melanie_Stalker2_a9fkqc.jpg" data-issue="Issue 15 — Electric Baroque" data-magcloud="https://www.magcloud.com/browse/issue/3260300" data-slug="married-to-the-racist-that-is-me" data-title="Married to the Racist That Is Me" type="button">
+That refusal cracked something…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/v1777760141/Melanie_Stalker2_a9fkqc.jpg" data-issue="Issue 15: Electric Baroque" data-magcloud="https://www.magcloud.com/browse/issue/3260300" data-slug="married-to-the-racist-that-is-me" data-title="Married to the Racist That Is Me" type="button">
 <span class="story-expand-card__image">
 <img alt="Married to the Racist That Is Me story preview" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777760141/Melanie_Stalker2_a9fkqc.jpg"/>
 </span>
@@ -2936,7 +2949,10 @@ setTimeout(runCycle, 1800);
 <a class="story-reveal__btn story-reveal__btn--ghost" href="https://www.magcloud.com/browse/magazine/599779" rel="noopener" target="_blank">Collector Edition · MagCloud</a>
 </div>
 <div class="story-reveal__share">
-<button class="story-reveal__share-btn" type="button">Share this story</button>
+<span class="story-reveal__share-label">Share</span>
+<a aria-label="Share this story on Facebook" class="story-reveal__share-btn" data-share="facebook" href="https://www.facebook.com/profile.php?id=61572041751355" rel="noopener" target="_blank">Facebook</a>
+<a aria-label="Save this story to Pinterest" class="story-reveal__share-btn" data-share="pinterest" href="https://www.pinterest.com/sircusmagazine" rel="noopener" target="_blank">Pinterest</a>
+<button aria-label="Copy the link to this story" class="story-reveal__share-btn" data-share="copy" type="button">Copy link</button>
 <span aria-live="polite" class="story-reveal__share-note"></span>
 </div>
 </div>
@@ -2957,18 +2973,21 @@ setTimeout(runCycle, 1800);
     const magcloud = overlay.querySelector('.story-reveal__btn--ghost');
     const close = overlay.querySelector('.story-reveal__close');
     const scrim = overlay.querySelector('.story-reveal__scrim');
-    const share = overlay.querySelector('.story-reveal__share-btn');
+    const shareFacebook = overlay.querySelector('[data-share="facebook"]');
+    const sharePinterest = overlay.querySelector('[data-share="pinterest"]');
+    const shareCopy = overlay.querySelector('[data-share="copy"]');
     const shareNote = overlay.querySelector('.story-reveal__share-note');
     let current = null;
     let arrivedByLink = false;
 
-    /* Each story has a share address: /?story=<slug>. Opening that address opens the excerpt. */
+    /* Each story has a share page, /story-<slug>, carrying its own title and image for social previews.
+       That page sends readers to /?story=<slug>, which opens the excerpt here. */
     function slugOf(card) {
       return card.dataset.slug || (card.dataset.title || '').toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
     }
 
     function shareUrl(card) {
-      return location.origin + '/?story=' + encodeURIComponent(slugOf(card));
+      return location.origin + '/story-' + encodeURIComponent(slugOf(card));
     }
 
     function showShareNote(text) {
@@ -2991,14 +3010,9 @@ setTimeout(runCycle, 1800);
       showShareNote(ok ? 'Link copied' : url);
     }
 
-    function shareCurrent() {
+    function copyCurrent() {
       if (!current) return;
       var url = shareUrl(current);
-      var touch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
-      if (touch && navigator.share) {
-        navigator.share({ title: (current.dataset.title || 'A story') + ' | SIRCUS', url: url }).catch(function () {});
-        return;
-      }
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(url).then(function () { showShareNote('Link copied'); }, function () { copyFallback(url); });
       } else {
@@ -3009,6 +3023,11 @@ setTimeout(runCycle, 1800);
     function openCard(card) {
       current = card;
       shareNote.classList.remove('show');
+      var page = shareUrl(card);
+      if (shareFacebook) shareFacebook.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(page);
+      if (sharePinterest) sharePinterest.href = 'https://www.pinterest.com/pin/create/button/?url=' + encodeURIComponent(page) +
+        '&media=' + encodeURIComponent(card.dataset.image || '') +
+        '&description=' + encodeURIComponent((card.dataset.title || '') + ' | SIRCUS Magazine, ' + (card.dataset.issue || ''));
       image.src = card.dataset.image || '';
       image.alt = card.dataset.title || 'SIRCUS story preview';
       title.textContent = card.dataset.title || '';
@@ -3059,7 +3078,7 @@ setTimeout(runCycle, 1800);
 
     close.addEventListener('click', closeOverlay);
     scrim.addEventListener('click', closeOverlay);
-    if (share) share.addEventListener('click', shareCurrent);
+    if (shareCopy) shareCopy.addEventListener('click', copyCurrent);
 
     var wanted = null;
     try { wanted = new URLSearchParams(location.search).get('story'); } catch (err) { wanted = null; }
