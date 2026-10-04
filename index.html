@@ -1636,23 +1636,32 @@ footer {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: none;
-  border: 1px solid rgba(255,255,255,.34);
-  padding: .62rem .95rem;
-  font-family: var(--sans);
-  font-size: .5rem;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #fff;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid rgba(255,255,255,.6);
+  border-radius: 50%;
+  background: transparent;
   cursor: pointer;
-  transition: color .3s ease, border-color .3s ease, background .3s ease;
+  transition: background .3s ease, border-color .3s ease;
+}
+
+.story-reveal__share-btn img {
+  width: 1rem;
+  height: 1rem;
+  display: block;
+  filter: invert(1);
+  transition: filter .3s ease;
+  font-size: .5rem;
+  color: #000;
 }
 
 .story-reveal__share-btn:hover {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: #fff;
+  background: #fff;
+  border-color: #fff;
+}
+
+.story-reveal__share-btn:hover img {
+  filter: none;
 }
 
 .story-reveal__share-note {
@@ -2950,9 +2959,10 @@ setTimeout(runCycle, 1800);
 </div>
 <div class="story-reveal__share">
 <span class="story-reveal__share-label">Share</span>
-<a aria-label="Share this story on Facebook" class="story-reveal__share-btn" data-share="facebook" href="https://www.facebook.com/profile.php?id=61572041751355" rel="noopener" target="_blank">Facebook</a>
-<a aria-label="Save this story to Pinterest" class="story-reveal__share-btn" data-share="pinterest" href="https://www.pinterest.com/sircusmagazine" rel="noopener" target="_blank">Pinterest</a>
-<button aria-label="Copy the link to this story" class="story-reveal__share-btn" data-share="copy" type="button">Copy link</button>
+<a aria-label="Share this story on Facebook" class="story-reveal__share-btn" data-share="facebook" href="https://www.facebook.com/profile.php?id=61572041751355" rel="noopener" target="_blank" title="Facebook"><img alt="Facebook" height="16" src="https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/facebook.svg" width="16"/></a>
+<a aria-label="Save this story to Pinterest" class="story-reveal__share-btn" data-share="pinterest" href="https://www.pinterest.com/sircusmagazine" rel="noopener" target="_blank" title="Pinterest"><img alt="Pinterest" height="16" src="https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/pinterest.svg" width="16"/></a>
+<a aria-label="Copy this story link and open Instagram" class="story-reveal__share-btn" data-share="instagram" href="https://www.instagram.com/" rel="noopener" target="_blank" title="Instagram"><img alt="Instagram" height="16" src="https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/instagram.svg" width="16"/></a>
+<a aria-label="Share this story on X" class="story-reveal__share-btn" data-share="x" href="https://x.com/" rel="noopener" target="_blank" title="X"><img alt="X" height="16" src="https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/x.svg" width="16"/></a>
 <span aria-live="polite" class="story-reveal__share-note"></span>
 </div>
 </div>
@@ -2975,7 +2985,8 @@ setTimeout(runCycle, 1800);
     const scrim = overlay.querySelector('.story-reveal__scrim');
     const shareFacebook = overlay.querySelector('[data-share="facebook"]');
     const sharePinterest = overlay.querySelector('[data-share="pinterest"]');
-    const shareCopy = overlay.querySelector('[data-share="copy"]');
+    const shareInstagram = overlay.querySelector('[data-share="instagram"]');
+    const shareX = overlay.querySelector('[data-share="x"]');
     const shareNote = overlay.querySelector('.story-reveal__share-note');
     let current = null;
     let arrivedByLink = false;
@@ -2993,10 +3004,10 @@ setTimeout(runCycle, 1800);
     function showShareNote(text) {
       shareNote.textContent = text;
       shareNote.classList.add('show');
-      setTimeout(function () { shareNote.classList.remove('show'); }, 2600);
+      setTimeout(function () { shareNote.classList.remove('show'); }, 4200);
     }
 
-    function copyFallback(url) {
+    function copyFallback(url, message) {
       var field = document.createElement('textarea');
       field.value = url;
       field.setAttribute('readonly', '');
@@ -3007,16 +3018,18 @@ setTimeout(runCycle, 1800);
       var ok = false;
       try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
       document.body.removeChild(field);
-      showShareNote(ok ? 'Link copied' : url);
+      showShareNote(ok ? (message || 'Link copied') : url);
     }
 
-    function copyCurrent() {
+    /* Instagram accepts no link from a website, so its icon copies the story link and opens Instagram for pasting. */
+    function copyForInstagram() {
       if (!current) return;
       var url = shareUrl(current);
+      var message = 'Link copied. Paste it in Instagram.';
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(url).then(function () { showShareNote('Link copied'); }, function () { copyFallback(url); });
+        navigator.clipboard.writeText(url).then(function () { showShareNote(message); }, function () { copyFallback(url, message); });
       } else {
-        copyFallback(url);
+        copyFallback(url, message);
       }
     }
 
@@ -3028,6 +3041,8 @@ setTimeout(runCycle, 1800);
       if (sharePinterest) sharePinterest.href = 'https://www.pinterest.com/pin/create/button/?url=' + encodeURIComponent(page) +
         '&media=' + encodeURIComponent(card.dataset.image || '') +
         '&description=' + encodeURIComponent((card.dataset.title || '') + ' | SIRCUS Magazine, ' + (card.dataset.issue || ''));
+      if (shareX) shareX.href = 'https://x.com/intent/tweet?text=' + encodeURIComponent((card.dataset.title || '') + ' | SIRCUS Magazine') +
+        '&url=' + encodeURIComponent(page);
       image.src = card.dataset.image || '';
       image.alt = card.dataset.title || 'SIRCUS story preview';
       title.textContent = card.dataset.title || '';
@@ -3078,7 +3093,7 @@ setTimeout(runCycle, 1800);
 
     close.addEventListener('click', closeOverlay);
     scrim.addEventListener('click', closeOverlay);
-    if (shareCopy) shareCopy.addEventListener('click', copyCurrent);
+    if (shareInstagram) shareInstagram.addEventListener('click', copyForInstagram);
 
     var wanted = null;
     try { wanted = new URLSearchParams(location.search).get('story'); } catch (err) { wanted = null; }
