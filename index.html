@@ -3000,6 +3000,21 @@ setTimeout(runCycle, 1800);
       return location.origin + '/story-' + encodeURIComponent(slugOf(card));
     }
 
+    /* A short piece of the excerpt travels with every share, so nobody has to type one. */
+    function snippetOf(card, limit) {
+      var text = (card.dataset.excerpt || '').replace(/\s+/g, ' ').trim();
+      if (!limit || text.length <= limit) return text;
+      var cut = text.slice(0, limit - 1);
+      var stop = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('? '), cut.lastIndexOf('! '));
+      if (stop > 40) return cut.slice(0, stop + 1);
+      return cut.slice(0, cut.lastIndexOf(' ')).replace(/[\s,;:]+$/, '') + '\u2026';
+    }
+
+    function shareText(card, limit) {
+      var credit = (card.dataset.title || '') + ' | SIRCUS Magazine';
+      return '\u201C' + snippetOf(card, limit ? limit - credit.length - 3 : 0) + '\u201D ' + credit;
+    }
+
     function showShareNote(text) {
       shareNote.textContent = text;
       shareNote.classList.add('show');
@@ -3020,11 +3035,11 @@ setTimeout(runCycle, 1800);
       showShareNote(ok ? (message || 'Link copied') : url);
     }
 
-    /* Instagram accepts no link from a website, so its icon copies the story link and opens Instagram for pasting. */
+    /* Instagram accepts nothing from a website, so its icon copies the excerpt and link and opens Instagram for pasting. */
     function copyForInstagram() {
       if (!current) return;
-      var url = shareUrl(current);
-      var message = 'Link copied. Paste it in Instagram.';
+      var url = shareText(current) + '\n' + shareUrl(current);
+      var message = 'Excerpt and link copied. Paste them in Instagram.';
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(url).then(function () { showShareNote(message); }, function () { copyFallback(url, message); });
       } else {
@@ -3036,11 +3051,12 @@ setTimeout(runCycle, 1800);
       current = card;
       shareNote.classList.remove('show');
       var page = shareUrl(card);
-      if (shareFacebook) shareFacebook.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(page);
+      if (shareFacebook) shareFacebook.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(page) +
+        '&quote=' + encodeURIComponent(shareText(card));
       if (sharePinterest) sharePinterest.href = 'https://www.pinterest.com/pin/create/button/?url=' + encodeURIComponent(page) +
         '&media=' + encodeURIComponent(card.dataset.image || '') +
-        '&description=' + encodeURIComponent((card.dataset.title || '') + ' | SIRCUS Magazine, ' + (card.dataset.issue || ''));
-      if (shareX) shareX.href = 'https://x.com/intent/tweet?text=' + encodeURIComponent((card.dataset.title || '') + ' | SIRCUS Magazine') +
+        '&description=' + encodeURIComponent(shareText(card) + ', ' + (card.dataset.issue || ''));
+      if (shareX) shareX.href = 'https://x.com/intent/tweet?text=' + encodeURIComponent(shareText(card, 250)) +
         '&url=' + encodeURIComponent(page);
       image.src = card.dataset.image || '';
       image.alt = card.dataset.title || 'SIRCUS story preview';
