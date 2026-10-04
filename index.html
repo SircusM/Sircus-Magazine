@@ -3015,13 +3015,15 @@ setTimeout(runCycle, 1800);
       return '\u201C' + snippetOf(card, limit ? limit - credit.length - 3 : 0) + '\u201D ' + credit;
     }
 
-    function showShareNote(text) {
+    var shareNoteTimer = null;
+    function showShareNote(text, hold) {
       shareNote.textContent = text;
       shareNote.classList.add('show');
-      setTimeout(function () { shareNote.classList.remove('show'); }, 4200);
+      clearTimeout(shareNoteTimer);
+      shareNoteTimer = setTimeout(function () { shareNote.classList.remove('show'); }, hold || 4200);
     }
 
-    function copyFallback(url, message) {
+    function copyFallback(url, message, hold) {
       var field = document.createElement('textarea');
       field.value = url;
       field.setAttribute('readonly', '');
@@ -3032,27 +3034,40 @@ setTimeout(runCycle, 1800);
       var ok = false;
       try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
       document.body.removeChild(field);
-      showShareNote(ok ? (message || 'Link copied') : url);
+      showShareNote(ok ? (message || 'Link copied') : url, hold);
+    }
+
+    function copyText(text, message, hold) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { showShareNote(message, hold); }, function () { copyFallback(text, message, hold); });
+      } else {
+        copyFallback(text, message, hold);
+      }
     }
 
     /* Instagram accepts nothing from a website, so its icon copies the excerpt and link and opens Instagram for pasting. */
     function copyForInstagram() {
       if (!current) return;
-      var url = shareText(current) + '\n' + shareUrl(current);
-      var message = 'Excerpt and link copied. Paste them in Instagram.';
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(url).then(function () { showShareNote(message); }, function () { copyFallback(url, message); });
-      } else {
-        copyFallback(url, message);
-      }
+      copyText(shareText(current) + '\n' + shareUrl(current), 'Excerpt and link copied. Paste them in Instagram.');
+    }
+
+    /* Facebook does not let a website fill in the post text, and it dropped its quote option.
+       So the excerpt is copied for pasting, and the composer opens in a window beside the note. */
+    function shareToFacebook(event) {
+      if (!current) return;
+      copyText(shareText(current), 'Excerpt copied. Paste it into your Facebook post.', 20000);
+      var left = (window.screenX || 0) + 24;
+      var top = (window.screenY || 0) + 90;
+      var popup = null;
+      try { popup = window.open(shareFacebook.href, 'sircus_share', 'width=640,height=720,left=' + left + ',top=' + top); } catch (err) { popup = null; }
+      if (popup) event.preventDefault();
     }
 
     function openCard(card) {
       current = card;
       shareNote.classList.remove('show');
       var page = shareUrl(card);
-      if (shareFacebook) shareFacebook.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(page) +
-        '&quote=' + encodeURIComponent(shareText(card));
+      if (shareFacebook) shareFacebook.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(page);
       if (sharePinterest) sharePinterest.href = 'https://www.pinterest.com/pin/create/button/?url=' + encodeURIComponent(page) +
         '&media=' + encodeURIComponent(card.dataset.image || '') +
         '&description=' + encodeURIComponent(shareText(card) + ', ' + (card.dataset.issue || ''));
@@ -3109,6 +3124,7 @@ setTimeout(runCycle, 1800);
     close.addEventListener('click', closeOverlay);
     scrim.addEventListener('click', closeOverlay);
     if (shareInstagram) shareInstagram.addEventListener('click', copyForInstagram);
+    if (shareFacebook) shareFacebook.addEventListener('click', shareToFacebook);
 
     var wanted = null;
     try { wanted = new URLSearchParams(location.search).get('story'); } catch (err) { wanted = null; }
