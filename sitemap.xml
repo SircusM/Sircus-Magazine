@@ -2,15 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://sircusmagazine.com/</loc>
-    <lastmod>2026-10-01</lastmod>
+    <loc>https://www.sircusmagazine.com/</loc>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://sircusmagazine.com/contact</loc>
-    <lastmod>2026-05-03</lastmod>
+    <loc>https://www.sircusmagazine.com/issues/16-sunlit-reverie</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.sircusmagazine.com/contact</loc>
+    <lastmod>2026-10-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
