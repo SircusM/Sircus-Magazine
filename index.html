@@ -3023,9 +3023,10 @@ setTimeout(runCycle, 1800);
       shareNoteTimer = setTimeout(function () { shareNote.classList.remove('show'); }, hold || 4200);
     }
 
-    function copyFallback(url, message, hold) {
+    /* Copy inside the click itself, before any new window takes focus. */
+    function copySync(text) {
       var field = document.createElement('textarea');
-      field.value = url;
+      field.value = text;
       field.setAttribute('readonly', '');
       field.style.position = 'fixed';
       field.style.opacity = '0';
@@ -3034,14 +3035,16 @@ setTimeout(runCycle, 1800);
       var ok = false;
       try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
       document.body.removeChild(field);
-      showShareNote(ok ? (message || 'Link copied') : url, hold);
+      return ok;
     }
 
     function copyText(text, message, hold) {
+      if (copySync(text)) { showShareNote(message, hold); return; }
+      var blocked = 'Your browser blocked the copy.';
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function () { showShareNote(message, hold); }, function () { copyFallback(text, message, hold); });
+        navigator.clipboard.writeText(text).then(function () { showShareNote(message, hold); }, function () { showShareNote(blocked, hold); });
       } else {
-        copyFallback(text, message, hold);
+        showShareNote(blocked, hold);
       }
     }
 
