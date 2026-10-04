@@ -1613,6 +1613,48 @@ footer {
   color: #fff;
 }
 
+.story-reveal__share {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.6rem;
+  position: relative;
+  z-index: 3;
+}
+
+.story-reveal__share-btn {
+  background: none;
+  border: 0;
+  border-bottom: 1px solid rgba(184,130,14,.7);
+  padding: 0 0 .4rem;
+  font-family: var(--sans);
+  font-size: .56rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+  transition: color .3s ease, border-color .3s ease;
+}
+
+.story-reveal__share-btn:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+.story-reveal__share-note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: .95rem;
+  color: #fff;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.story-reveal__share-note.show {
+  opacity: 1;
+}
+
 .story-reveal__btn:hover {
   background: #fff;
   border-color: #fff;
@@ -2258,7 +2300,7 @@ footer {
 <div class="story-expand-grid">
 <button class="story-expand-card" data-excerpt="What the algorithm rewards is not honesty, but relatability.
 
-Yet relatability, once engineered, becomes its own form of aspiration…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/sircus-i16-curated-realness_qucne7.jpg" data-issue="Issue 16: Sunlit Reverie" data-magcloud="https://www.magcloud.com/browse/issue/3412009" data-title="Curated Realness" type="button">
+Yet relatability, once engineered, becomes its own form of aspiration…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/sircus-i16-curated-realness_qucne7.jpg" data-issue="Issue 16: Sunlit Reverie" data-magcloud="https://www.magcloud.com/browse/issue/3412009" data-slug="curated-realness" data-title="Curated Realness" type="button">
 <span class="story-expand-card__image">
 <img alt="Curated Realness story preview" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/sircus-i16-curated-realness_qucne7.jpg"/>
 </span>
@@ -2270,7 +2312,7 @@ Yet relatability, once engineered, becomes its own form of aspiration…" data-i
 </button>
 <button class="story-expand-card" data-excerpt="Why would a spatula need an app?
 
-It does not, but the company that sold it to you would very much like you to create an account…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/sircus-i16-unregistered-spatula_wwletb.jpg" data-issue="Issue 16: Sunlit Reverie" data-magcloud="https://www.magcloud.com/browse/issue/3412009" data-title="The Unregistered Spatula" type="button">
+It does not, but the company that sold it to you would very much like you to create an account…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/sircus-i16-unregistered-spatula_wwletb.jpg" data-issue="Issue 16: Sunlit Reverie" data-magcloud="https://www.magcloud.com/browse/issue/3412009" data-slug="unregistered-spatula" data-title="The Unregistered Spatula" type="button">
 <span class="story-expand-card__image">
 <img alt="The Unregistered Spatula story preview" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/sircus-i16-unregistered-spatula_wwletb.jpg"/>
 </span>
@@ -2282,7 +2324,7 @@ It does not, but the company that sold it to you would very much like you to cre
 </button>
 <button class="story-expand-card" data-excerpt="There is something happening to menswear that is difficult to miss.
 
-Pearls hang from men’s necks. Sheer shirts expose torsos beneath delicate fabrics…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/sircus-i16-redrawing-masculinity_lys9pq.jpg" data-issue="Issue 16: Sunlit Reverie" data-magcloud="https://www.magcloud.com/browse/issue/3412009" data-title="The Feminization of Men Through Fashion" type="button">
+Pearls hang from men’s necks. Sheer shirts expose torsos beneath delicate fabrics…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/sircus-i16-redrawing-masculinity_lys9pq.jpg" data-issue="Issue 16: Sunlit Reverie" data-magcloud="https://www.magcloud.com/browse/issue/3412009" data-slug="redrawing-masculinity" data-title="The Feminization of Men Through Fashion" type="button">
 <span class="story-expand-card__image">
 <img alt="The Feminization of Men Through Fashion story preview" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/sircus-i16-redrawing-masculinity_lys9pq.jpg"/>
 </span>
@@ -2299,7 +2341,7 @@ Affirmed. Exceptional. Absolved.
 
 He refused.
 
-That refusal cracked something…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/v1777760141/Melanie_Stalker2_a9fkqc.jpg" data-issue="Issue 15 — Electric Baroque" data-magcloud="https://www.magcloud.com/browse/issue/3260300" data-title="Married to the Racist That Is Me" type="button">
+That refusal cracked something…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/v1777760141/Melanie_Stalker2_a9fkqc.jpg" data-issue="Issue 15 — Electric Baroque" data-magcloud="https://www.magcloud.com/browse/issue/3260300" data-slug="married-to-the-racist-that-is-me" data-title="Married to the Racist That Is Me" type="button">
 <span class="story-expand-card__image">
 <img alt="Married to the Racist That Is Me story preview" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777760141/Melanie_Stalker2_a9fkqc.jpg"/>
 </span>
@@ -2313,7 +2355,7 @@ That refusal cracked something…" data-image="https://res.cloudinary.com/dk8dxe
 
 the freedom to exist without the biological trappings that once defined survival.
 
-Evolution often reveals its elegance in subtraction, not addition…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/v1777758939/Bald3_oooccj.jpg" data-amazon="https://a.co/d/0e3BHp55" data-issue="Issue 14" data-magcloud="https://www.magcloud.com/browse/issue/3214194" data-title="Bald By Design" type="button">
+Evolution often reveals its elegance in subtraction, not addition…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/v1777758939/Bald3_oooccj.jpg" data-amazon="https://a.co/d/0e3BHp55" data-issue="Issue 14" data-magcloud="https://www.magcloud.com/browse/issue/3214194" data-slug="bald-by-design" data-title="Bald By Design" type="button">
 <span class="story-expand-card__image">
 <img alt="Bald By Design story preview" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777758939/Bald3_oooccj.jpg"/>
 </span>
@@ -2328,7 +2370,7 @@ Evolution often reveals its elegance in subtraction, not addition…" data-image
 It is about optics.
 
 The cross no longer testifies to conviction,
-but to the intention to be seen…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/v1777759337/woman_cross_ugf0na.jpg" data-issue="Issue 13" data-magcloud="https://www.magcloud.com/browse/issue/3195632" data-title="Crosses &amp; Cleavage" type="button">
+but to the intention to be seen…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/v1777759337/woman_cross_ugf0na.jpg" data-issue="Issue 13" data-magcloud="https://www.magcloud.com/browse/issue/3195632" data-slug="crosses-and-cleavage" data-title="Crosses &amp; Cleavage" type="button">
 <span class="story-expand-card__image">
 <img alt="Crosses and Cleavage story preview" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777759337/woman_cross_ugf0na.jpg"/>
 </span>
@@ -2893,6 +2935,10 @@ setTimeout(runCycle, 1800);
 <a class="story-reveal__btn story-reveal__btn--primary" href="https://www.amazon.com/s?k=sircus+magazine" rel="noopener" target="_blank">Continue on Amazon</a>
 <a class="story-reveal__btn story-reveal__btn--ghost" href="https://www.magcloud.com/browse/magazine/599779" rel="noopener" target="_blank">Collector Edition · MagCloud</a>
 </div>
+<div class="story-reveal__share">
+<button class="story-reveal__share-btn" type="button">Share this story</button>
+<span aria-live="polite" class="story-reveal__share-note"></span>
+</div>
 </div>
 </article>
 </div>
@@ -2911,8 +2957,58 @@ setTimeout(runCycle, 1800);
     const magcloud = overlay.querySelector('.story-reveal__btn--ghost');
     const close = overlay.querySelector('.story-reveal__close');
     const scrim = overlay.querySelector('.story-reveal__scrim');
+    const share = overlay.querySelector('.story-reveal__share-btn');
+    const shareNote = overlay.querySelector('.story-reveal__share-note');
+    let current = null;
+    let arrivedByLink = false;
+
+    /* Each story has a share address: /?story=<slug>. Opening that address opens the excerpt. */
+    function slugOf(card) {
+      return card.dataset.slug || (card.dataset.title || '').toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    }
+
+    function shareUrl(card) {
+      return location.origin + '/?story=' + encodeURIComponent(slugOf(card));
+    }
+
+    function showShareNote(text) {
+      shareNote.textContent = text;
+      shareNote.classList.add('show');
+      setTimeout(function () { shareNote.classList.remove('show'); }, 2600);
+    }
+
+    function copyFallback(url) {
+      var field = document.createElement('textarea');
+      field.value = url;
+      field.setAttribute('readonly', '');
+      field.style.position = 'fixed';
+      field.style.opacity = '0';
+      document.body.appendChild(field);
+      field.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+      document.body.removeChild(field);
+      showShareNote(ok ? 'Link copied' : url);
+    }
+
+    function shareCurrent() {
+      if (!current) return;
+      var url = shareUrl(current);
+      var touch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+      if (touch && navigator.share) {
+        navigator.share({ title: (current.dataset.title || 'A story') + ' | SIRCUS', url: url }).catch(function () {});
+        return;
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function () { showShareNote('Link copied'); }, function () { copyFallback(url); });
+      } else {
+        copyFallback(url);
+      }
+    }
 
     function openCard(card) {
+      current = card;
+      shareNote.classList.remove('show');
       image.src = card.dataset.image || '';
       image.alt = card.dataset.title || 'SIRCUS story preview';
       title.textContent = card.dataset.title || '';
@@ -2945,6 +3041,13 @@ setTimeout(runCycle, 1800);
       overlay.classList.remove('open');
       overlay.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      if (arrivedByLink) {
+        /* Arrived from a shared link: leave the reader at the stories and clear the address */
+        arrivedByLink = false;
+        var section = document.getElementById('stories');
+        if (section) section.scrollIntoView({ behavior: 'instant', block: 'start' });
+        if (window.history && history.replaceState) history.replaceState(null, '', location.pathname);
+      }
       setTimeout(function () {
         if (!overlay.classList.contains('open')) image.src = '';
       }, 160);
@@ -2956,6 +3059,24 @@ setTimeout(runCycle, 1800);
 
     close.addEventListener('click', closeOverlay);
     scrim.addEventListener('click', closeOverlay);
+    if (share) share.addEventListener('click', shareCurrent);
+
+    var wanted = null;
+    try { wanted = new URLSearchParams(location.search).get('story'); } catch (err) { wanted = null; }
+    if (wanted) {
+      var match = Array.prototype.filter.call(document.querySelectorAll('.story-expand-card'), function (card) {
+        return slugOf(card) === wanted;
+      })[0];
+      if (match) {
+        arrivedByLink = true;
+        var storiesSection = document.getElementById('stories');
+        if (storiesSection) {
+          storiesSection.classList.add('in');
+          storiesSection.scrollIntoView({ behavior: 'instant', block: 'start' });
+        }
+        openCard(match);
+      }
+    }
 
     document.addEventListener('keydown', function (event) {
       if (event.key === 'Escape' && overlay.classList.contains('open')) closeOverlay();
