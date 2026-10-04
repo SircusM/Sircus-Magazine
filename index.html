@@ -14,14 +14,14 @@ Do not perform full-page rewrites. Make surgical edits by section only.
 <meta name="description" content="SIRCUS is an independent fashion and beauty editorial magazine publishing cinematic photography, cultural essays, and high-fashion stories. Available in print and digital via MagCloud, and on Kindle on Amazon."/>
 <meta name="author" content="SIRCUS Magazine"/>
 <meta name="robots" content="index, follow"/>
-<link rel="canonical" href="https://sircusmagazine.com/"/>
+<link rel="canonical" href="https://www.sircusmagazine.com/"/>
 
 <!-- ── OPEN GRAPH ── -->
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="SIRCUS Magazine"/>
 <meta property="og:title" content="SIRCUS Magazine | Cinematic Fashion Editorial"/>
 <meta property="og:description" content="Independent fashion and beauty editorial magazine. Cinematic photography, cultural stories, and high-fashion editorials. Available in print and digital via MagCloud, and on Kindle on Amazon."/>
-<meta property="og:url" content="https://sircusmagazine.com/"/>
+<meta property="og:url" content="https://www.sircusmagazine.com/"/>
 <meta property="og:image" content="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1200/v1790912436/I.16_frt_dj9qkg.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -1998,6 +1998,31 @@ footer {
   .mobile-drawer { display: block; }
   :root { --pad: 2rem; }
 }
+
+/* ── UPDATE: navigation spacing. A wider bar and guaranteed gaps between the three groups ── */
+#nav, #nav.stuck { padding-left: max(clamp(20px,5vw,64px), calc((100vw - 1280px) / 2 + clamp(20px,5vw,64px))); padding-right: max(clamp(20px,5vw,64px), calc((100vw - 1280px) / 2 + clamp(20px,5vw,64px))); gap: clamp(1.75rem, 3.4vw, 3.5rem); }
+#nav .nav-links { gap: clamp(1.25rem, 2.3vw, 2.8rem); }
+#nav .logo, #nav .nav-links a, #nav .nav-btn { white-space: nowrap; }
+@media(max-width:860px) { #nav, #nav.stuck { padding-left: 2rem; padding-right: 2rem; } }
+
+/* ── UPDATE: story card that links to the Issue 16 page ── */
+a.story-expand-card { text-decoration: none; }
+.story-expand-card[hidden] { display: none; }
+
+/* ── UPDATE: Inner Signal ── */
+.signal-band { background: var(--obsidian); border-top: 1px solid rgba(184,130,14,.12); padding: 5rem var(--pad); }
+.signal-band__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2.5rem 4rem; }
+.signal-band .eyebrow { margin-bottom: 1.2rem; }
+.signal-band .section-hed { color: var(--white); font-size: clamp(2rem,4vw,3.2rem); }
+.signal-band__line { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 1.2rem; line-height: 1.5; color: rgba(255,255,255,.62); margin-top: 1rem; }
+.signal-band form { display: flex; flex-wrap: wrap; gap: .75rem; flex: 1 1 320px; max-width: 520px; }
+.signal-band label { flex-basis: 100%; font-size: .62rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.6); font-weight: 600; }
+.signal-band input[type="email"] { flex: 1 1 200px; min-width: 0; height: 3.2rem; padding: 0 1rem; background: var(--obsidian-soft); border: 1px solid rgba(184,130,14,.4); border-radius: 0; color: #fff; font-family: var(--sans); font-size: .95rem; }
+.signal-band input[type="email"]:focus { outline: 1px solid var(--gold); outline-offset: 2px; }
+.signal-band button { height: 3.2rem; padding: 0 1.8rem; background: var(--gold); border: 1px solid var(--gold); color: #fff; font-family: var(--sans); font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; cursor: pointer; transition: background .35s ease, border-color .35s ease, color .35s ease; }
+.signal-band button:hover { background: #fff; border-color: #fff; color: var(--obsidian); }
+.signal-band__note { flex-basis: 100%; font-size: .78rem; line-height: 1.6; color: rgba(255,255,255,.45); }
+.signal-band__done { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 1.35rem; color: var(--gold); }
 </style>
 <!-- Vercel Web Analytics -->
 <script defer src="/_vercel/insights/script.js"></script>
@@ -2141,6 +2166,7 @@ footer {
 <a class="det-cta__btn det-cta__btn--primary" href="https://www.magcloud.com/browse/issue/3412009" rel="noopener" target="_blank">
             Own Issue 16 · MagCloud
           </a>
+<a class="det-cta__btn det-cta__btn--collector" href="/issues/16-sunlit-reverie.html">Explore Sunlit Reverie</a>
 </div>
 <p class="det-cta__note">Every live issue is available in print and as a digital download via MagCloud. Recent issues are also available as Kindle editions on Amazon. The MagCloud Collector Edition, printed on premium paper with richer saturation, may include a slightly expanded layout. The content is the same everywhere. The experience is a matter of format.</p>
 </div></div><!-- /detonation-sticky -->
@@ -2169,7 +2195,7 @@ footer {
 <span class="eyebrow">The Collection</span>
 <h2 class="section-hed" style="color:var(--white);">The Issues.<br/><em>The Vision.</em></h2>
 </div>
-<a class="view-all" href="https://www.magcloud.com" style="color:rgba(255,255,255,.45);" rel="noopener" target="_blank">All Issues on MagCloud →</a>
+<a class="view-all" href="https://www.magcloud.com/browse/magazine/599779" style="color:rgba(255,255,255,.45);" rel="noopener" target="_blank">All Issues on MagCloud →</a>
 </div>
 <div class="covers-grid" id="covers-grid">
 <div class="issue-card">
@@ -2179,6 +2205,7 @@ footer {
 <span class="issue-num">Issue 16  ·  October 2026</span>
 <span class="issue-name">Sunlit Reverie</span>
 <a class="card-buy" href="https://www.magcloud.com/browse/issue/3412009" rel="noopener" target="_blank">Collector's Edition →</a>
+<a class="card-amazon" href="/issues/16-sunlit-reverie.html">Explore the Issue →</a>
 </div>
 <div class="issue-card">
 <div class="issue-cover">
@@ -2319,42 +2346,16 @@ footer {
 <a class="view-all" href="https://www.magcloud.com/browse/issue/3412009" rel="noopener" target="_blank">Read Issue 16 →</a>
 </div>
 <div class="story-expand-grid">
-<button class="story-expand-card" data-excerpt="What the algorithm rewards is not honesty, but relatability.
-
-Yet relatability, once engineered, becomes its own form of aspiration…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/sircus-i16-curated-realness_qucne7.jpg" data-issue="Issue 16: Sunlit Reverie" data-magcloud="https://www.magcloud.com/browse/issue/3412009" data-slug="curated-realness" data-title="Curated Realness" type="button">
-<span class="story-expand-card__image">
-<img alt="Curated Realness story preview" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/sircus-i16-curated-realness_qucne7.jpg"/>
-</span>
-<span class="story-expand-card__body">
-<span class="s-cat">Issue 16</span>
-<span class="s-title">Curated Realness</span>
-<span class="s-excerpt">Authenticity is no longer discovered. It is designed. Click to reveal a short excerpt.</span>
-</span>
-</button>
-<button class="story-expand-card" data-excerpt="Why would a spatula need an app?
-
-It does not, but the company that sold it to you would very much like you to create an account…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/sircus-i16-unregistered-spatula_wwletb.jpg" data-issue="Issue 16: Sunlit Reverie" data-magcloud="https://www.magcloud.com/browse/issue/3412009" data-slug="unregistered-spatula" data-title="The Unregistered Spatula" type="button">
-<span class="story-expand-card__image">
-<img alt="The Unregistered Spatula story preview" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/sircus-i16-unregistered-spatula_wwletb.jpg"/>
-</span>
-<span class="story-expand-card__body">
-<span class="s-cat">Issue 16</span>
-<span class="s-title">The Unregistered Spatula</span>
-<span class="s-excerpt">There is an app for that. There should not be. Click to reveal a short excerpt.</span>
-</span>
-</button>
-<button class="story-expand-card" data-excerpt="There is something happening to menswear that is difficult to miss.
-
-Pearls hang from men’s necks. Sheer shirts expose torsos beneath delicate fabrics…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/sircus-i16-redrawing-masculinity_lys9pq.jpg" data-issue="Issue 16: Sunlit Reverie" data-magcloud="https://www.magcloud.com/browse/issue/3412009" data-slug="redrawing-masculinity" data-title="The Feminization of Men Through Fashion" type="button">
+<a class="story-expand-card" data-slug="redrawing-masculinity" href="/issues/16-sunlit-reverie.html#redrawing-masculinity">
 <span class="story-expand-card__image">
 <img alt="The Feminization of Men Through Fashion story preview" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/sircus-i16-redrawing-masculinity_lys9pq.jpg"/>
 </span>
 <span class="story-expand-card__body">
 <span class="s-cat">Issue 16</span>
 <span class="s-title">The Feminization of Men Through Fashion</span>
-<span class="s-excerpt">Redrawing masculinity. Click to reveal a short excerpt.</span>
+<span class="s-excerpt">Redrawing masculinity. Read the excerpt inside Sunlit Reverie.</span>
 </span>
-</button>
+</a>
 <button class="story-expand-card" data-amazon="https://a.co/d/041TdfVq" data-excerpt="I had not wanted Derrick.
 
 I had wanted myself reflected back.
@@ -2386,7 +2387,8 @@ Evolution often reveals its elegance in subtraction, not addition…" data-image
 <span class="s-excerpt">A philosophical reframing from the archive. Click to reveal a short excerpt.</span>
 </span>
 </button>
-<button class="story-expand-card" data-amazon="https://a.co/d/094DDUGE" data-excerpt="It is not about God.
+<!-- UPDATE: kept out of view so links already shared for this story still open its excerpt -->
+<button class="story-expand-card" hidden data-amazon="https://a.co/d/094DDUGE" data-excerpt="It is not about God.
 
 It is about optics.
 
@@ -2524,6 +2526,26 @@ but to the intention to be seen…" data-image="https://res.cloudinary.com/dk8dx
 </div>
 </section>
 <!-- ═══════════════════════════════════════════ -->
+<!-- UPDATE: INNER SIGNAL. Posts straight to the SIRCUS Mailchimp audience. -->
+<section aria-label="Inner Signal" class="signal-band" id="inner-signal">
+<div class="signal-band__inner">
+<div>
+<span class="eyebrow">Inner Signal</span>
+<h2 class="section-hed">Never miss <em>an issue.</em></h2>
+<p class="signal-band__line">An occasional note. Nothing more.</p>
+</div>
+<form action="https://sircusmagazine.us5.list-manage.com/subscribe/post?u=d34bf8c5bfe253a7bad7518b0&amp;id=609930995c&amp;f_id=00fbbfedf0" id="signalForm" method="post" novalidate target="_blank">
+<label for="signalEmail">Email address</label>
+<input autocomplete="email" id="signalEmail" name="EMAIL" placeholder="you@example.com" required type="email"/>
+<!-- Mailchimp's bot trap: real visitors never see or fill this field. Do not remove. -->
+<div aria-hidden="true" style="position:absolute;left:-5000px"><input name="b_d34bf8c5bfe253a7bad7518b0_609930995c" tabindex="-1" type="text" value=""/></div>
+<button type="submit">Join the list</button>
+<p class="signal-band__note" id="signalNote">Your address is used only to send you SIRCUS updates. It is never shared or sold, and you can unsubscribe at any time.</p>
+<p class="signal-band__done" hidden id="signalDone" role="status"></p>
+</form>
+</div>
+</section>
+<!-- ═══════════════════════════════════════════ -->
 <!-- FOOTER -->
 <footer>
 <div class="footer-inner">
@@ -2564,7 +2586,7 @@ but to the intention to be seen…" data-image="https://res.cloudinary.com/dk8dx
 <h4>Sircus</h4>
 <ul class="footer-links">
 <li><a href="#about">About</a></li>
-<li><a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">The Manifesto</a></li>
+<li><a href="#manifesto">The Manifesto</a></li>
 <li><a href="contact.html">Contact</a></li>
 </ul>
 </div>
@@ -3121,6 +3143,7 @@ setTimeout(runCycle, 1800);
     }
 
     document.querySelectorAll('.story-expand-card').forEach(function (card) {
+      if (card.tagName === 'A') return; /* links go to their own page */
       card.addEventListener('click', function () { openCard(card); });
     });
 
@@ -3131,6 +3154,13 @@ setTimeout(runCycle, 1800);
 
     var wanted = null;
     try { wanted = new URLSearchParams(location.search).get('story'); } catch (err) { wanted = null; }
+    /* Stories that now live on the Issue 16 page: send old shared links there */
+    var moved = {
+      'redrawing-masculinity': '/issues/16-sunlit-reverie.html#redrawing-masculinity',
+      'curated-realness': '/issues/16-sunlit-reverie.html',
+      'unregistered-spatula': '/issues/16-sunlit-reverie.html'
+    };
+    if (wanted && moved[wanted]) { location.replace(moved[wanted]); return; }
     if (wanted) {
       var match = Array.prototype.filter.call(document.querySelectorAll('.story-expand-card'), function (card) {
         return slugOf(card) === wanted;
@@ -3375,5 +3405,29 @@ setTimeout(runCycle, 1800);
 })();
 </script>
 <!-- ═══════════════════════════════════════════ -->
+
+<script>
+/* ── UPDATE: INNER SIGNAL ── */
+(function () {
+  var form = document.getElementById('signalForm');
+  if (!form) return;
+  var email = document.getElementById('signalEmail');
+  var note = document.getElementById('signalNote');
+  var done = document.getElementById('signalDone');
+  form.addEventListener('submit', function (e) {
+    if (!email.value || !email.checkValidity()) {
+      e.preventDefault();
+      note.textContent = 'Enter a valid email address to join the list.';
+      email.focus();
+      return;
+    }
+    window.setTimeout(function () {
+      Array.prototype.forEach.call(form.querySelectorAll('label, input, button, .signal-band__note'), function (el) { el.hidden = true; el.style.display = 'none'; });
+      done.textContent = 'Thank you. Finish joining in the tab that just opened.';
+      done.hidden = false;
+    }, 60);
+  });
+})();
+</script>
 </body>
 </html>
