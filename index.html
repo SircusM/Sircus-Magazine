@@ -134,6 +134,15 @@ Do not perform full-page rewrites. Make surgical edits by section only.
       "name": "Collector Edition on MagCloud",
       "url": "https://www.magcloud.com/browse/issue/3412009",
       "availability": "https://schema.org/InStock",
+      "price": "29.99",
+      "priceCurrency": "USD"
+    },
+    {
+      "@type": "Offer",
+      "name": "Kindle edition on Amazon",
+      "url": "https://www.amazon.com/dp/B0HMBZBS2N",
+      "availability": "https://schema.org/InStock",
+      "price": "12.99",
       "priceCurrency": "USD"
     }
   ]
@@ -548,6 +557,7 @@ nav.stuck .nav-btn { border-color: rgba(255,255,255,.4); }
 .card-buy:hover { color:#fff; }
 .card-amazon { display:block; margin-top:.3rem; margin-bottom:1.5rem; font-size:.46rem; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.4); text-decoration:none; transition:color .3s; }
 .card-amazon:hover { color:#fff; }
+.card-amazon[hidden] { display:none; }
 .issue-card { cursor: pointer; }
 
 /* ── SHARED ── */
@@ -2224,7 +2234,8 @@ a.story-expand-card { text-decoration: none; }
 <span class="issue-num">Issue 14  ·  December 2025</span>
 <span class="issue-name">A Velvet Fevered Bloom</span>
 <a class="card-buy" href="https://www.magcloud.com/browse/issue/3214194" rel="noopener" target="_blank">Collector's Edition →</a>
-<a class="card-amazon" href="https://a.co/d/0e3BHp55" rel="noopener" target="_blank">Buy on Amazon →</a>
+<!-- UPDATE: Issue 14 Amazon link hidden October 2026 while Amazon has the listing blocked (ticket open). Remove "hidden" to restore. MagCloud stays live. -->
+<a class="card-amazon" href="https://a.co/d/0e3BHp55" rel="noopener" target="_blank" hidden>Buy on Amazon →</a>
 </div>
 <div class="issue-card">
 <div class="issue-cover">
@@ -2378,7 +2389,7 @@ That refusal cracked something…" data-image="https://res.cloudinary.com/dk8dxe
 
 the freedom to exist without the biological trappings that once defined survival.
 
-Evolution often reveals its elegance in subtraction, not addition…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/v1777758939/Bald3_oooccj.jpg" data-amazon="https://a.co/d/0e3BHp55" data-issue="Issue 14" data-magcloud="https://www.magcloud.com/browse/issue/3214194" data-slug="bald-by-design" data-title="Bald By Design" type="button">
+Evolution often reveals its elegance in subtraction, not addition…" data-image="https://res.cloudinary.com/dk8dxerks/image/upload/v1777758939/Bald3_oooccj.jpg" data-amazon-paused="https://a.co/d/0e3BHp55" data-issue="Issue 14" data-magcloud="https://www.magcloud.com/browse/issue/3214194" data-slug="bald-by-design" data-title="Bald By Design" type="button">
 <span class="story-expand-card__image">
 <img alt="Bald By Design story preview" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777758939/Bald3_oooccj.jpg"/>
 </span>
