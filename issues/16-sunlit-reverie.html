@@ -252,11 +252,16 @@ main{padding-top:var(--nav-h)}
 .own-panel{grid-area:3/1;margin-top:clamp(36px,6vw,56px)}
 .own-panel .h2{font-size:clamp(2.4rem,3.9vw,3.7rem)}
 .own-panel .copy{font:400 clamp(1.2rem,1.7vw,1.4rem)/1.5 var(--serif);max-width:24em;margin-top:.9em}
-.formats{margin-top:clamp(22px,3vw,34px);border-top:1px solid var(--rule);max-width:520px}
-.formats div{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid var(--rule)}
-.formats dt{font:500 .78rem/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase}
-.formats dt span{display:block;font:300 .88rem/1.5 var(--sans);letter-spacing:.02em;text-transform:none;color:var(--gray)}
-.formats dd{font:400 1.7rem/1 var(--serif);color:var(--gold);white-space:nowrap}
+/* UPDATE: where to buy, grouped by store; each row links to that edition */
+.buy{margin-top:clamp(22px,3vw,34px);max-width:520px;display:grid;gap:clamp(18px,2.4vw,26px)}
+.buy-store{font:500 .72rem/1.5 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--gold);padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.buy-store span{color:var(--gray);letter-spacing:.24em}
+.buy-row{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid var(--rule);color:var(--ink);text-decoration:none;transition:color .2s}
+.buy-row b{font:500 .78rem/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase}
+.buy-row i{font:400 1.6rem/1 var(--serif);font-style:normal;color:var(--gold);white-space:nowrap}
+.buy-row i::after{content:"\2197";font:300 .9rem/1 var(--sans);margin-left:.55em;color:var(--gray);transition:color .2s}
+.buy-row:hover b,.buy-row:focus-visible b{color:var(--gold)}
+.buy-row:hover i::after,.buy-row:focus-visible i::after{color:var(--gold)}
 .own-panel .actions{margin-top:clamp(22px,3vw,34px)}
 @media (min-width:1000px){
   .book-stage.live[data-pos="cover"] .book-shift{transform:translateX(-50%)}
@@ -506,17 +511,20 @@ main{padding-top:var(--nav-h)}
       <p class="label">The collection &middot; Issue 16</p>
       <h2 class="h2" id="own-title">The issue is <em>the experience.</em></h2>
       <p class="copy">Own Sunlit Reverie. Return to the photography, the writing, and the world within it.</p>
-      <dl class="formats">
-      <div><dt>Print + Digital<span>The printed issue, with the digital edition included</span></dt><dd>$29.99</dd></div>
-      <div><dt>Digital<span>The digital edition on its own</span></dt><dd>$10.00</dd></div>
-      <div><dt>Paperback<span>The printed issue, on Amazon</span></dt><dd>$27.99</dd></div>
-      <div><dt>Kindle<span>The Kindle edition, on Amazon</span></dt><dd>$12.99</dd></div>
-      </dl>
+      <div class="buy">
+        <div class="buy-group">
+          <p class="buy-store">MagCloud &middot; <span>Collector&rsquo;s Edition</span></p>
+          <a class="buy-row" href="https://www.magcloud.com/browse/issue/3412009" target="_blank" rel="noopener"><b>Print + Digital</b><i>$29.99</i></a>
+          <a class="buy-row" href="https://www.magcloud.com/browse/issue/3412009" target="_blank" rel="noopener"><b>Digital</b><i>$10.00</i></a>
+        </div>
+        <div class="buy-group">
+          <p class="buy-store">Amazon</p>
+          <a class="buy-row" href="https://www.amazon.com/dp/B0HMFF9XFX" target="_blank" rel="noopener"><b>Paperback</b><i>$27.99</i></a>
+          <a class="buy-row" href="https://www.amazon.com/dp/B0HMBZBS2N" target="_blank" rel="noopener"><b>Kindle</b><i>$12.99</i></a>
+        </div>
+      </div>
       <div class="actions">
       <a class="btn btn-primary" href="https://www.magcloud.com/browse/issue/3412009" target="_blank" rel="noopener">Own Issue 16 &middot; MagCloud &nearr;</a>
-      <!-- Amazon editions: paperback and Kindle, both live October 8, 2026. -->
-      <a class="btn btn-outline" id="paperbackAction" href="https://www.amazon.com/dp/B0HMFF9XFX" target="_blank" rel="noopener">Paperback &middot; Amazon &nearr;</a>
-      <a class="btn btn-outline" id="kindleAction" href="https://www.amazon.com/dp/B0HMBZBS2N" target="_blank" rel="noopener">Kindle edition &middot; Amazon &nearr;</a>
       </div>
       </aside>
     </div>
