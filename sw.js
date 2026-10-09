@@ -5,19 +5,18 @@
  * Do not modify without updating CACHE_VERSION.
  */
 
-var CACHE_VERSION = 'sircus-v1';
+var CACHE_VERSION = 'sircus-v2';
 
 var STATIC_SHELL = [
   '/',
-  '/index.html',
-  '/contact.html',
+  '/contact',
   '/site.webmanifest',
   '/favicon.svg',
   '/favicon.ico',
   '/favicon-96x96.png',
   '/apple-touch-icon.png',
-  '/android-chrome-192x192.png',
-  '/android-chrome-512x512.png'
+  '/web-app-manifest-192x192.png',
+  '/web-app-manifest-512x512.png'
 ];
 
 /* ── INSTALL — pre-cache the site shell ── */
@@ -74,7 +73,7 @@ self.addEventListener('fetch', function (event) {
       }).catch(function () {
         /* Network unavailable — serve cached HTML */
         return caches.match(request).then(function (cached) {
-          return cached || caches.match('/index.html');
+          return cached || caches.match('/');
         });
       })
     );

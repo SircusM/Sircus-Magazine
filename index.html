@@ -2041,6 +2041,16 @@ a.story-expand-card { text-decoration: none; }
 .signal-band button:hover { background: #fff; border-color: #fff; color: var(--obsidian); }
 .signal-band__note { flex-basis: 100%; font-size: .78rem; line-height: 1.6; color: rgba(255,255,255,.45); }
 .signal-band__done { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 1.35rem; color: var(--gold); }
+/* ── UPDATE: Carry SIRCUS (add to home screen, phones only) ── */
+.carry-band { display:none; background: var(--obsidian); border-top: 1px solid rgba(184,130,14,.12); padding: 4rem var(--pad); }
+@media (max-width:860px) { .carry-band.is-ready { display:block; } }
+.carry-band .eyebrow { margin-bottom: 1.2rem; }
+.carry-band .section-hed { color: var(--white); font-size: clamp(2rem,8vw,3rem); }
+.carry-band__line { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 1.2rem; line-height: 1.5; color: rgba(255,255,255,.62); margin-top: 1rem; max-width: 26em; }
+.carry-band__btn { margin-top: 1.8rem; height: 3.2rem; padding: 0 1.8rem; background: var(--gold); border: 1px solid var(--gold); color: #fff; font-family: var(--sans); font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; border-radius: 0; cursor: pointer; }
+.carry-band__btn:hover { background: #fff; border-color: #fff; color: var(--obsidian); }
+.carry-band__how { margin-top: 1.6rem; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; line-height: 1.9; color: rgba(255,255,255,.75); }
+.carry-band__how b { color: var(--gold); font-weight: 600; }
 </style>
 <!-- Vercel Web Analytics -->
 <script defer src="/_vercel/insights/script.js"></script>
@@ -2566,6 +2576,46 @@ but to the intention to be seen…" data-image="https://res.cloudinary.com/dk8dx
 </form>
 </div>
 </section>
+<!-- UPDATE: Carry SIRCUS. Phones only; hidden when already opened from the home screen. -->
+<section aria-label="SIRCUS on your phone" class="carry-band" id="carry">
+<span class="eyebrow">On your phone</span>
+<h2 class="section-hed">Keep SIRCUS <em>close.</em></h2>
+<p class="carry-band__line">Add the magazine to your home screen. It opens full screen, like an app, with every issue and story a tap away.</p>
+<button class="carry-band__btn" hidden id="carryBtn" type="button">Add to Home Screen</button>
+<p class="carry-band__how" hidden id="carryIos">In Safari, tap <b>Share</b>, then <b>Add to Home Screen</b>.</p>
+<p class="carry-band__how" hidden id="carryOther">Open your browser menu, then choose <b>Add to Home Screen</b> or <b>Install</b>.</p>
+</section>
+<script>
+(function () {
+  var band = document.getElementById('carry');
+  if (!band) return;
+  var standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true;
+  if (standalone) return;
+  var ua = navigator.userAgent || '';
+  var ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var btn = document.getElementById('carryBtn');
+  var prompt = null;
+  function show(el) { el.hidden = false; band.classList.add('is-ready'); }
+  if (ios) { show(document.getElementById('carryIos')); return; }
+  window.addEventListener('beforeinstallprompt', function (e) {
+    prompt = e;
+    document.getElementById('carryOther').hidden = true;
+    show(btn);
+  });
+  btn.addEventListener('click', function () {
+    if (!prompt) return;
+    try {
+      prompt.prompt();
+      prompt.userChoice.then(function (c) { if (c.outcome === 'accepted') band.classList.remove('is-ready'); });
+    } catch (err) {}
+    prompt = null;
+    btn.hidden = true;
+  });
+  window.addEventListener('appinstalled', function () { band.classList.remove('is-ready'); });
+  /* Browsers that never offer an install prompt (Firefox, Samsung Internet, in-app browsers) get the menu instruction. */
+  window.setTimeout(function () { if (!prompt && btn.hidden) show(document.getElementById('carryOther')); }, 3000);
+})();
+</script>
 <!-- ═══════════════════════════════════════════ -->
 <!-- FOOTER -->
 <footer>
