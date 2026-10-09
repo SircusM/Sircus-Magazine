@@ -2593,7 +2593,8 @@ but to the intention to be seen…" data-image="https://res.cloudinary.com/dk8dx
 <h2 class="section-hed">Keep SIRCUS <em>close.</em></h2>
 <p class="carry-band__line">Add the magazine to your home screen. It opens full screen, like an app, with every issue and story a tap away.</p>
 <button class="carry-band__btn" hidden id="carryBtn" type="button">Add to Home Screen</button>
-<p class="carry-band__how" hidden id="carryIos">In Safari, tap <b>Share</b>, then <b>Add to Home Screen</b>.</p>
+<p class="carry-band__how" hidden id="carryIos">Tap <b>Share</b>, then <b>Add to Home Screen</b>.</p>
+<p class="carry-band__how" hidden id="carryInApp">Open this page in your browser first: tap <b>&bull;&bull;&bull;</b>, then <b>Open in browser</b>. Then add it to your home screen.</p>
 <p class="carry-band__how" hidden id="carryOther">Open your browser menu, then choose <b>Add to Home Screen</b> or <b>Install</b>.</p>
 </div>
 <figure class="carry-band__desk">
@@ -2614,7 +2615,15 @@ but to the intention to be seen…" data-image="https://res.cloudinary.com/dk8dx
   var btn = document.getElementById('carryBtn');
   var prompt = null;
   function show(el) { el.hidden = false; band.classList.add('is-ready'); }
-  if (ios) { show(document.getElementById('carryIos')); return; }
+  /* Instagram, Facebook, TikTok and similar in-app browsers cannot add to the home screen */
+  if (/Instagram|FBAN|FBAV|FB_IAB|TikTok|musical_ly|Pinterest|Snapchat|LinkedInApp|Line\//i.test(ua)) { show(document.getElementById('carryInApp')); return; }
+  if (ios) {
+    var how = document.getElementById('carryIos');
+    /* Safari, Chrome, Edge and Firefox on iPhone all add to the home screen from Share */
+    if (/CriOS|EdgiOS/.test(ua)) how.innerHTML = 'Tap <b>Share</b> in the address bar, then <b>Add to Home Screen</b>.';
+    else if (/FxiOS/.test(ua)) how.innerHTML = 'Open the <b>menu</b>, tap <b>Share</b>, then <b>Add to Home Screen</b>.';
+    show(how); return;
+  }
   window.addEventListener('beforeinstallprompt', function (e) {
     prompt = e;
     document.getElementById('carryOther').hidden = true;
