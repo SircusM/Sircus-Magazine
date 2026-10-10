@@ -1894,6 +1894,33 @@ footer {
 .ew-wide     { grid-column: 1 / 9;  min-height: 520px; }
 .ew-portrait { grid-column: 9 / 13; min-height: 520px; }
 
+/* A portrait in the lead slot is fitted to the row so the top row keeps its height. */
+@media(min-width:1081px) {
+  .ew-large.ew-fit img { position:absolute; inset:0; object-position:center 22%; }
+}
+
+/* Linked tiles: the SIRCUS mark means the image opens an editorial. */
+.ew-linked { cursor:pointer; text-decoration:none; }
+.ew-linked:focus-visible { outline:2px solid var(--gold); outline-offset:3px; }
+.ew-cue { position:absolute; left:14px; bottom:14px; z-index:2; display:flex; align-items:stretch; height:34px; background:rgba(8,8,8,.78); pointer-events:none; }
+.ew-cue__mark { flex:none; width:34px; display:grid; place-items:center; }
+.ew-cue__label { display:flex; align-items:center; max-width:0; overflow:hidden; white-space:nowrap; padding:0; font-family:var(--sans); font-size:.6rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:#fff; transition:max-width .45s cubic-bezier(.22,1,.36,1), padding .45s cubic-bezier(.22,1,.36,1); }
+.ew-linked:hover .ew-cue__label,
+.ew-linked:focus-visible .ew-cue__label { max-width:18em; padding:0 14px 0 2px; }
+@media(hover:none) { .ew-cue__label { max-width:18em; padding:0 14px 0 2px; } }
+@media(prefers-reduced-motion:reduce) { .ew-cue__label { transition:none; } }
+/* A linked tile gives one small shimmy when the pointer arrives. */
+@keyframes ew-shimmy {
+  0%   { transform:translateX(0) rotate(0); }
+  22%  { transform:translateX(-3px) rotate(-.22deg); }
+  48%  { transform:translateX(3px) rotate(.22deg); }
+  72%  { transform:translateX(-1.5px) rotate(-.1deg); }
+  100% { transform:translateX(0) rotate(0); }
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference) {
+  .ew-linked:hover { animation:ew-shimmy .6s cubic-bezier(.36,.07,.19,.97) 1; }
+}
+
 @media(max-width:1080px) {
   .editorial-wall {
     grid-auto-rows: minmax(150px, 18vw);
@@ -2340,36 +2367,41 @@ a.story-expand-card { text-decoration: none; }
 <a class="view-all" href="#editorials">All Editorials →</a>
 </div>
 <div aria-label="SIRCUS editorial image gallery" class="editorial-wall">
-<!-- Row 1: large portrait | tall portrait | two stacked right -->
-<button aria-label="Open editorial image" class="editorial-wall__item ew-large" type="button">
-<img alt="SIRCUS editorial — high-fashion portrait, cinematic lighting" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777432630/Nora_j7lvcb.png" data-caption="A SIRCUS original · Not in print"/>
+<!-- Row 1: lead | tall | two stacked right (the stacked pair links to the Solenne editorial) -->
+<button aria-label="Open editorial image" class="editorial-wall__item ew-large ew-fit" type="button">
+<img alt="SIRCUS editorial: Jasmine in a jewelled cap and collar, from Issue 15, Electric Baroque" data-caption="Jasmine · From Issue 15 · Electric Baroque" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1600/v1791645249/Jasmine_gems_zpgei3.jpg"/>
 </button>
 <button aria-label="Open editorial image" class="editorial-wall__item ew-tall" type="button">
-<img alt="SIRCUS editorial — model in dramatic fashion composition" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777432565/op-207_hwb2n1.jpg"/>
+<img alt="SIRCUS editorial: Olya on a blue-lit set, holding a heel" data-caption="Olya · From the SIRCUS archive · In print" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777432565/op-207_hwb2n1.jpg"/>
 </button>
-<button aria-label="Open editorial image" class="editorial-wall__item ew-stack-top" type="button">
-<img alt="SIRCUS editorial: Solenne at the wheel of a yellow sports car in an orange shearling coat" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791640822/Solenne_Drive_oripk6.jpg" data-caption="A SIRCUS original · Unseen anywhere else"/>
-</button>
+<a aria-label="View the editorial: Heat Advisory, featuring Solenne" class="editorial-wall__item ew-stack-top ew-linked" href="/editorials/solenne-drive">
+<img alt="SIRCUS editorial: Solenne at the wheel of a yellow sports car in an orange shearling coat" data-caption="Solenne · A SIRCUS original · Unseen anywhere else" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791640822/Solenne_Drive_oripk6.jpg"/>
+<span aria-hidden="true" class="ew-cue"><span class="ew-cue__mark"><svg aria-hidden="true" focusable="false" height="18" viewBox="262 176 466 628" width="13"><path d="M640.14,623.83c-46.44-119.67-234.83-127.14-292.39-241.19-24.11-47.78-13.11-101.14,23.75-138.11,0,0-16.86,13.25-22.11,18.11-50.92,47.14-55.19,123.39-17.97,181.81,3.22,5.08,6.58,10.03,10.14,14.83h0s17.67,36.97,136.78,97.53h0c13.5,7.22,26.25,13.92,35.42,18.83,34.53,18.94,70.5,41.92,89.81,75.86,15,26.39,13.94,58.17-4.33,83.08-13.86,18.92-34.67,31.03-57.44,37.5-66.19,18.86-135.58-8.67-180.06-59.33-37.06-42.22-54-87.19-67.53-140.11l-.25,190.89c13.61-8.42,28.72-12.58,44.19-8.06l53.42,15.64c63.67,22.25,140.36,31.17,198.83-5.19,47.92-29.78,70.28-89.17,49.72-142.11l.03.03Z" fill="#fff"/><path d="M658,507.75c-21.39-22.33-45.19-41.25-72.67-55.92l-87.31-46.58c-35.53-18.94-76.86-41.25-96.83-75.72-19.19-33.14-8.31-73.08,25.89-91.72,35.25-19.19,77.94-19.25,114.72-2.81,61.19,30.14,95.86,91.78,112.19,155.97l.31-164.17c-12.25,9-27.33,12.56-42.03,8.47l-44.14-12.25c-56.61-17.19-124.17-21.72-170.22,17.94-35.42,30.47-45.83,79.97-27.94,122.78,18.03,43.17,57.19,70.69,98.11,92.31l73.92,39.03c27.03,14.28,51.89,30.19,74.81,50.22,48.83,42.69,74.08,100.94,47.72,162.47-7.78,21.11-21.42,36.67-36.86,53.78,25.86-15.39,45.28-37.25,59.11-63.19,35.5-66.58,23.39-136.17-28.72-190.58l-.06-.03Z" fill="#fff"/></svg></span><span class="ew-cue__label">View the editorial</span></span>
+</a>
+<a aria-label="View the editorial: Heat Advisory, featuring Solenne" class="editorial-wall__item ew-stack-bottom ew-linked" href="/editorials/solenne-drive">
+<img alt="SIRCUS editorial: Solenne in orange shearling beside a yellow sports car, palms overhead" data-caption="Solenne · A SIRCUS original · Unseen anywhere else" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791640822/Solenne_Drive2_mbjseq.jpg"/>
+<span aria-hidden="true" class="ew-cue"><span class="ew-cue__mark"><svg aria-hidden="true" focusable="false" height="18" viewBox="262 176 466 628" width="13"><path d="M640.14,623.83c-46.44-119.67-234.83-127.14-292.39-241.19-24.11-47.78-13.11-101.14,23.75-138.11,0,0-16.86,13.25-22.11,18.11-50.92,47.14-55.19,123.39-17.97,181.81,3.22,5.08,6.58,10.03,10.14,14.83h0s17.67,36.97,136.78,97.53h0c13.5,7.22,26.25,13.92,35.42,18.83,34.53,18.94,70.5,41.92,89.81,75.86,15,26.39,13.94,58.17-4.33,83.08-13.86,18.92-34.67,31.03-57.44,37.5-66.19,18.86-135.58-8.67-180.06-59.33-37.06-42.22-54-87.19-67.53-140.11l-.25,190.89c13.61-8.42,28.72-12.58,44.19-8.06l53.42,15.64c63.67,22.25,140.36,31.17,198.83-5.19,47.92-29.78,70.28-89.17,49.72-142.11l.03.03Z" fill="#fff"/><path d="M658,507.75c-21.39-22.33-45.19-41.25-72.67-55.92l-87.31-46.58c-35.53-18.94-76.86-41.25-96.83-75.72-19.19-33.14-8.31-73.08,25.89-91.72,35.25-19.19,77.94-19.25,114.72-2.81,61.19,30.14,95.86,91.78,112.19,155.97l.31-164.17c-12.25,9-27.33,12.56-42.03,8.47l-44.14-12.25c-56.61-17.19-124.17-21.72-170.22,17.94-35.42,30.47-45.83,79.97-27.94,122.78,18.03,43.17,57.19,70.69,98.11,92.31l73.92,39.03c27.03,14.28,51.89,30.19,74.81,50.22,48.83,42.69,74.08,100.94,47.72,162.47-7.78,21.11-21.42,36.67-36.86,53.78,25.86-15.39,45.28-37.25,59.11-63.19,35.5-66.58,23.39-136.17-28.72-190.58l-.06-.03Z" fill="#fff"/></svg></span><span class="ew-cue__label">View the editorial</span></span>
+</a>
 <!-- Row 2: three across -->
-<button aria-label="Open editorial image" class="editorial-wall__item ew-stack-bottom" type="button">
-<img alt="SIRCUS editorial: Solenne in orange shearling beside a yellow sports car, palms overhead" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791640822/Solenne_Drive2_mbjseq.jpg" data-caption="A SIRCUS original · Unseen anywhere else"/>
-</button>
 <button aria-label="Open editorial image" class="editorial-wall__item ew-mid-a" type="button">
-<img alt="SIRCUS editorial: portrait in a white off-shoulder top, chin resting on her hands" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777768382/osiris_01_high_fashion_editorial_model_Nayla_Persian_woman_Ir_53586da5-5533-4f17-a60b-961cab4f712d_3_q4piag.png" data-caption="A SIRCUS original · Not in print"/>
+<img alt="SIRCUS editorial: portrait in a white off-shoulder top, chin resting on her hands" data-caption="A SIRCUS original · Not in print" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777768382/osiris_01_high_fashion_editorial_model_Nayla_Persian_woman_Ir_53586da5-5533-4f17-a60b-961cab4f712d_3_q4piag.png"/>
 </button>
 <button aria-label="Open editorial image" class="editorial-wall__item ew-mid-b" type="button">
-<img alt="SIRCUS editorial — cinematic fashion still, dramatic composition" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777432087/cw-142_bfkh2b.jpg" data-caption="From Issue 9 · Special Swimwear Edition"/>
+<img alt="SIRCUS editorial: Chase reclining on driftwood, from the Issue 9 Special Swimwear Edition" data-caption="Chase · From Issue 9 · Special Swimwear Edition" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777432087/cw-142_bfkh2b.jpg"/>
 </button>
-<!-- Row 3: full bleed cinematic -->
 <button aria-label="Open editorial image" class="editorial-wall__item ew-mid-c" type="button">
-<img alt="SIRCUS editorial: Olivia B., red curls backlit on a sunlit city street" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto/v1791640705/Olivia_B_jjkx8w.png" data-caption="A SIRCUS original · Unseen anywhere else"/>
+<img alt="SIRCUS editorial: Olivia, red curls backlit on a sunlit city street" data-caption="Olivia · A SIRCUS original · Unseen anywhere else" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto/v1791640705/Olivia_B_jjkx8w.png"/>
 </button>
-<!-- Row 3: full bleed cinematic -->
+<!-- Row 3: wide | portrait -->
 <button aria-label="Open editorial image" class="editorial-wall__item ew-wide" type="button">
-<img alt="SIRCUS editorial — Jasmine in military-inspired high fashion" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777766885/Jasmine_military_uma8tr.jpg" data-caption="A SIRCUS original · Not in print"/>
+<img alt="SIRCUS editorial: Nora beneath a turquoise scarf in the desert" data-caption="Nora · A SIRCUS original · Not in print" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777432630/Nora_j7lvcb.png"/>
 </button>
 <button aria-label="Open editorial image" class="editorial-wall__item ew-portrait" type="button">
-<img alt="SIRCUS editorial: Namara in gold, full-length fashion portrait" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1790914687/Namara_golden_pntmnu.png" data-caption="From Issue 16 · Sunlit Reverie"/>
+<img alt="SIRCUS editorial: Namara in gold, full-length fashion portrait" data-caption="Namara · From Issue 16 · Sunlit Reverie" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1790914687/Namara_golden_pntmnu.png"/>
+</button>
+<!-- Row 4: full bleed -->
+<button aria-label="Open editorial image" class="editorial-wall__item ew-full" type="button">
+<img alt="SIRCUS editorial: Jasmine in a black military jacket with gold buttons" data-caption="Jasmine · A SIRCUS original · Not in print" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_2800/v1777766885/Jasmine_military_uma8tr.jpg"/>
 </button>
 </div>
 </section>
@@ -3298,6 +3330,7 @@ setTimeout(runCycle, 1800);
     const defaultCaption = captionEl ? captionEl.textContent : '';
 
     document.querySelectorAll('.editorial-wall__item img').forEach(function (img) {
+      if (img.closest('a')) return; /* linked tiles open their editorial page */
       img.addEventListener('click', function () {
         lightboxImg.src = img.currentSrc || img.src;
         lightboxImg.alt = img.alt || 'SIRCUS editorial image';
