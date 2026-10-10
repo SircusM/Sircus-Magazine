@@ -2163,6 +2163,29 @@ a.story-expand-card { text-decoration: none; }
   .final-cta__line { max-width:26rem; }
 }
 
+/* ── STAY CLOSE: the email signup and the phone band share one row ── */
+.close-row { background:var(--obsidian); border-top:1px solid rgba(184,130,14,.12); }
+.close-row .signal-band, .close-row .carry-band { border-top:0; }
+@media(min-width:861px) {
+  .close-row { padding:5.5rem var(--wide-x); }
+  .close-row .signal-band, .close-row .carry-band { padding:0; }
+  .close-row .carry-band.is-desk { margin-top:4rem; }
+  .close-row:has(.carry-band.is-desk) { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+  .close-row:has(.carry-band.is-desk) .signal-band { padding-right:clamp(2rem,4vw,4rem); }
+  .close-row:has(.carry-band.is-desk) .carry-band { margin-top:0; padding-left:clamp(2rem,4vw,4rem); border-left:1px solid rgba(255,255,255,.1); }
+  .close-row .signal-band__inner { flex-direction:column; flex-wrap:nowrap; align-items:flex-start; gap:2.2rem; }
+  .close-row .signal-band form { flex:none; width:100%; max-width:520px; }
+  .close-row .section-hed { font-size:clamp(1.6rem,2.3vw,2.1rem); }
+  .close-row .carry-band__inner { gap:2rem; align-items:flex-start; }
+  .close-row .carry-band__inner > div { flex:1 1 auto; min-width:0; }
+  .close-row .carry-band__qr { width:120px; height:120px; }
+  .close-row .carry-band__desk figcaption { max-width:120px; margin-inline:auto; line-height:1.7; }
+}
+@media(max-width:860px) {
+  .close-row .signal-band { padding-bottom:3.5rem; }
+  .close-row .carry-band { padding-top:0; }
+}
+
 /* ── FOOTER: a single line ── */
 footer { padding:2.4rem 0; }
 .footer-inner { max-width:none; padding:0 var(--wide-x); }
@@ -2679,6 +2702,8 @@ but to the intention to be seen…" data-image="https://res.cloudinary.com/dk8dx
 </div>
 </section>
 <!-- ═══════════════════════════════════════════ -->
+<!-- STAY CLOSE: the signup and the phone band sit side by side on wide screens -->
+<div class="close-row">
 <!-- UPDATE: INNER SIGNAL. Posts straight to the SIRCUS Mailchimp audience. -->
 <section aria-label="Inner Signal" class="signal-band" id="inner-signal">
 <div class="signal-band__inner">
@@ -2716,6 +2741,7 @@ but to the intention to be seen…" data-image="https://res.cloudinary.com/dk8dx
 </figure>
 </div>
 </section>
+</div>
 <script>
 (function () {
   var band = document.getElementById('carry');
