@@ -274,8 +274,14 @@ main{padding-top:var(--nav-h)}
 .ed-exit__stage{position:relative}
 .ed-exit__car{display:block;width:100%;height:auto;cursor:zoom-in}
 .ed-exit__cap{padding-inline:var(--pad)}
-.ed-end{padding:clamp(64px,10vw,150px) var(--pad);display:grid;gap:26px;justify-items:start}
-.ed-end__line{font:italic 300 clamp(2.6rem,7vw,6.6rem)/.98 var(--serif);letter-spacing:-.018em;color:#fff}
+.ed-end{padding:clamp(64px,10vw,150px) var(--pad);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:clamp(32px,6vw,96px);align-items:center}
+.ed-end__copy{display:grid;gap:26px;justify-items:start}
+/* The six frames again, as a contact sheet; each opens the viewer. */
+.ed-end__sheet{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.ed-end__sheet a{display:block;cursor:zoom-in;background:#000}
+.ed-end__sheet img{display:block;width:100%;height:auto;aspect-ratio:16 / 9;object-fit:cover;transition:opacity .3s ease}
+.ed-end__sheet a:hover img{opacity:.82}
+.ed-end__line{font:italic 300 clamp(2.6rem,5.4vw,5rem)/.98 var(--serif);letter-spacing:-.018em;color:#fff;white-space:nowrap}
 .ed-end__note{font:400 clamp(1.15rem,1.6vw,1.4rem)/1.5 var(--serif);color:#fff;max-width:34ch}
 .ed-end__links{display:flex;flex-wrap:wrap;gap:14px 18px;margin-top:10px}
 .ed-exit.is-live{height:270vh}
@@ -312,6 +318,9 @@ main{padding-top:var(--nav-h)}
   .ed-film__copy{flex-direction:column;align-items:flex-start;gap:18px}
   .ed-col{width:100%}
   .ed-pair{grid-template-columns:1fr;row-gap:var(--ed-gap)}
+  .ed-end{grid-template-columns:1fr;row-gap:34px}
+  .ed-end__sheet{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .ed-end__copy{gap:20px}
   .ed-intro,.ed-cap{padding-inline:var(--pad)}
   .ed{--ed-gap:56px}
   .ed-lb__prev,.ed-lb__next{grid-row:3;margin:0 14px 14px}
@@ -444,19 +453,29 @@ main{padding-top:var(--nav-h)}
     </picture>
     <p class="ed-cap ed-exit__cap" id="edExitCap"><b>VI</b><span>The coat stays on.</span></p>
     <div class="ed-end" id="edEnd">
-      <p class="ed-kicker">A SIRCUS web exclusive</p>
-      <p class="ed-end__line">Acid &amp; Amber</p>
-      <p class="ed-end__note">Six frames with Solenne, published only on sircusmagazine.com.</p>
-      <div class="ed-end__links">
-        <a class="btn btn-primary" href="/#editorials">Back to the editorials</a>
+      <div class="ed-end__copy">
+        <p class="ed-kicker">A SIRCUS web exclusive</p>
+        <p class="ed-end__line">Acid &amp; Amber</p>
+        <p class="ed-end__note">Six frames with Solenne, published only on sircusmagazine.com.</p>
+        <div class="ed-end__links">
+          <a class="btn btn-primary" href="/#editorials">Back to the editorials</a>
+        </div>
+        <div class="ed-share" id="edShare" data-text="“Solenne in orange shearling, a chartreuse car, and a day of hard, clean light.” Acid &amp; Amber | SIRCUS Magazine" data-url="https://www.sircusmagazine.com/editorials/solenne-drive">
+          <span class="ed-share__label">Share</span>
+          <a aria-label="Share this editorial on Facebook" class="ed-share__btn" data-share="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.sircusmagazine.com%2Feditorials%2Fsolenne-drive" rel="noopener" target="_blank" title="Facebook"><img alt="Facebook" height="16" src="https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/facebook.svg" width="16"></a>
+          <a aria-label="Save this editorial to Pinterest" class="ed-share__btn" data-share="pinterest" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.sircusmagazine.com%2Feditorials%2Fsolenne-drive&amp;media=https%3A%2F%2Fwww.sircusmagazine.com%2Feditorials%2Fsolenne-drive-assets%2FSolenne_Drive5-1600.jpg&amp;description=%E2%80%9CSolenne%20in%20orange%20shearling%2C%20a%20chartreuse%20car%2C%20and%20a%20day%20of%20hard%2C%20clean%20light.%E2%80%9D%20Acid%20%26%20Amber%20%7C%20SIRCUS%20Magazine%2C%20a%20SIRCUS%20web%20exclusive" rel="noopener" target="_blank" title="Pinterest"><img alt="Pinterest" height="16" src="https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/pinterest.svg" width="16"></a>
+          <a aria-label="Copy this editorial's link and open Instagram" class="ed-share__btn" data-share="instagram" href="https://www.instagram.com/" rel="noopener" target="_blank" title="Instagram"><img alt="Instagram" height="16" src="https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/instagram.svg" width="16"></a>
+          <a aria-label="Share this editorial on X" class="ed-share__btn" data-share="x" href="https://x.com/intent/tweet?text=%E2%80%9CSolenne%20in%20orange%20shearling%2C%20a%20chartreuse%20car%2C%20and%20a%20day%20of%20hard%2C%20clean%20light.%E2%80%9D%20Acid%20%26%20Amber%20%7C%20SIRCUS%20Magazine&amp;url=https%3A%2F%2Fwww.sircusmagazine.com%2Feditorials%2Fsolenne-drive" rel="noopener" target="_blank" title="X"><img alt="X" height="16" src="https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/x.svg" width="16"></a>
+          <span aria-live="polite" class="ed-share__note" id="edShareNote"></span>
+        </div>
       </div>
-      <div class="ed-share" id="edShare" data-text="“Solenne in orange shearling, a chartreuse car, and a day of hard, clean light.” Acid &amp; Amber | SIRCUS Magazine" data-url="https://www.sircusmagazine.com/editorials/solenne-drive">
-        <span class="ed-share__label">Share</span>
-        <a aria-label="Share this editorial on Facebook" class="ed-share__btn" data-share="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.sircusmagazine.com%2Feditorials%2Fsolenne-drive" rel="noopener" target="_blank" title="Facebook"><img alt="Facebook" height="16" src="https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/facebook.svg" width="16"></a>
-        <a aria-label="Save this editorial to Pinterest" class="ed-share__btn" data-share="pinterest" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.sircusmagazine.com%2Feditorials%2Fsolenne-drive&amp;media=https%3A%2F%2Fwww.sircusmagazine.com%2Feditorials%2Fsolenne-drive-assets%2FSolenne_Drive5-1600.jpg&amp;description=%E2%80%9CSolenne%20in%20orange%20shearling%2C%20a%20chartreuse%20car%2C%20and%20a%20day%20of%20hard%2C%20clean%20light.%E2%80%9D%20Acid%20%26%20Amber%20%7C%20SIRCUS%20Magazine%2C%20a%20SIRCUS%20web%20exclusive" rel="noopener" target="_blank" title="Pinterest"><img alt="Pinterest" height="16" src="https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/pinterest.svg" width="16"></a>
-        <a aria-label="Copy this editorial's link and open Instagram" class="ed-share__btn" data-share="instagram" href="https://www.instagram.com/" rel="noopener" target="_blank" title="Instagram"><img alt="Instagram" height="16" src="https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/instagram.svg" width="16"></a>
-        <a aria-label="Share this editorial on X" class="ed-share__btn" data-share="x" href="https://x.com/intent/tweet?text=%E2%80%9CSolenne%20in%20orange%20shearling%2C%20a%20chartreuse%20car%2C%20and%20a%20day%20of%20hard%2C%20clean%20light.%E2%80%9D%20Acid%20%26%20Amber%20%7C%20SIRCUS%20Magazine&amp;url=https%3A%2F%2Fwww.sircusmagazine.com%2Feditorials%2Fsolenne-drive" rel="noopener" target="_blank" title="X"><img alt="X" height="16" src="https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/x.svg" width="16"></a>
-        <span aria-live="polite" class="ed-share__note" id="edShareNote"></span>
+      <div class="ed-end__sheet" aria-label="All six frames">
+        <a href="/editorials/solenne-drive-assets/Solenne_Drive5-2400.webp" data-frame="0"><img src="/editorials/solenne-drive-assets/Solenne_Drive5-1280.webp" alt="Solenne seated against a chartreuse sports car in an orange shearling coat and black heels, with cactus and palms above an ochre wall" width="1280" height="720" loading="lazy" decoding="async"></a>
+        <a href="/editorials/solenne-drive-assets/Solenne_Drive3-2400.webp" data-frame="1"><img src="/editorials/solenne-drive-assets/Solenne_Drive3-1280.webp" alt="Solenne seen from a low angle, her hair lifted by the wind, the orange shearling coat against a blue sky" width="1280" height="720" loading="lazy" decoding="async"></a>
+        <a href="/editorials/solenne-drive-assets/Solenne_Drive2-2400.webp" data-frame="2"><img src="/editorials/solenne-drive-assets/Solenne_Drive2-1280.webp" alt="Solenne in orange shearling leaning on the fender of the car, with palms overhead" width="1280" height="720" loading="lazy" decoding="async"></a>
+        <a href="/editorials/solenne-drive-assets/Solenne_Drive4-2400.webp" data-frame="3"><img src="/editorials/solenne-drive-assets/Solenne_Drive4-1280.webp" alt="Solenne resting against the rear of the car, her head tilted back toward the sun" width="1280" height="720" loading="lazy" decoding="async"></a>
+        <a href="/editorials/solenne-drive-assets/Solenne_Drive-2400.webp" data-frame="4"><img src="/editorials/solenne-drive-assets/Solenne_Drive-1280.webp" alt="Solenne at the wheel in profile, her hair moving, palms passing in the windshield" width="1280" height="720" loading="lazy" decoding="async"></a>
+        <a href="/editorials/solenne-drive-assets/Solenne_Drive6-2400.webp" data-frame="5"><img src="/editorials/solenne-drive-assets/Solenne_Drive6-1280.webp" alt="Solenne driving, seen through the side window, the background streaked with speed" width="1280" height="720" loading="lazy" decoding="async"></a>
       </div>
     </div>
   </div>
