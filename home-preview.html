@@ -2118,34 +2118,51 @@ a.story-expand-card { text-decoration: none; }
 
 /* ── ABOUT: statement and prose on the right, the record of issues on the left ── */
 .about { background:var(--obsidian); padding:7rem var(--wide-x); border-top:1px solid rgba(184,130,14,.12); }
-.about-in { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); grid-template-areas:"top lead" "img main" "img qs"; grid-template-rows:auto auto 1fr; column-gap:clamp(3rem,6vw,6rem); row-gap:4rem; align-items:start; }
+.about-in { display:grid; grid-template-columns:minmax(0,6fr) minmax(0,5fr); grid-template-areas:"top lead" "img side"; column-gap:clamp(3rem,6vw,6rem); row-gap:4rem; align-items:start; }
 .about-top { grid-area:top; }
-.about-img { grid-area:img; margin:0; }
-.about-img img { display:block; width:100%; height:auto; }
+/* The photograph and the text column share one row: same top edge, same bottom edge. */
+.about-img { grid-area:img; align-self:stretch; display:flex; margin:0; }
+.about-img img { display:block; width:100%; height:auto; min-height:100%; object-fit:cover; }
+.about-side { grid-area:side; align-self:stretch; display:flex; flex-direction:column; justify-content:space-between; gap:3rem; }
 .about-top .eyebrow { margin-bottom:2rem; }
 .about-hed { font-family:var(--sans); font-size:clamp(2.2rem,4.2vw,3.6rem); font-weight:700; text-transform:uppercase; letter-spacing:-.01em; line-height:1; color:var(--white); }
 .about-hed em { font-family:var(--serif); font-style:italic; font-weight:300; color:var(--gold); text-transform:none; font-size:1.05em; }
 .about-lead { grid-area:lead; max-width:640px; font-family:var(--serif); font-style:italic; font-weight:300; font-size:clamp(1.4rem,2.1vw,1.8rem); line-height:1.5; color:var(--white); }
-.about-main { grid-area:main; max-width:640px; }
+.about-main { max-width:640px; }
+.about-main p:first-child { margin-top:-.6em; }
 .about-main p { font-family:var(--serif); font-weight:300; font-size:1.16rem; line-height:1.8; color:rgba(255,255,255,.84); margin-bottom:1.5rem; }
 .about-main p:last-child { margin-bottom:0; }
 .about-main em { font-style:italic; color:var(--gold); }
 .about-label { display:block; font-family:var(--sans); font-style:normal; font-size:.54rem; letter-spacing:.42em; text-transform:uppercase; color:rgba(255,255,255,.4); font-weight:600; margin-bottom:1.4rem; }
-.about-qs { grid-area:qs; max-width:640px; }
+.about-qs { max-width:640px; }
 .about-qs details { border-top:1px solid rgba(255,255,255,.1); }
 .about-qs details:last-child { border-bottom:1px solid rgba(255,255,255,.1); }
-.about-qs summary { display:flex; justify-content:space-between; align-items:center; gap:1.5rem; padding:1.1rem 0; cursor:pointer; list-style:none; font-family:var(--sans); font-size:.7rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--white); transition:color .3s; }
+.about-qs summary { display:flex; justify-content:space-between; align-items:center; gap:1.5rem; padding:1rem 0; cursor:pointer; list-style:none; font-family:var(--sans); font-size:.7rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--white); transition:color .3s; }
 .about-qs summary::-webkit-details-marker { display:none; }
 .about-qs summary::after { content:'+'; flex:none; font-family:var(--serif); font-size:1.3rem; font-weight:300; line-height:1; color:var(--gold); transition:transform .3s ease; }
 .about-qs details[open] summary::after { transform:rotate(45deg); }
 .about-qs summary:hover { color:var(--gold); }
 .about-qs summary:focus-visible { outline:2px solid var(--gold); outline-offset:4px; }
 .about-qs p { font-family:var(--serif); font-style:italic; font-weight:300; font-size:1.02rem; line-height:1.7; color:rgba(255,255,255,.75); padding:0 2.5rem 1.4rem 0; }
+/* Below this width the two columns cannot share a height without cropping the photograph, so the section stacks. */
+@media(max-width:1179px) {
+  .about-in { grid-template-columns:minmax(0,1fr); grid-template-areas:"top" "lead" "img" "side"; row-gap:3rem; }
+  .about-img { max-width:560px; }
+  .about-img img { min-height:0; }
+  .about-side { display:block; }
+  .about-main p:first-child { margin-top:0; }
+  .about-qs { margin-top:3rem; }
+}
 @media(max-width:860px) {
   .about { padding-top:5rem; padding-bottom:5rem; }
-  .about-in { grid-template-columns:minmax(0,1fr); grid-template-areas:"top" "lead" "img" "main" "qs"; grid-template-rows:none; row-gap:2.5rem; }
-  .about-qs { margin-top:1rem; }
 }
+}
+
+/* ── FOOTER: a single line ── */
+footer { padding:2.4rem 0; }
+.footer-inner { max-width:none; padding:0 var(--wide-x); }
+@media(max-width:560px) { .footer-bottom { flex-direction:column; align-items:flex-start; gap:.9rem; } }
+.footer-bottom { padding-top:0; border-top:0; }
 .pv-tag { position:fixed; left:14px; bottom:14px; z-index:9999; padding:.5rem .8rem; background:rgba(8,8,8,.86); border:1px solid rgba(255,255,255,.18); color:#fff; font-family:var(--sans); font-size:.5rem; letter-spacing:.24em; text-transform:uppercase; pointer-events:none; }
 </style>
 </head>
@@ -2617,14 +2634,17 @@ but to the intention to be seen…" data-image="https://res.cloudinary.com/dk8dx
 
 <!-- Brand philosophy: editorial voice, not FAQ register -->
 <p class="about-lead">The magazine was once an object worth keeping. A thing you returned to. For the photography, for the writing, for the world it built around you. Editorial fashion had authority. Beauty had depth. Culture had stakes. Issues were collected, not scrolled past.</p>
-<div class="about-main">
-<p>That deteriorated. Not slowly. Decisively. The industry traded storytelling for traffic, editorial vision for influencer adjacency, legacy for the algorithm's appetite. Most magazines now report on what is trending. By the time ink meets paper, the moment has already passed. They are documents of now, which means they age into nothing.</p>
-<p>SIRCUS was built against that. Every issue is cinematic, considered, and made to be owned. Not consumed. The photography is editorial, not content. The essays are written to outlast the season they appear in. The covers are designed to be held. This is not a magazine that chases relevance. It is built to <em>create</em> it.</p>
-</div>
 
 <figure class="about-img">
 <img alt="Three issues of SIRCUS Magazine on a marble table in afternoon light: Opulence &amp; Desire, A Velvet Fevered Bloom and Electric Baroque" loading="lazy" width="1280" height="1658" src="/assets/sircus-issues-table-1280.webp" srcset="/assets/sircus-issues-table-720.webp 720w, /assets/sircus-issues-table-1280.webp 1280w" sizes="(max-width:860px) calc(100vw - 4rem), 560px"/>
 </figure>
+
+<!-- The body and the questions share one column that runs the full height of the photograph -->
+<div class="about-side">
+<div class="about-main">
+<p>That deteriorated. Not slowly. Decisively. The industry traded storytelling for traffic, editorial vision for influencer adjacency, legacy for the algorithm's appetite. Most magazines now report on what is trending. By the time ink meets paper, the moment has already passed. They are documents of now, which means they age into nothing.</p>
+<p>SIRCUS was built against that. Every issue is cinematic, considered, and made to be owned. Not consumed. The photography is editorial, not content. The essays are written to outlast the season they appear in. The covers are designed to be held. This is not a magazine that chases relevance. It is built to <em>create</em> it.</p>
+</div>
 
 <!-- Answers for search and answer engines. Kept in the page, folded until asked for. -->
 <div class="about-qs">
@@ -2649,6 +2669,7 @@ but to the intention to be seen…" data-image="https://res.cloudinary.com/dk8dx
 <summary itemprop="name">Is SIRCUS an independent magazine?</summary>
 <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><p itemprop="text">Yes. No publishing conglomerate, no advertising network. Every editorial decision serves the work.</p></div>
 </details>
+</div>
 </div>
 </div>
 </section>
@@ -2734,48 +2755,6 @@ but to the intention to be seen…" data-image="https://res.cloudinary.com/dk8dx
 <!-- FOOTER -->
 <footer>
 <div class="footer-inner">
-<div class="footer-grid">
-<div class="footer-brand">
-<a class="f-logo" href="#">Sircus<sup>™</sup></a>
-<p class="f-tag">The uncompromising editorial. Cinematic fashion, cultural stories, and photography that stops time.</p>
-<div class="f-social">
-<a class="f-s" href="https://www.youtube.com/@SircusMagazine" rel="noopener" target="_blank">YouTube</a>
-<a class="f-s" href="https://www.tiktok.com/@sircusmagazine" rel="noopener" target="_blank">TikTok</a>
-<a class="f-s" href="https://www.instagram.com/sircusmagazine" rel="noopener" target="_blank">Instagram</a>
-<a class="f-s" href="https://www.facebook.com/profile.php?id=61572041751355" rel="noopener" target="_blank">Facebook</a>
-<a class="f-s" href="https://www.pinterest.com/sircusmagazine" rel="noopener" target="_blank">Pinterest</a>
-</div>
-<!-- PWA install nudge — hidden until browser fires beforeinstallprompt -->
-<div class="f-pwa" id="f-pwa-wrap" style="display:none;margin-top:1.6rem;">
-<p class="f-pwa__line">Stay current with everything Sircus<sup>™</sup>. Add the magazine to your home screen and keep new issues, editorials, and updates alongside your other apps.</p>
-<button class="f-pwa__btn" data-pwa-install id="f-pwa-btn" type="button">Add to Home Screen</button>
-</div>
-</div>
-<div class="footer-col">
-<h4>Magazine</h4>
-<ul class="footer-links">
-<li><a href="#issues">Browse Issues</a></li>
-<li><a href="https://www.magcloud.com/browse/issue/3412009" rel="noopener" target="_blank">Own Issue 16</a></li>
-<li><a href="https://www.amazon.com/dp/B0HMFF9XFX" rel="noopener" target="_blank">Buy on Amazon</a></li>
-</ul>
-</div>
-<div class="footer-col">
-<h4>Content</h4>
-<ul class="footer-links">
-<li><a href="#editorials">Editorials</a></li>
-<li><a href="#stories">Stories</a></li>
-<li><a href="#video">Video</a></li>
-</ul>
-</div>
-<div class="footer-col">
-<h4>Sircus</h4>
-<ul class="footer-links">
-<li><a href="#about">About</a></li>
-<li><a href="#manifesto">The Manifesto</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
-</div>
-</div>
 <div class="footer-bottom">
 <span class="f-copy">© 2026 Sircus™ Magazine. All rights reserved.</span>
 <a class="f-buy" href="/issues/16-sunlit-reverie#own">Get the Print Issue →</a>
