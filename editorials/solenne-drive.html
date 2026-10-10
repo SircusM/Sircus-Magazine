@@ -523,14 +523,17 @@ main{padding-top:var(--nav-h)}
   /* One file is fetched: the smaller cut on phones, the full cut elsewhere. */
   film.src=window.matchMedia('(max-width: 860px)').matches?film.getAttribute('data-small'):film.getAttribute('data-large');
   function label(){toggle.textContent=film.paused?'Play film':'Pause film';}
-  function play(){var p=film.play();if(p&&p.catch){p.catch(function(){wanted=false;label();});}}
+  var inView=true;
+  /* A refusal to autoplay ends the attempt; a pause because the tab is in the background does not. */
+  function play(){var p=film.play();if(p&&p.catch){p.catch(function(err){if(err&&(err.name==='NotAllowedError'||err.name==='NotSupportedError')){wanted=false;}label();});}}
   film.addEventListener('play',label);film.addEventListener('pause',label);
   toggle.addEventListener('click',function(){if(film.paused){wanted=true;play();}else{wanted=false;film.pause();}});
   if('IntersectionObserver' in window){
     new IntersectionObserver(function(entries){
-      entries.forEach(function(e){if(e.isIntersecting){if(wanted){play();}}else{film.pause();}});
+      entries.forEach(function(e){inView=e.isIntersecting;if(inView){if(wanted){play();}}else{film.pause();}});
     },{threshold:.15}).observe(film);
   }else if(wanted){play();}
+  document.addEventListener('visibilitychange',function(){if(!document.hidden&&wanted&&inView&&film.paused){play();}});
   label();
 
   /* Frame viewer */
