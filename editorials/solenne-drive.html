@@ -264,6 +264,9 @@ main{padding-top:var(--nav-h)}
 .ed-plate img{display:block;width:100%;height:auto}
 .ed-cap{display:flex;gap:1.15em;align-items:baseline;padding-top:16px;font:italic 400 clamp(1.08rem,1.5vw,1.34rem)/1.4 var(--serif);color:#fff}
 .ed-cap b{flex:none;min-width:2.2em;font:500 .7rem/1 var(--sans);font-style:normal;letter-spacing:.3em;color:var(--gold)}
+/* After the opening frame, the frames run two to a row inside the same column. */
+.ed-pair{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;align-items:start;margin-bottom:var(--ed-gap)}
+.ed-pair .ed-plate{margin:0}
 
 /* Closing frame. Without script it is a still followed by the end card.
    With script the frame holds while you scroll and the car drives out of it. */
@@ -308,6 +311,7 @@ main{padding-top:var(--nav-h)}
   .ed-film{height:min(calc(100svh - var(--nav-h)),150vw)}
   .ed-film__copy{flex-direction:column;align-items:flex-start;gap:18px}
   .ed-col{width:100%}
+  .ed-pair{grid-template-columns:1fr;row-gap:var(--ed-gap)}
   .ed-intro,.ed-cap{padding-inline:var(--pad)}
   .ed{--ed-gap:56px}
   .ed-lb__prev,.ed-lb__next{grid-row:3;margin:0 14px 14px}
@@ -392,45 +396,47 @@ main{padding-top:var(--nav-h)}
   <figcaption class="ed-cap"><b>I</b><span>Noon. The wall has been holding the sun since morning.</span></figcaption>
 </figure>
 
-<figure class="ed-plate ed-col">
-  <a href="/editorials/solenne-drive-assets/Solenne_Drive3-2400.webp" data-frame="1">
-    <picture>
-      <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive3-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive3-2400.webp 2400w" sizes="(max-width:860px) 100vw, 82vw">
-      <img src="/editorials/solenne-drive-assets/Solenne_Drive3-1600.jpg" alt="Solenne seen from a low angle, her hair lifted by the wind, the orange shearling coat against a blue sky" width="2400" height="1351" loading="lazy" decoding="async">
-    </picture>
-  </a>
-  <figcaption class="ed-cap"><b>II</b><span>The wind arrives. She lets it.</span></figcaption>
-</figure>
+<div class="ed-pair ed-col">
+  <figure class="ed-plate">
+    <a href="/editorials/solenne-drive-assets/Solenne_Drive3-2400.webp" data-frame="1">
+      <picture>
+        <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive3-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive3-2400.webp 2400w" sizes="(max-width:860px) 100vw, 41vw">
+        <img src="/editorials/solenne-drive-assets/Solenne_Drive3-1600.jpg" alt="Solenne seen from a low angle, her hair lifted by the wind, the orange shearling coat against a blue sky" width="2400" height="1351" loading="lazy" decoding="async">
+      </picture>
+    </a>
+    <figcaption class="ed-cap"><b>II</b><span>The wind arrives. She lets it.</span></figcaption>
+  </figure>
+  <figure class="ed-plate">
+    <a href="/editorials/solenne-drive-assets/Solenne_Drive2-2400.webp" data-frame="2">
+      <picture>
+        <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive2-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive2-2400.webp 2400w" sizes="(max-width:860px) 100vw, 41vw">
+        <img src="/editorials/solenne-drive-assets/Solenne_Drive2-1600.jpg" alt="Solenne in orange shearling leaning on the fender of the car, with palms overhead" width="2400" height="1351" loading="lazy" decoding="async">
+      </picture>
+    </a>
+    <figcaption class="ed-cap"><b>III</b><span>The car is the color of a warning. She treats it as furniture.</span></figcaption>
+  </figure>
+</div>
 
-<figure class="ed-plate ed-col">
-  <a href="/editorials/solenne-drive-assets/Solenne_Drive2-2400.webp" data-frame="2">
-    <picture>
-      <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive2-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive2-2400.webp 2400w" sizes="(max-width:860px) 100vw, 82vw">
-      <img src="/editorials/solenne-drive-assets/Solenne_Drive2-1600.jpg" alt="Solenne in orange shearling leaning on the fender of the car, with palms overhead" width="2400" height="1351" loading="lazy" decoding="async">
-    </picture>
-  </a>
-  <figcaption class="ed-cap"><b>III</b><span>The car is the color of a warning. She treats it as furniture.</span></figcaption>
-</figure>
-
-<figure class="ed-plate ed-col">
-  <a href="/editorials/solenne-drive-assets/Solenne_Drive4-2400.webp" data-frame="3">
-    <picture>
-      <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive4-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive4-2400.webp 2400w" sizes="(max-width:860px) 100vw, 82vw">
-      <img src="/editorials/solenne-drive-assets/Solenne_Drive4-1600.jpg" alt="Solenne resting against the rear of the car, her head tilted back toward the sun" width="2400" height="1351" loading="lazy" decoding="async">
-    </picture>
-  </a>
-  <figcaption class="ed-cap"><b>IV</b><span>An hour passes this way.</span></figcaption>
-</figure>
-
-<figure class="ed-plate ed-col">
-  <a href="/editorials/solenne-drive-assets/Solenne_Drive-2400.webp" data-frame="4">
-    <picture>
-      <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive-2400.webp 2400w" sizes="(max-width:860px) 100vw, 82vw">
-      <img src="/editorials/solenne-drive-assets/Solenne_Drive-1600.jpg" alt="Solenne at the wheel in profile, her hair moving, palms passing in the windshield" width="2400" height="1351" loading="lazy" decoding="async">
-    </picture>
-  </a>
-  <figcaption class="ed-cap"><b>V</b><span>Then the door, the wheel, the decision.</span></figcaption>
-</figure>
+<div class="ed-pair ed-col">
+  <figure class="ed-plate">
+    <a href="/editorials/solenne-drive-assets/Solenne_Drive4-2400.webp" data-frame="3">
+      <picture>
+        <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive4-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive4-2400.webp 2400w" sizes="(max-width:860px) 100vw, 41vw">
+        <img src="/editorials/solenne-drive-assets/Solenne_Drive4-1600.jpg" alt="Solenne resting against the rear of the car, her head tilted back toward the sun" width="2400" height="1351" loading="lazy" decoding="async">
+      </picture>
+    </a>
+    <figcaption class="ed-cap"><b>IV</b><span>An hour passes this way.</span></figcaption>
+  </figure>
+  <figure class="ed-plate">
+    <a href="/editorials/solenne-drive-assets/Solenne_Drive-2400.webp" data-frame="4">
+      <picture>
+        <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive-2400.webp 2400w" sizes="(max-width:860px) 100vw, 41vw">
+        <img src="/editorials/solenne-drive-assets/Solenne_Drive-1600.jpg" alt="Solenne at the wheel in profile, her hair moving, palms passing in the windshield" width="2400" height="1351" loading="lazy" decoding="async">
+      </picture>
+    </a>
+    <figcaption class="ed-cap"><b>V</b><span>Then the door, the wheel, the decision.</span></figcaption>
+  </figure>
+</div>
 <section class="ed-exit" id="edExit" aria-label="Frame six">
   <div class="ed-exit__stage">
     <picture>
