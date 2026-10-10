@@ -234,6 +234,7 @@ main{padding-top:var(--nav-h)}
 /* ── EDITORIAL PAGE ─────────────────────────────────────────────
    Everything above this line is the site shell, carried over from
    the Issue 16 page. Everything below belongs to this editorial. */
+.ed{--ed-gap:clamp(64px,9vw,128px)}
 .ed-film{position:relative;height:calc(100svh - var(--nav-h));min-height:420px;background:#000;overflow:hidden}
 .ed-film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .ed-film::after{content:"";position:absolute;left:0;right:0;bottom:0;height:66%;background:linear-gradient(to top,rgba(0,0,0,.86),rgba(0,0,0,.46) 48%,rgba(0,0,0,0));pointer-events:none}
@@ -251,33 +252,22 @@ main{padding-top:var(--nav-h)}
 }
 @keyframes ed-rise{to{opacity:1;transform:none}}
 
-.ed-lede{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:40px;padding:clamp(72px,11vw,176px) var(--pad) clamp(60px,9vw,150px)}
-.ed-stand{grid-column:2 / span 7;font:400 clamp(1.6rem,2.95vw,2.7rem)/1.26 var(--serif);color:#fff;text-wrap:pretty}
-.ed-facts{grid-column:10 / span 3;align-self:end;display:grid;gap:18px}
-.ed-facts dt{font:500 .68rem/1.4 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
-.ed-facts dd{font:400 1.3rem/1.3 var(--serif);color:#fff}
+/* One column governs everything between the film and the closing frame.
+   It lines up with the navigation, and it is never taller than the screen,
+   so each frame is seen whole with its caption. */
+.ed-col{width:min(100% - 2 * var(--pad),calc((100svh - var(--nav-h) - 120px) * 16 / 9));margin-inline:auto}
+.ed-intro{padding-block:var(--ed-gap)}
+.ed-stand{max-width:24em;font:400 clamp(1.6rem,2.7vw,2.5rem)/1.28 var(--serif);color:#fff;text-wrap:pretty}
 
-.ed-plate{position:relative;margin:0}
+.ed-plate{position:relative;margin:0 auto var(--ed-gap)}
 .ed-plate a{display:block;cursor:zoom-in;background:#000}
 .ed-plate img{display:block;width:100%;height:auto}
 .ed-cap{display:flex;gap:1.15em;align-items:baseline;padding-top:16px;font:italic 400 clamp(1.08rem,1.5vw,1.34rem)/1.4 var(--serif);color:#fff}
 .ed-cap b{flex:none;min-width:2.2em;font:500 .7rem/1 var(--sans);font-style:normal;letter-spacing:.3em;color:var(--gold)}
-.ed-plate--bleed .ed-cap{padding-inline:var(--pad)}
-
-.ed-split{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:center;padding:clamp(72px,11vw,176px) var(--pad)}
-.ed-quote{grid-column:1 / span 4;margin:0;font:italic 300 clamp(2.1rem,4.3vw,4.2rem)/1.04 var(--serif);letter-spacing:-.012em;color:#fff;text-wrap:balance}
-.ed-split .ed-plate{grid-column:6 / span 7}
-
-.ed-pair{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:start;padding:0 var(--pad) clamp(72px,11vw,176px)}
-.ed-pair__a{grid-column:1 / span 7}
-.ed-pair__b{grid-column:9 / span 4;margin-top:clamp(64px,13vw,210px);will-change:transform}
-.ed-pair__b img{aspect-ratio:4 / 5;object-fit:cover;object-position:27% 50%}
-
-.ed-plate--scope img{aspect-ratio:2.39 / 1;object-fit:cover;object-position:50% 36%}
 
 /* Closing frame. Without script it is a still followed by the end card.
    With script the frame holds while you scroll and the car drives out of it. */
-.ed-exit{position:relative;background:#000;margin-top:clamp(72px,11vw,176px)}
+.ed-exit{position:relative;background:#000}
 .ed-exit__stage{position:relative}
 .ed-exit__car{display:block;width:100%;height:auto;cursor:zoom-in}
 .ed-exit__cap{padding-inline:var(--pad)}
@@ -317,15 +307,9 @@ main{padding-top:var(--nav-h)}
 @media (max-width:860px){
   .ed-film{height:min(calc(100svh - var(--nav-h)),150vw)}
   .ed-film__copy{flex-direction:column;align-items:flex-start;gap:18px}
-  .ed-lede{row-gap:36px}
-  .ed-stand{grid-column:1 / -1}
-  .ed-facts{grid-column:1 / -1;grid-template-columns:repeat(3,auto);justify-content:start;column-gap:32px}
-  .ed-split{row-gap:34px}
-  .ed-quote,.ed-split .ed-plate{grid-column:1 / -1}
-  .ed-pair{row-gap:26px}
-  .ed-pair__a{grid-column:1 / -1}
-  .ed-pair__b{grid-column:4 / -1;margin-top:0}
-  .ed-plate--scope img{aspect-ratio:16 / 9}
+  .ed-col{width:100%}
+  .ed-intro,.ed-cap{padding-inline:var(--pad)}
+  .ed{--ed-gap:56px}
   .ed-lb__prev,.ed-lb__next{grid-row:3;margin:0 14px 14px}
   .ed-lb img{max-height:74vh}
 }
@@ -394,69 +378,59 @@ main{padding-top:var(--nav-h)}
   </div>
 </header>
 
-<section class="ed-lede" aria-label="Introduction">
+<section class="ed-intro ed-col" aria-label="Introduction">
   <p class="ed-stand">Solenne in orange shearling, a chartreuse car, and a day of hard, clean light. Six frames, and a woman with somewhere better to be.</p>
-  <dl class="ed-facts">
-    <div><dt>Featuring</dt><dd>Solenne</dd></div>
-    <div><dt>Frames</dt><dd>Six</dd></div>
-    <div><dt>Published</dt><dd>October 2026</dd></div>
-  </dl>
 </section>
 
-<figure class="ed-plate ed-plate--bleed">
+<figure class="ed-plate ed-col">
   <a href="/editorials/solenne-drive-assets/Solenne_Drive5-2400.webp" data-frame="0">
     <picture>
-      <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive5-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive5-2400.webp 2400w" sizes="100vw">
+      <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive5-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive5-2400.webp 2400w" sizes="(max-width:860px) 100vw, 82vw">
       <img src="/editorials/solenne-drive-assets/Solenne_Drive5-1600.jpg" alt="Solenne seated against a chartreuse sports car in an orange shearling coat and black heels, with cactus and palms above an ochre wall" width="2400" height="1351" loading="lazy" decoding="async">
     </picture>
   </a>
   <figcaption class="ed-cap"><b>I</b><span>Noon. The wall has been holding the sun since morning.</span></figcaption>
 </figure>
 
-<section class="ed-split" aria-label="Frame two">
-  <blockquote class="ed-quote">The coat enters the frame before she does.</blockquote>
-  <figure class="ed-plate">
-    <a href="/editorials/solenne-drive-assets/Solenne_Drive3-2400.webp" data-frame="1">
-      <picture>
-        <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive3-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive3-2400.webp 2400w" sizes="(max-width:860px) 100vw, 58vw">
-        <img src="/editorials/solenne-drive-assets/Solenne_Drive3-1600.jpg" alt="Solenne seen from a low angle, her hair lifted by the wind, the orange shearling coat against a blue sky" width="2400" height="1351" loading="lazy" decoding="async">
-      </picture>
-    </a>
-    <figcaption class="ed-cap"><b>II</b><span>The wind arrives. She lets it.</span></figcaption>
-  </figure>
-</section>
+<figure class="ed-plate ed-col">
+  <a href="/editorials/solenne-drive-assets/Solenne_Drive3-2400.webp" data-frame="1">
+    <picture>
+      <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive3-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive3-2400.webp 2400w" sizes="(max-width:860px) 100vw, 82vw">
+      <img src="/editorials/solenne-drive-assets/Solenne_Drive3-1600.jpg" alt="Solenne seen from a low angle, her hair lifted by the wind, the orange shearling coat against a blue sky" width="2400" height="1351" loading="lazy" decoding="async">
+    </picture>
+  </a>
+  <figcaption class="ed-cap"><b>II</b><span>The wind arrives. She lets it.</span></figcaption>
+</figure>
 
-<section class="ed-pair" aria-label="Frames three and four">
-  <figure class="ed-plate ed-pair__a">
-    <a href="/editorials/solenne-drive-assets/Solenne_Drive2-2400.webp" data-frame="2">
-      <picture>
-        <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive2-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive2-2400.webp 2400w" sizes="(max-width:860px) 100vw, 58vw">
-        <img src="/editorials/solenne-drive-assets/Solenne_Drive2-1600.jpg" alt="Solenne in orange shearling leaning on the fender of the car, with palms overhead" width="2400" height="1351" loading="lazy" decoding="async">
-      </picture>
-    </a>
-    <figcaption class="ed-cap"><b>III</b><span>The car is the color of a warning. She treats it as furniture.</span></figcaption>
-  </figure>
-  <figure class="ed-plate ed-pair__b" id="edDrift">
-    <a href="/editorials/solenne-drive-assets/Solenne_Drive4-2400.webp" data-frame="3">
-      <picture>
-        <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive4-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive4-2400.webp 2400w" sizes="(max-width:860px) 75vw, 62vw">
-        <img src="/editorials/solenne-drive-assets/Solenne_Drive4-1600.jpg" alt="Solenne resting against the rear of the car, her head tilted back toward the sun" width="2400" height="1351" loading="lazy" decoding="async">
-      </picture>
-    </a>
-    <figcaption class="ed-cap"><b>IV</b><span>An hour passes this way.</span></figcaption>
-  </figure>
-</section>
+<figure class="ed-plate ed-col">
+  <a href="/editorials/solenne-drive-assets/Solenne_Drive2-2400.webp" data-frame="2">
+    <picture>
+      <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive2-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive2-2400.webp 2400w" sizes="(max-width:860px) 100vw, 82vw">
+      <img src="/editorials/solenne-drive-assets/Solenne_Drive2-1600.jpg" alt="Solenne in orange shearling leaning on the fender of the car, with palms overhead" width="2400" height="1351" loading="lazy" decoding="async">
+    </picture>
+  </a>
+  <figcaption class="ed-cap"><b>III</b><span>The car is the color of a warning. She treats it as furniture.</span></figcaption>
+</figure>
 
-<figure class="ed-plate ed-plate--bleed ed-plate--scope">
+<figure class="ed-plate ed-col">
+  <a href="/editorials/solenne-drive-assets/Solenne_Drive4-2400.webp" data-frame="3">
+    <picture>
+      <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive4-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive4-2400.webp 2400w" sizes="(max-width:860px) 100vw, 82vw">
+      <img src="/editorials/solenne-drive-assets/Solenne_Drive4-1600.jpg" alt="Solenne resting against the rear of the car, her head tilted back toward the sun" width="2400" height="1351" loading="lazy" decoding="async">
+    </picture>
+  </a>
+  <figcaption class="ed-cap"><b>IV</b><span>An hour passes this way.</span></figcaption>
+</figure>
+
+<figure class="ed-plate ed-col">
   <a href="/editorials/solenne-drive-assets/Solenne_Drive-2400.webp" data-frame="4">
     <picture>
-      <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive-2400.webp 2400w" sizes="100vw">
+      <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive-2400.webp 2400w" sizes="(max-width:860px) 100vw, 82vw">
       <img src="/editorials/solenne-drive-assets/Solenne_Drive-1600.jpg" alt="Solenne at the wheel in profile, her hair moving, palms passing in the windshield" width="2400" height="1351" loading="lazy" decoding="async">
     </picture>
   </a>
   <figcaption class="ed-cap"><b>V</b><span>Then the door, the wheel, the decision.</span></figcaption>
 </figure>
-
 <section class="ed-exit" id="edExit" aria-label="Frame six">
   <div class="ed-exit__stage">
     <picture>
@@ -612,10 +586,10 @@ main{padding-top:var(--nav-h)}
   var fly=document.getElementById('edFlyShare');
   if(fly){bindShare(fly,fly.querySelector('.social-panel__note'));}
 
-  /* Scroll: the fourth frame drifts against the third, and the last frame drives away. */
+  /* Scroll: the last frame drives away. */
   if(calm){return;}
   var exit=document.getElementById('edExit'),car=document.getElementById('edCar');
-  var cap=document.getElementById('edExitCap'),end=document.getElementById('edEnd'),drift=document.getElementById('edDrift');
+  var cap=document.getElementById('edExitCap'),end=document.getElementById('edEnd');
   exit.classList.add('is-live');
   car.loading='eager';
   function clamp(v){return v<0?0:(v>1?1:v);}
@@ -635,11 +609,6 @@ main{padding-top:var(--nav-h)}
     end.style.opacity=clamp((q-.3)/.45).toFixed(3);
     end.style.pointerEvents=q>.7?'auto':'none';
     car.style.pointerEvents=q>0?'none':'auto';
-    if(drift&&vw>860){
-      var d=drift.getBoundingClientRect();
-      var mid=(d.top+d.height/2-vh/2)/vh;
-      drift.style.transform='translate3d(0,'+(mid*-54).toFixed(1)+'px,0)';
-    }else if(drift){drift.style.transform='';}
   }
   function queue(){if(!ticking){ticking=true;window.requestAnimationFrame(frame);}}
   window.addEventListener('scroll',queue,{passive:true});
