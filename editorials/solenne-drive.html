@@ -292,6 +292,16 @@ main{padding-top:var(--nav-h)}
 .ed-exit.is-live .ed-exit__cap b{color:#fff}
 .ed-exit.is-live .ed-end{position:absolute;inset:0;z-index:0;align-content:center;padding-block:var(--nav-h) 0}
 
+/* Share row: the same square icons used on the story excerpts */
+.ed-share{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem;margin-top:14px}
+.ed-share__label{font:600 .68rem/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-right:.3rem}
+.ed-share__btn{display:inline-flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem;border:1px solid rgba(255,255,255,.6);background:transparent;cursor:pointer;transition:background .3s ease,border-color .3s ease}
+.ed-share__btn img{width:1rem;height:1rem;display:block;filter:invert(1);transition:filter .3s ease}
+.ed-share__btn:hover{background:#fff;border-color:#fff}
+.ed-share__btn:hover img{filter:none}
+.ed-share__note{flex-basis:100%;min-height:1.4em;font:italic 400 .98rem/1.4 var(--serif);color:#fff;opacity:0;transition:opacity .3s ease}
+.ed-share__note.show{opacity:1}
+
 /* Frame viewer */
 .ed-lb{position:fixed;inset:0;z-index:300;background:rgba(4,4,4,.97);display:grid;grid-template-columns:auto 1fr auto;grid-template-rows:auto 1fr auto;align-items:center}
 .ed-lb img{grid-column:1 / -1;grid-row:1 / -1;justify-self:center;max-width:min(94vw,1800px);max-height:86vh;width:auto;height:auto;object-fit:contain}
@@ -460,6 +470,14 @@ main{padding-top:var(--nav-h)}
         <a class="btn btn-primary" href="/#editorials">Back to the editorials</a>
         <a class="btn btn-outline" href="/issues/16-sunlit-reverie">See Issue 16</a>
       </div>
+      <div class="ed-share" id="edShare" data-text="“Solenne in orange shearling, a chartreuse car, and a day of hard, clean light.” Acid &amp; Amber | SIRCUS Magazine" data-url="https://www.sircusmagazine.com/editorials/solenne-drive">
+        <span class="ed-share__label">Share</span>
+        <a aria-label="Share this editorial on Facebook" class="ed-share__btn" data-share="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.sircusmagazine.com%2Feditorials%2Fsolenne-drive" rel="noopener" target="_blank" title="Facebook"><img alt="Facebook" height="16" src="https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/facebook.svg" width="16"></a>
+        <a aria-label="Save this editorial to Pinterest" class="ed-share__btn" data-share="pinterest" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.sircusmagazine.com%2Feditorials%2Fsolenne-drive&amp;media=https%3A%2F%2Fwww.sircusmagazine.com%2Feditorials%2Fsolenne-drive-assets%2FSolenne_Drive5-1600.jpg&amp;description=%E2%80%9CSolenne%20in%20orange%20shearling%2C%20a%20chartreuse%20car%2C%20and%20a%20day%20of%20hard%2C%20clean%20light.%E2%80%9D%20Acid%20%26%20Amber%20%7C%20SIRCUS%20Magazine%2C%20a%20SIRCUS%20web%20exclusive" rel="noopener" target="_blank" title="Pinterest"><img alt="Pinterest" height="16" src="https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/pinterest.svg" width="16"></a>
+        <a aria-label="Copy this editorial's link and open Instagram" class="ed-share__btn" data-share="instagram" href="https://www.instagram.com/" rel="noopener" target="_blank" title="Instagram"><img alt="Instagram" height="16" src="https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/instagram.svg" width="16"></a>
+        <a aria-label="Share this editorial on X" class="ed-share__btn" data-share="x" href="https://x.com/intent/tweet?text=%E2%80%9CSolenne%20in%20orange%20shearling%2C%20a%20chartreuse%20car%2C%20and%20a%20day%20of%20hard%2C%20clean%20light.%E2%80%9D%20Acid%20%26%20Amber%20%7C%20SIRCUS%20Magazine&amp;url=https%3A%2F%2Fwww.sircusmagazine.com%2Feditorials%2Fsolenne-drive" rel="noopener" target="_blank" title="X"><img alt="X" height="16" src="https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/x.svg" width="16"></a>
+        <span aria-live="polite" class="ed-share__note" id="edShareNote"></span>
+      </div>
     </div>
   </div>
 </section>
@@ -563,6 +581,28 @@ main{padding-top:var(--nav-h)}
   var sx=null;
   lb.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
   lb.addEventListener('touchend',function(e){if(sx===null){return;}var dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>48){show(at+(dx<0?1:-1));}},{passive:true});
+
+  /* Share: Facebook and Instagram take no text from a website, so their icons copy the caption first. */
+  var share=document.getElementById('edShare'),shareNote=document.getElementById('edShareNote'),noteTimer=null;
+  function note(text,hold){shareNote.textContent=text;shareNote.classList.add('show');clearTimeout(noteTimer);noteTimer=setTimeout(function(){shareNote.classList.remove('show');},hold||4200);}
+  function copySync(text){var f=document.createElement('textarea');f.value=text;f.setAttribute('readonly','');f.style.position='fixed';f.style.opacity='0';document.body.appendChild(f);f.select();var ok=false;try{ok=document.execCommand('copy');}catch(err){ok=false;}document.body.removeChild(f);return ok;}
+  function copyText(text,message,hold){
+    if(copySync(text)){note(message,hold);return;}
+    var blocked='Your browser blocked the copy.';
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){note(message,hold);},function(){note(blocked,hold);});}
+    else{note(blocked,hold);}
+  }
+  if(share){
+    var caption=share.getAttribute('data-text'),pageUrl=share.getAttribute('data-url');
+    var fbBtn=share.querySelector('[data-share="facebook"]'),igBtn=share.querySelector('[data-share="instagram"]');
+    fbBtn.addEventListener('click',function(e){
+      copyText(caption,'Caption copied. Paste it into your Facebook post.',20000);
+      var popup=null;
+      try{popup=window.open(fbBtn.href,'sircus_share','width=640,height=720,left='+((window.screenX||0)+24)+',top='+((window.screenY||0)+90));}catch(err){popup=null;}
+      if(popup){e.preventDefault();}
+    });
+    igBtn.addEventListener('click',function(){copyText(caption+'\n'+pageUrl,'Caption and link copied. Paste them in Instagram.');});
+  }
 
   /* Scroll: the fourth frame drifts against the third, and the last frame drives away. */
   if(calm){return;}
