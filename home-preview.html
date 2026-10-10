@@ -2119,6 +2119,9 @@ a.story-expand-card { text-decoration: none; }
   .run-hed--first { margin-top:3.5rem; }
 }
 
+.issues .issue-card { scroll-margin-top:9rem; transition:opacity .6s ease; }
+.issues.is-citing .issue-card:not(.is-cited) { opacity:.22; }
+
 /* ── ABOUT: statement and prose on the right, the record of issues on the left ── */
 .about { background:var(--obsidian); padding:7rem var(--wide-x); border-top:1px solid rgba(184,130,14,.12); }
 .about-in { display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); grid-template-areas:"top lead" "record main" "qlabel qs"; column-gap:clamp(3rem,8vw,8rem); row-gap:4rem; align-items:start; }
@@ -2335,7 +2338,7 @@ a.story-expand-card { text-decoration: none; }
 </div>
 <div class="run-hed"><span class="run-hed__name">The Current Run</span><i></i><span class="run-hed__years">2025 to 2026</span></div>
 <div class="covers-grid" id="covers-grid">
-<div class="issue-card">
+<div class="issue-card" id="issue-16" data-year="2026">
 <div class="issue-cover">
 <img alt="Sircus Issue 16: Sunlit Reverie" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1200/v1790912436/I.16_frt_dj9qkg.png" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
 </div>
@@ -2345,7 +2348,7 @@ a.story-expand-card { text-decoration: none; }
 <a class="card-amazon" href="/issues/16-sunlit-reverie.html" style="margin-bottom:0;">Explore the Issue →</a>
 <a class="card-amazon" href="https://www.amazon.com/dp/B0HMFF9XFX" rel="noopener" target="_blank">Buy on Amazon →</a>
 </div>
-<div class="issue-card">
+<div class="issue-card" id="issue-15" data-year="2026">
 <div class="issue-cover">
 <img alt="Sircus Issue 15" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777380124/Sircus_Issue_15_Cover_nz6p2v.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
 </div>
@@ -2354,7 +2357,7 @@ a.story-expand-card { text-decoration: none; }
 <a class="card-buy" href="https://www.magcloud.com/browse/issue/3260300" rel="noopener" target="_blank">Collector's Edition →</a>
 <a class="card-amazon" href="https://a.co/d/00E2bWb3" rel="noopener" target="_blank">Buy on Amazon →</a>
 </div>
-<div class="issue-card">
+<div class="issue-card" id="issue-14" data-year="2025">
 <div class="issue-cover">
 <img alt="Sircus Issue 14 — A Velvet Fevered Bloom" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777379985/Sircus_Issue_13_Cover_ctjsjq.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
 </div>
@@ -2364,7 +2367,7 @@ a.story-expand-card { text-decoration: none; }
 <!-- UPDATE: Issue 14 Amazon link hidden October 2026 while Amazon has the listing blocked (ticket open). Remove "hidden" to restore. MagCloud stays live. -->
 <a class="card-amazon" href="https://a.co/d/0e3BHp55" rel="noopener" target="_blank" hidden>Buy on Amazon →</a>
 </div>
-<div class="issue-card">
+<div class="issue-card" id="issue-13" data-year="2025">
 <div class="issue-cover">
 <img alt="Sircus Issue 13 — Opulence &amp; Desire" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777379985/Sircus_Magazine_Issue_14_Cover_rpuf6h.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
 </div>
@@ -2376,7 +2379,7 @@ a.story-expand-card { text-decoration: none; }
 </div>
 <div class="run-hed run-hed--first"><span class="run-hed__name">The First Run</span><i></i><span class="run-hed__years">2013 to 2015</span></div>
 <div class="covers-grid covers-first" id="covers-first">
-<div class="issue-card">
+<div class="issue-card" id="issue-12" data-year="2015">
 <div class="issue-cover">
 <img alt="Sircus Issue 12" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777379985/Sircus_Issue_12_Cover_oy2wxd.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
 </div>
@@ -2384,7 +2387,7 @@ a.story-expand-card { text-decoration: none; }
 <span class="issue-name">Fashion &amp; Beauty</span>
 <a class="card-buy" href="https://www.magcloud.com/browse/issue/1007780" rel="noopener" target="_blank">Collector's Edition →</a>
 </div>
-<div class="issue-card">
+<div class="issue-card" id="issue-11" data-year="2015">
 <div class="issue-cover">
 <img alt="Sircus Issue 11" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777379985/Sircus_Issue_11_Cover_t9eqts.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
 </div>
@@ -2392,7 +2395,7 @@ a.story-expand-card { text-decoration: none; }
 <span class="issue-name">Fitness in Fashion</span>
 <a class="card-buy" href="https://www.magcloud.com/browse/issue/1003806" rel="noopener" target="_blank">Collector's Edition →</a>
 </div>
-<div class="issue-card">
+<div class="issue-card" id="issue-10" data-year="2015">
 <div class="issue-cover">
 <img alt="Sircus Issue 10" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777380217/Sircus_Issue_10_Cover_cvscnd.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
 </div>
@@ -2400,7 +2403,7 @@ a.story-expand-card { text-decoration: none; }
 <span class="issue-name">Art &amp; Beauty</span>
 <a class="card-buy" href="https://www.magcloud.com/browse/issue/915187" rel="noopener" target="_blank">Collector's Edition →</a>
 </div>
-<div class="issue-card">
+<div class="issue-card" id="issue-9" data-year="2014">
 <div class="issue-cover">
 <img alt="Sircus Issue 9" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777380463/Sircus_Issue_9_Cover_zibqbx.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
 </div>
@@ -2408,7 +2411,7 @@ a.story-expand-card { text-decoration: none; }
 <span class="issue-name">Special Swimwear Edition</span>
 <a class="card-buy" href="https://www.magcloud.com/browse/issue/792686" rel="noopener" target="_blank">Collector's Edition →</a>
 </div>
-<div class="issue-card">
+<div class="issue-card" id="issue-8" data-year="2014">
 <div class="issue-cover">
 <img alt="Sircus Issue 8" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777380470/Sircus_Issue_8_Cover_hdepn7.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
 </div>
@@ -2416,7 +2419,7 @@ a.story-expand-card { text-decoration: none; }
 <span class="issue-name">The Dark &amp; The Light</span>
 <a class="card-buy" href="https://www.magcloud.com/browse/issue/728107" rel="noopener" target="_blank">Collector's Edition →</a>
 </div>
-<div class="issue-card">
+<div class="issue-card" id="issue-7" data-year="2013">
 <div class="issue-cover">
 <img alt="Sircus Issue 7" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777385817/Sircus_Issue_7_Cover_afcxgp.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
 </div>
@@ -2424,7 +2427,7 @@ a.story-expand-card { text-decoration: none; }
 <span class="issue-name">Rock the Color Block</span>
 <a class="card-buy" href="https://www.magcloud.com/browse/issue/680849" rel="noopener" target="_blank">Collector's Edition →</a>
 </div>
-<div class="issue-card">
+<div class="issue-card" id="issue-6" data-year="2013">
 <div class="issue-cover">
 <img alt="Sircus Issue 6" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777386227/Sircus_Issue_6_Cover_cgsn5a.png" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
 </div>
@@ -2633,15 +2636,15 @@ but to the intention to be seen…" data-image="https://res.cloudinary.com/dk8dx
 <p>SIRCUS was built against that. Every issue is cinematic, considered, and made to be owned. Not consumed. The photography is editorial, not content. The essays are written to outlast the season they appear in. The covers are designed to be held. This is not a magazine that chases relevance. It is built to <em>create</em> it.</p>
 </div>
 
-<!-- UPDATE: add a row, or extend the last one, when a new issue is published -->
+<!-- UPDATE: add a row, or extend the last one, when a new issue is published. Each row jumps to the covers from its own year. -->
 <div class="about-record">
 <span class="about-label">In print since 2013</span>
 <ol>
-<li><a href="#issues"><b>2013</b><span>Issues 6 and 7</span></a></li>
-<li><a href="#issues"><b>2014</b><span>Issues 8 and 9</span></a></li>
-<li><a href="#issues"><b>2015</b><span>Issues 10, 11 and 12</span></a></li>
-<li><a href="#issues"><b>2025</b><span>Issues 13 and 14</span></a></li>
-<li><a href="#issues"><b>2026</b><span>Issues 15 and 16</span></a></li>
+<li><a href="#issue-7" data-year="2013" aria-label="2013: Issues 6 and 7. Show these covers."><b>2013</b><span>Issues 6 and 7</span></a></li>
+<li><a href="#issue-9" data-year="2014" aria-label="2014: Issues 8 and 9. Show these covers."><b>2014</b><span>Issues 8 and 9</span></a></li>
+<li><a href="#issue-12" data-year="2015" aria-label="2015: Issues 10, 11 and 12. Show these covers."><b>2015</b><span>Issues 10, 11 and 12</span></a></li>
+<li><a href="#issue-14" data-year="2025" aria-label="2025: Issues 13 and 14. Show these covers."><b>2025</b><span>Issues 13 and 14</span></a></li>
+<li><a href="#issue-16" data-year="2026" aria-label="2026: Issues 15 and 16. Show these covers."><b>2026</b><span>Issues 15 and 16</span></a></li>
 </ol>
 </div>
 
@@ -3635,6 +3638,39 @@ setTimeout(runCycle, 1800);
       done.textContent = 'Thank you. Finish joining in the tab that just opened.';
       done.hidden = false;
     }, 60);
+  });
+})();
+</script>
+
+<script>
+// ── THE RECORD: each year jumps to its own covers and holds them in focus for a moment ──
+(function () {
+  var issues = document.getElementById('issues');
+  var rows = document.querySelectorAll('.about-record a[data-year]');
+  if (!issues || !rows.length) return;
+  var timer;
+  rows.forEach(function (row) {
+    row.addEventListener('click', function (e) {
+      var cards = issues.querySelectorAll('.issue-card[data-year="' + row.getAttribute('data-year') + '"]');
+      if (!cards.length) return;
+      e.preventDefault();
+      issues.classList.add('in');
+      issues.querySelectorAll('.issue-card.is-cited').forEach(function (c) { c.classList.remove('is-cited'); });
+      cards.forEach(function (c) { c.classList.add('is-cited'); });
+      issues.classList.add('is-citing');
+      var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var how = calm ? 'auto' : 'smooth';
+      var first = cards[0], box = first.getBoundingClientRect();
+      // On narrow screens the first run is a sideways strip: bring the year to its left edge.
+      var strip = first.closest('.covers-first');
+      if (strip && strip.scrollWidth > strip.clientWidth + 1) {
+        strip.scrollTo({ left: box.left - strip.getBoundingClientRect().left + strip.scrollLeft, behavior: how });
+      }
+      var top = box.top + window.pageYOffset - Math.max(96, (window.innerHeight - box.height) / 2);
+      window.scrollTo({ top: top, behavior: how });
+      clearTimeout(timer);
+      timer = setTimeout(function () { issues.classList.remove('is-citing'); }, 4200);
+    });
   });
 })();
 </script>
