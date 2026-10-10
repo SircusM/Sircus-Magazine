@@ -292,6 +292,8 @@ main{padding-top:var(--nav-h)}
 .ed-exit.is-live .ed-exit__cap b{color:#fff}
 .ed-exit.is-live .ed-end{position:absolute;inset:0;z-index:0;align-content:center;padding-block:var(--nav-h) 0}
 
+.social-panel__note{margin:.9rem 0 0;min-height:1.3em;font:italic 400 .95rem/1.35 var(--serif);color:#fff;opacity:0;transition:opacity .3s ease}
+.social-panel__note.show{opacity:1}
 /* Share row: the same square icons used on the story excerpts */
 .ed-share{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem;margin-top:14px}
 .ed-share__label{font:600 .68rem/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-right:.3rem}
@@ -361,19 +363,19 @@ main{padding-top:var(--nav-h)}
 </div>
 
 <!-- CINEMATIC SOCIAL PANEL -->
-<aside aria-label="SIRCUS social channels" class="social-panel">
+<aside aria-label="Share this editorial" class="social-panel" id="edFlyShare">
 <button aria-expanded="false" class="social-panel__tab" type="button">Social</button>
 <div class="social-panel__drawer">
 <div class="social-panel__inner">
-<span class="social-panel__kicker">Follow the Signal</span>
-<p class="social-panel__line">Films, fragments, issue drops, and the world around SIRCUS.</p>
+<span class="social-panel__kicker">Share this editorial</span>
+<p class="social-panel__line">Send Acid &amp; Amber to your feed, with its link attached.</p>
 <div class="social-panel__links">
-<a href="https://www.youtube.com/@SircusMagazine" rel="noopener" target="_blank">YouTube</a>
-<a href="https://www.tiktok.com/@sircusmagazine" rel="noopener" target="_blank">TikTok</a>
-<a href="https://www.instagram.com/sircusmagazine" rel="noopener" target="_blank">Instagram</a>
-<a href="https://www.facebook.com/profile.php?id=61572041751355" rel="noopener" target="_blank">Facebook</a>
-<a href="https://www.pinterest.com/sircusmagazine" rel="noopener" target="_blank">Pinterest</a>
+<a data-share="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.sircusmagazine.com%2Feditorials%2Fsolenne-drive" rel="noopener" target="_blank">Facebook</a>
+<a data-share="pinterest" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.sircusmagazine.com%2Feditorials%2Fsolenne-drive&amp;media=https%3A%2F%2Fwww.sircusmagazine.com%2Feditorials%2Fsolenne-drive-assets%2FSolenne_Drive5-1600.jpg&amp;description=%E2%80%9CSolenne%20in%20orange%20shearling%2C%20a%20chartreuse%20car%2C%20and%20a%20day%20of%20hard%2C%20clean%20light.%E2%80%9D%20Acid%20%26%20Amber%20%7C%20SIRCUS%20Magazine%2C%20a%20SIRCUS%20web%20exclusive" rel="noopener" target="_blank">Pinterest</a>
+<a data-share="x" href="https://x.com/intent/tweet?text=%E2%80%9CSolenne%20in%20orange%20shearling%2C%20a%20chartreuse%20car%2C%20and%20a%20day%20of%20hard%2C%20clean%20light.%E2%80%9D%20Acid%20%26%20Amber%20%7C%20SIRCUS%20Magazine&amp;url=https%3A%2F%2Fwww.sircusmagazine.com%2Feditorials%2Fsolenne-drive" rel="noopener" target="_blank">X</a>
+<a data-share="instagram" href="https://www.instagram.com/" rel="noopener" target="_blank">Instagram</a>
 </div>
+<p aria-live="polite" class="social-panel__note"></p>
 </div>
 </div>
 </aside>
@@ -582,27 +584,33 @@ main{padding-top:var(--nav-h)}
   lb.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
   lb.addEventListener('touchend',function(e){if(sx===null){return;}var dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>48){show(at+(dx<0?1:-1));}},{passive:true});
 
-  /* Share: Facebook and Instagram take no text from a website, so their icons copy the caption first. */
-  var share=document.getElementById('edShare'),shareNote=document.getElementById('edShareNote'),noteTimer=null;
-  function note(text,hold){shareNote.textContent=text;shareNote.classList.add('show');clearTimeout(noteTimer);noteTimer=setTimeout(function(){shareNote.classList.remove('show');},hold||4200);}
+  /* Share: the end-card icons and the Social flyout both share this page.
+     Facebook and Instagram take no text from a website, so the caption is copied first. */
+  var shareRow=document.getElementById('edShare');
+  var caption=shareRow.getAttribute('data-text'),pageUrl=shareRow.getAttribute('data-url');
   function copySync(text){var f=document.createElement('textarea');f.value=text;f.setAttribute('readonly','');f.style.position='fixed';f.style.opacity='0';document.body.appendChild(f);f.select();var ok=false;try{ok=document.execCommand('copy');}catch(err){ok=false;}document.body.removeChild(f);return ok;}
-  function copyText(text,message,hold){
-    if(copySync(text)){note(message,hold);return;}
-    var blocked='Your browser blocked the copy.';
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){note(message,hold);},function(){note(blocked,hold);});}
-    else{note(blocked,hold);}
-  }
-  if(share){
-    var caption=share.getAttribute('data-text'),pageUrl=share.getAttribute('data-url');
-    var fbBtn=share.querySelector('[data-share="facebook"]'),igBtn=share.querySelector('[data-share="instagram"]');
-    fbBtn.addEventListener('click',function(e){
-      copyText(caption,'Caption copied. Paste it into your Facebook post.',20000);
+  function bindShare(box,noteEl){
+    if(!box||!noteEl){return;}
+    var timer=null;
+    function note(text,hold){noteEl.textContent=text;noteEl.classList.add('show');clearTimeout(timer);timer=setTimeout(function(){noteEl.classList.remove('show');},hold||4200);}
+    function copyText(text,message,hold){
+      if(copySync(text)){note(message,hold);return;}
+      var blocked='Your browser blocked the copy.';
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){note(message,hold);},function(){note(blocked,hold);});}
+      else{note(blocked,hold);}
+    }
+    var fbBtn=box.querySelector('[data-share="facebook"]'),igBtn=box.querySelector('[data-share="instagram"]');
+    if(fbBtn){fbBtn.addEventListener('click',function(e){
+      copyText(caption,'Link attached. Caption copied: paste it into the post.',20000);
       var popup=null;
       try{popup=window.open(fbBtn.href,'sircus_share','width=640,height=720,left='+((window.screenX||0)+24)+',top='+((window.screenY||0)+90));}catch(err){popup=null;}
       if(popup){e.preventDefault();}
-    });
-    igBtn.addEventListener('click',function(){copyText(caption+'\n'+pageUrl,'Caption and link copied. Paste them in Instagram.');});
+    });}
+    if(igBtn){igBtn.addEventListener('click',function(){copyText(caption+'\n'+pageUrl,'Caption and link copied. Paste them in Instagram.');});}
   }
+  bindShare(shareRow,document.getElementById('edShareNote'));
+  var fly=document.getElementById('edFlyShare');
+  if(fly){bindShare(fly,fly.querySelector('.social-panel__note'));}
 
   /* Scroll: the fourth frame drifts against the third, and the last frame drives away. */
   if(calm){return;}
