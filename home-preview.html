@@ -2123,7 +2123,7 @@ a.story-expand-card { text-decoration: none; }
 /* The photograph and the text column share one row: same top edge, same bottom edge. */
 .about-img { grid-area:img; align-self:stretch; display:flex; margin:0; }
 .about-img img { display:block; width:100%; height:auto; min-height:100%; object-fit:cover; }
-.about-side { grid-area:side; align-self:stretch; display:flex; flex-direction:column; justify-content:space-between; gap:3rem; }
+.about-side { grid-area:side; align-self:stretch; display:flex; flex-direction:column; justify-content:space-between; gap:2.5rem; }
 .about-top .eyebrow { margin-bottom:2rem; }
 .about-hed { font-family:var(--sans); font-size:clamp(2.2rem,4.2vw,3.6rem); font-weight:700; text-transform:uppercase; letter-spacing:-.01em; line-height:1; color:var(--white); }
 .about-hed em { font-family:var(--serif); font-style:italic; font-weight:300; color:var(--gold); text-transform:none; font-size:1.05em; }
@@ -2137,7 +2137,7 @@ a.story-expand-card { text-decoration: none; }
 .about-qs { max-width:640px; }
 .about-qs details { border-top:1px solid rgba(255,255,255,.1); }
 .about-qs details:last-child { border-bottom:1px solid rgba(255,255,255,.1); }
-.about-qs summary { display:flex; justify-content:space-between; align-items:center; gap:1.5rem; padding:1rem 0; cursor:pointer; list-style:none; font-family:var(--sans); font-size:.7rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--white); transition:color .3s; }
+.about-qs summary { display:flex; justify-content:space-between; align-items:center; gap:1.5rem; padding:.85rem 0; cursor:pointer; list-style:none; font-family:var(--sans); font-size:.7rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--white); transition:color .3s; }
 .about-qs summary::-webkit-details-marker { display:none; }
 .about-qs summary::after { content:'+'; flex:none; font-family:var(--serif); font-size:1.3rem; font-weight:300; line-height:1; color:var(--gold); transition:transform .3s ease; }
 .about-qs details[open] summary::after { transform:rotate(45deg); }
@@ -2145,7 +2145,7 @@ a.story-expand-card { text-decoration: none; }
 .about-qs summary:focus-visible { outline:2px solid var(--gold); outline-offset:4px; }
 .about-qs p { font-family:var(--serif); font-style:italic; font-weight:300; font-size:1.02rem; line-height:1.7; color:rgba(255,255,255,.75); padding:0 2.5rem 1.4rem 0; }
 /* Below this width the two columns cannot share a height without cropping the photograph, so the section stacks. */
-@media(max-width:1179px) {
+@media(max-width:1279px) {
   .about-in { grid-template-columns:minmax(0,1fr); grid-template-areas:"top" "lead" "img" "side"; row-gap:3rem; }
   .about-img { max-width:560px; }
   .about-img img { min-height:0; }
