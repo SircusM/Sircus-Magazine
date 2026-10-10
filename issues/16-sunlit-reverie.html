@@ -376,10 +376,12 @@ main{padding-top:var(--nav-h)}
 }
 
 /* Footer */
-.site-foot{border-top:1px solid var(--hair)}
-.site-foot .wrap{display:grid;gap:22px;justify-items:center;text-align:center;padding-block:clamp(36px,5vw,64px)}
-.site-foot .tag{font:400 1.2rem/1.5 var(--serif);color:var(--gray);text-wrap:balance}
-@media (min-width:900px){.site-foot .tag{white-space:nowrap}}
+/* ── FOOTER: the same single line on every page ── */
+.foot-line{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:2.4rem var(--pad);background:#080808;border-top:1px solid rgba(255,255,255,.06);font-family:'Myriad Pro','Trebuchet MS',sans-serif;font-weight:400;line-height:normal}
+.foot-line .f-copy{font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);white-space:nowrap}
+.foot-line .f-buy{font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:#B8820E;text-decoration:none;white-space:nowrap;transition:opacity .3s}
+.foot-line .f-buy:hover{opacity:.7}
+@media(max-width:560px){.foot-line{flex-direction:column;align-items:flex-start;gap:.9rem}}
 .legal{font:300 .84rem/1.6 var(--sans);color:var(--gray)}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
@@ -607,12 +609,9 @@ main{padding-top:var(--nav-h)}
 
 </main>
 
-<footer class="site-foot">
-  <div class="wrap">
-    <a class="mark" href="/" aria-label="SIRCUS home">SIRCUS<sup>&trade;</sup></a>
-    <p class="tag">The uncompromising editorial. Cinematic fashion, cultural stories, and photography that stops time.</p>
-    <p class="legal">&copy; 2026 SIRCUS&trade;. All rights reserved.</p>
-  </div>
+<footer class="foot-line">
+  <span class="f-copy">&copy; 2026 Sircus&trade; Magazine. All rights reserved.</span>
+  <a class="f-buy" href="/issues/16-sunlit-reverie#own">Get the Print Issue &rarr;</a>
 </footer>
 
 <script src="16-sunlit-reverie-assets/page-flip.browser.js"></script>
