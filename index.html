@@ -1927,6 +1927,9 @@ footer {
   .ew-mid-a, .ew-mid-b, .ew-mid-c {
     grid-column: span 6;
   }
+  /* The desktop row placements would push the stacked pair into extra columns here and squeeze every tile. */
+  .ew-large, .ew-tall, .ew-stack-top, .ew-stack-bottom { grid-row: auto; }
+  .ew-stack-top, .ew-stack-bottom { min-height: 340px; }
   .ew-full, .ew-wide { grid-column: 1 / -1; }
   .ew-portrait { grid-column: span 6; min-height: 340px; }
 }
@@ -2502,7 +2505,7 @@ footer { padding:2.4rem 0; }
 </button>
 <!-- Row 3: wide | portrait -->
 <button aria-label="Open editorial image" class="editorial-wall__item ew-wide" type="button">
-<img alt="SIRCUS editorial: portrait beneath a turquoise scarf in the desert" data-caption="A SIRCUS original" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777432630/Nora_j7lvcb.png"/>
+<img alt="SIRCUS editorial: Jasmine in a teal sequined dress, reclining in a tufted teal and gilt armchair in a candlelit salon" data-caption="Jasmine" loading="lazy" style="object-position:68% top;" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791668534/Jasmine_recline_f1f7ee.jpg" srcset="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791668534/Jasmine_recline_f1f7ee.jpg 1400w, https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_2400/v1791668534/Jasmine_recline_f1f7ee.jpg 2400w" sizes="(max-width:1080px) 100vw, 66vw"/>
 </button>
 <button aria-label="Open editorial image" class="editorial-wall__item ew-portrait" type="button">
 <img alt="SIRCUS editorial: Namara in gold, full-length fashion portrait" data-caption="Namara · From Issue 16 · Sunlit Reverie" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1790914687/Namara_golden_pntmnu.png"/>
