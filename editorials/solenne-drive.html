@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Acid &amp; Amber | A SIRCUS Editorial</title>
-<meta name="description" content="Acid &amp; Amber, a SIRCUS web exclusive: six frames and a short film with Solenne, an orange shearling coat, and a chartreuse sports car.">
+<meta name="description" content="Acid &amp; Amber, a SIRCUS web exclusive: seven frames and a short film with Solenne, an orange shearling coat, and a chartreuse sports car.">
 <link rel="canonical" href="https://www.sircusmagazine.com/editorials/solenne-drive">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="SIRCUS Magazine">
 <meta property="og:title" content="Acid &amp; Amber | A SIRCUS Editorial">
-<meta property="og:description" content="Acid &amp; Amber, a SIRCUS web exclusive: six frames and a short film with Solenne, an orange shearling coat, and a chartreuse sports car.">
+<meta property="og:description" content="Acid &amp; Amber, a SIRCUS web exclusive: seven frames and a short film with Solenne, an orange shearling coat, and a chartreuse sports car.">
 <meta property="og:url" content="https://www.sircusmagazine.com/editorials/solenne-drive">
 <meta property="og:image" content="https://www.sircusmagazine.com/editorials/solenne-drive-assets/Solenne_Drive5-1600.jpg">
 <meta property="og:image:alt" content="Solenne seated against a chartreuse sports car in an orange shearling coat">
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@sircusmagazine">
 <meta name="twitter:title" content="Acid &amp; Amber | A SIRCUS Editorial">
-<meta name="twitter:description" content="Acid &amp; Amber, a SIRCUS web exclusive: six frames and a short film with Solenne, an orange shearling coat, and a chartreuse sports car.">
+<meta name="twitter:description" content="Acid &amp; Amber, a SIRCUS web exclusive: seven frames and a short film with Solenne, an orange shearling coat, and a chartreuse sports car.">
 <meta name="twitter:image" content="https://www.sircusmagazine.com/editorials/solenne-drive-assets/Solenne_Drive5-1600.jpg">
 <!-- Held back from search engines while the page is in review. Change to "index, follow" on approval. -->
 <meta name="robots" content="noindex, nofollow">
@@ -274,13 +274,11 @@ main{padding-top:var(--nav-h)}
 .ed-exit__stage{position:relative}
 .ed-exit__car{display:block;width:100%;height:auto;cursor:zoom-in}
 .ed-exit__cap{padding-inline:var(--pad)}
-.ed-end{padding:clamp(64px,10vw,150px) var(--pad);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:clamp(32px,6vw,96px);align-items:center}
-.ed-end__copy{display:grid;gap:26px;justify-items:start}
-/* The six frames again, as a contact sheet; each opens the viewer. */
-.ed-end__sheet{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.ed-end__sheet a{display:block;cursor:zoom-in;background:#000}
-.ed-end__sheet img{display:block;width:100%;height:auto;aspect-ratio:16 / 9;object-fit:cover;transition:opacity .3s ease}
-.ed-end__sheet a:hover img{opacity:.82}
+/* End card: the title on the left, a closing portrait running the full height on the right. */
+.ed-end{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:clamp(32px,5vw,80px);align-items:center;padding-left:var(--pad)}
+.ed-end__copy{display:grid;gap:26px;justify-items:start;padding-block:clamp(48px,8vw,96px)}
+.ed-end__portrait{margin:0;align-self:stretch}
+.ed-end__portrait img{display:block;height:min(100svh,900px);width:min(80svh,52vw,720px);object-fit:cover;object-position:center top}
 .ed-end__line{font:italic 300 clamp(2.6rem,5.4vw,5rem)/.98 var(--serif);letter-spacing:-.018em;color:#fff;white-space:nowrap}
 .ed-end__note{font:400 clamp(1.15rem,1.6vw,1.4rem)/1.5 var(--serif);color:#fff;max-width:34ch}
 .ed-end__links{display:flex;flex-wrap:wrap;gap:14px 18px;margin-top:10px}
@@ -289,7 +287,11 @@ main{padding-top:var(--nav-h)}
 .ed-exit.is-live .ed-exit__car{position:absolute;top:0;left:0;z-index:1;height:100%;width:max(122vw,calc(100svh * 16 / 9));max-width:none;object-fit:cover;will-change:transform}
 .ed-exit.is-live .ed-exit__cap{position:absolute;z-index:2;left:0;bottom:clamp(22px,5vh,56px);padding-top:0;text-shadow:0 1px 18px rgba(0,0,0,.7)}
 .ed-exit.is-live .ed-exit__cap b{color:#fff}
-.ed-exit.is-live .ed-end{position:absolute;inset:0;z-index:0;align-content:center;padding-block:var(--nav-h) 0}
+.ed-exit.is-live .ed-end{position:absolute;inset:0;z-index:0}
+.ed-exit.is-live .ed-end__copy{padding-top:var(--nav-h)}
+/* The portrait starts just beneath the navigation bar so her head is never covered. */
+.ed-exit.is-live .ed-end__portrait{box-sizing:border-box;height:100%;padding-top:calc(var(--nav-h) - 1rem)}
+.ed-exit.is-live .ed-end__portrait img{height:100%;width:min(80svh,52vw)}
 
 .social-panel__note{margin:.9rem 0 0;min-height:1.3em;font:italic 400 .95rem/1.35 var(--serif);color:#fff;opacity:0;transition:opacity .3s ease}
 .social-panel__note.show{opacity:1}
@@ -318,11 +320,14 @@ main{padding-top:var(--nav-h)}
   .ed-film__copy{flex-direction:column;align-items:flex-start;gap:18px}
   .ed-col{width:100%}
   .ed-pair{grid-template-columns:1fr;row-gap:var(--ed-gap)}
-  .ed-end{grid-template-columns:1fr;row-gap:34px}
-  .ed-end__sheet{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-  .ed-end__copy{gap:20px}
-  .ed-intro,.ed-cap{padding-inline:var(--pad)}
-  .ed{--ed-gap:56px}
+  /* On a phone the portrait fills the screen and the title sits over its lower half. */
+  .ed-end{position:relative;display:flex;align-items:flex-end;min-height:calc(100svh - var(--nav-h));padding:0}
+  .ed-end__portrait{position:absolute;inset:0;z-index:0}
+  .ed-exit.is-live .ed-end__portrait{inset:calc(var(--nav-h) - 1rem) 0 0 0;padding-top:0;height:auto}
+  .ed-end__portrait::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.88) 42%,rgba(0,0,0,.5) 64%,rgba(0,0,0,0) 84%)}
+  .ed-end__portrait img,.ed-exit.is-live .ed-end__portrait img{width:100%;height:100%}
+  .ed-end .ed-kicker{color:#fff}
+  .ed-end__copy,.ed-exit.is-live .ed-end__copy{position:relative;z-index:1;gap:18px;padding:var(--pad) var(--pad) calc(var(--pad) + 60px)}
   .ed-lb__prev,.ed-lb__next{grid-row:3;margin:0 14px 14px}
   .ed-lb img{max-height:74vh}
 }
@@ -391,7 +396,7 @@ main{padding-top:var(--nav-h)}
 </header>
 
 <section class="ed-intro ed-col" aria-label="Introduction">
-  <p class="ed-stand">Solenne in orange shearling, a chartreuse car, and a day of hard, clean light. Six frames, and a woman with somewhere better to be.</p>
+  <p class="ed-stand">Solenne in orange shearling, a chartreuse car, and a day of hard, clean light. Seven frames, and a woman with somewhere better to be.</p>
 </section>
 
 <figure class="ed-plate ed-col">
@@ -425,38 +430,48 @@ main{padding-top:var(--nav-h)}
   </figure>
 </div>
 
+<figure class="ed-plate ed-col">
+  <a href="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_2400/v1791648421/Solenne_Wall2_o1bnst.png" data-frame="3">
+    <picture>
+      <source srcset="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1280/v1791648421/Solenne_Wall2_o1bnst.png 1280w, https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_2400/v1791648421/Solenne_Wall2_o1bnst.png 2400w" sizes="(max-width:860px) 100vw, 82vw">
+      <img src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1600/v1791648421/Solenne_Wall2_o1bnst.png" alt="Solenne alone, full length, leaning against the long ochre wall with her shadow beside her, the road empty and palms in the distance" width="2688" height="1520" loading="lazy" decoding="async">
+    </picture>
+  </a>
+  <figcaption class="ed-cap"><b>IV</b><span>For a moment, only the wall.</span></figcaption>
+</figure>
+
 <div class="ed-pair ed-col">
   <figure class="ed-plate">
-    <a href="/editorials/solenne-drive-assets/Solenne_Drive4-2400.webp" data-frame="3">
+    <a href="/editorials/solenne-drive-assets/Solenne_Drive4-2400.webp" data-frame="4">
       <picture>
         <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive4-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive4-2400.webp 2400w" sizes="(max-width:860px) 100vw, 41vw">
         <img src="/editorials/solenne-drive-assets/Solenne_Drive4-1600.jpg" alt="Solenne resting against the rear of the car, her head tilted back toward the sun" width="2400" height="1351" loading="lazy" decoding="async">
       </picture>
     </a>
-    <figcaption class="ed-cap"><b>IV</b><span>An hour passes this way.</span></figcaption>
+    <figcaption class="ed-cap"><b>V</b><span>An hour passes this way.</span></figcaption>
   </figure>
   <figure class="ed-plate">
-    <a href="/editorials/solenne-drive-assets/Solenne_Drive-2400.webp" data-frame="4">
+    <a href="/editorials/solenne-drive-assets/Solenne_Drive-2400.webp" data-frame="5">
       <picture>
         <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive-2400.webp 2400w" sizes="(max-width:860px) 100vw, 41vw">
         <img src="/editorials/solenne-drive-assets/Solenne_Drive-1600.jpg" alt="Solenne at the wheel in profile, her hair moving, palms passing in the windshield" width="2400" height="1351" loading="lazy" decoding="async">
       </picture>
     </a>
-    <figcaption class="ed-cap"><b>V</b><span>Then the door, the wheel, the decision.</span></figcaption>
+    <figcaption class="ed-cap"><b>VI</b><span>Then the door, the wheel, the decision.</span></figcaption>
   </figure>
 </div>
-<section class="ed-exit" id="edExit" aria-label="Frame six">
+<section class="ed-exit" id="edExit" aria-label="Frame seven">
   <div class="ed-exit__stage">
     <picture>
       <source type="image/webp" srcset="/editorials/solenne-drive-assets/Solenne_Drive6-1280.webp 1280w, /editorials/solenne-drive-assets/Solenne_Drive6-2400.webp 2400w" sizes="(max-width:860px) 320vw, 125vw">
-      <img class="ed-exit__car" id="edCar" data-frame="5" data-full="/editorials/solenne-drive-assets/Solenne_Drive6-2400.webp" src="/editorials/solenne-drive-assets/Solenne_Drive6-1600.jpg" alt="Solenne driving, seen through the side window, the background streaked with speed" width="2400" height="1351" loading="lazy" decoding="async">
+      <img class="ed-exit__car" id="edCar" data-frame="6" data-full="/editorials/solenne-drive-assets/Solenne_Drive6-2400.webp" src="/editorials/solenne-drive-assets/Solenne_Drive6-1600.jpg" alt="Solenne driving, seen through the side window, the background streaked with speed" width="2400" height="1351" loading="lazy" decoding="async">
     </picture>
-    <p class="ed-cap ed-exit__cap" id="edExitCap"><b>VI</b><span>The coat stays on.</span></p>
+    <p class="ed-cap ed-exit__cap" id="edExitCap"><b>VII</b><span>The coat stays on.</span></p>
     <div class="ed-end" id="edEnd">
       <div class="ed-end__copy">
         <p class="ed-kicker">A SIRCUS web exclusive</p>
         <p class="ed-end__line">Acid &amp; Amber</p>
-        <p class="ed-end__note">Six frames with Solenne, published only on sircusmagazine.com.</p>
+        <p class="ed-end__note">Seven frames with Solenne, published only on sircusmagazine.com.</p>
         <div class="ed-end__links">
           <a class="btn btn-primary" href="/#editorials">Back to the editorials</a>
         </div>
@@ -469,14 +484,9 @@ main{padding-top:var(--nav-h)}
           <span aria-live="polite" class="ed-share__note" id="edShareNote"></span>
         </div>
       </div>
-      <div class="ed-end__sheet" aria-label="All six frames">
-        <a href="/editorials/solenne-drive-assets/Solenne_Drive5-2400.webp" data-frame="0"><img src="/editorials/solenne-drive-assets/Solenne_Drive5-1280.webp" alt="Solenne seated against a chartreuse sports car in an orange shearling coat and black heels, with cactus and palms above an ochre wall" width="1280" height="720" loading="lazy" decoding="async"></a>
-        <a href="/editorials/solenne-drive-assets/Solenne_Drive3-2400.webp" data-frame="1"><img src="/editorials/solenne-drive-assets/Solenne_Drive3-1280.webp" alt="Solenne seen from a low angle, her hair lifted by the wind, the orange shearling coat against a blue sky" width="1280" height="720" loading="lazy" decoding="async"></a>
-        <a href="/editorials/solenne-drive-assets/Solenne_Drive2-2400.webp" data-frame="2"><img src="/editorials/solenne-drive-assets/Solenne_Drive2-1280.webp" alt="Solenne in orange shearling leaning on the fender of the car, with palms overhead" width="1280" height="720" loading="lazy" decoding="async"></a>
-        <a href="/editorials/solenne-drive-assets/Solenne_Drive4-2400.webp" data-frame="3"><img src="/editorials/solenne-drive-assets/Solenne_Drive4-1280.webp" alt="Solenne resting against the rear of the car, her head tilted back toward the sun" width="1280" height="720" loading="lazy" decoding="async"></a>
-        <a href="/editorials/solenne-drive-assets/Solenne_Drive-2400.webp" data-frame="4"><img src="/editorials/solenne-drive-assets/Solenne_Drive-1280.webp" alt="Solenne at the wheel in profile, her hair moving, palms passing in the windshield" width="1280" height="720" loading="lazy" decoding="async"></a>
-        <a href="/editorials/solenne-drive-assets/Solenne_Drive6-2400.webp" data-frame="5"><img src="/editorials/solenne-drive-assets/Solenne_Drive6-1280.webp" alt="Solenne driving, seen through the side window, the background streaked with speed" width="1280" height="720" loading="lazy" decoding="async"></a>
-      </div>
+      <figure class="ed-end__portrait">
+        <img src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1600/v1791648421/Solenne_Wall_t247gb.png" alt="Solenne alone, leaning against the ochre wall in the orange shearling coat, cactus above and no car in sight" width="1792" height="2240" loading="lazy" decoding="async">
+      </figure>
     </div>
   </div>
 </section>
@@ -561,7 +571,7 @@ main{padding-top:var(--nav-h)}
     alts[i]=(el.tagName==='IMG'?el:el.querySelector('img')).alt;
     el.addEventListener('click',function(e){e.preventDefault();openAt(i,el);});
   });
-  var numerals=['I','II','III','IV','V','VI'];
+  var numerals=['I','II','III','IV','V','VI','VII'];
   var lb=document.getElementById('edLb'),lbImg=document.getElementById('edLbImg'),lbCount=document.getElementById('edLbCount');
   var at=0,returnTo=null;
   function show(i){at=(i+frames.length)%frames.length;lbImg.src=frames[at];lbImg.alt=alts[at];lbCount.textContent=numerals[at]+' / '+numerals[frames.length-1];}
