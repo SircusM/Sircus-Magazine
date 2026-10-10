@@ -2348,11 +2348,11 @@ a.story-expand-card { text-decoration: none; }
 <img alt="SIRCUS editorial — model in dramatic fashion composition" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777432565/op-207_hwb2n1.jpg"/>
 </button>
 <button aria-label="Open editorial image" class="editorial-wall__item ew-stack-top" type="button">
-<img alt="SIRCUS editorial: Solenne at the wheel of a yellow sports car in an orange shearling coat" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791640822/Solenne_Drive_oripk6.jpg"/>
+<img alt="SIRCUS editorial: Solenne at the wheel of a yellow sports car in an orange shearling coat" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791640822/Solenne_Drive_oripk6.jpg" data-caption="A SIRCUS original · Unseen anywhere else"/>
 </button>
 <!-- Row 2: three across -->
 <button aria-label="Open editorial image" class="editorial-wall__item ew-stack-bottom" type="button">
-<img alt="SIRCUS editorial: Solenne in orange shearling beside a yellow sports car, palms overhead" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791640822/Solenne_Drive2_mbjseq.jpg"/>
+<img alt="SIRCUS editorial: Solenne in orange shearling beside a yellow sports car, palms overhead" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791640822/Solenne_Drive2_mbjseq.jpg" data-caption="A SIRCUS original · Unseen anywhere else"/>
 </button>
 <button aria-label="Open editorial image" class="editorial-wall__item ew-mid-a" type="button">
 <img alt="SIRCUS editorial — Nayla, Persian supermodel in high-fashion editorial" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/v1777768382/osiris_01_high_fashion_editorial_model_Nayla_Persian_woman_Ir_53586da5-5533-4f17-a60b-961cab4f712d_3_q4piag.png"/>
@@ -2362,7 +2362,7 @@ a.story-expand-card { text-decoration: none; }
 </button>
 <!-- Row 3: full bleed cinematic -->
 <button aria-label="Open editorial image" class="editorial-wall__item ew-mid-c" type="button">
-<img alt="SIRCUS editorial: Olivia B., red curls backlit on a sunlit city street" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto/v1791640705/Olivia_B_jjkx8w.png"/>
+<img alt="SIRCUS editorial: Olivia B., red curls backlit on a sunlit city street" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto/v1791640705/Olivia_B_jjkx8w.png" data-caption="A SIRCUS original · Unseen anywhere else"/>
 </button>
 <!-- Row 3: full bleed cinematic -->
 <button aria-label="Open editorial image" class="editorial-wall__item ew-wide" type="button">
@@ -3293,11 +3293,15 @@ setTimeout(runCycle, 1800);
     if (!lightbox) return;
     const lightboxImg = lightbox.querySelector('img');
     const closeBtn = lightbox.querySelector('.image-lightbox__close');
+    /* Each image may carry its own caption; the line in the markup is the default. */
+    const captionEl = lightbox.querySelector('.image-lightbox__caption');
+    const defaultCaption = captionEl ? captionEl.textContent : '';
 
     document.querySelectorAll('.editorial-wall__item img').forEach(function (img) {
       img.addEventListener('click', function () {
         lightboxImg.src = img.currentSrc || img.src;
         lightboxImg.alt = img.alt || 'SIRCUS editorial image';
+        if (captionEl) captionEl.textContent = img.getAttribute('data-caption') || defaultCaption;
         lightbox.classList.add('open');
         lightbox.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
