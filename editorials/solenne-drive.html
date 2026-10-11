@@ -321,6 +321,8 @@ main{padding-top:var(--nav-h)}
   .ed-film{height:min(calc(100svh - var(--nav-h)),150vw)}
   .ed-film__copy{flex-direction:column;align-items:flex-start;gap:18px}
   .ed-col{width:100%}
+  /* Photographs run edge to edge on a phone; the words keep the page margin. */
+  .ed-intro,.ed-plate .ed-cap{padding-inline:var(--pad)}
   .ed-pair{grid-template-columns:1fr;row-gap:var(--ed-gap)}
   /* On a phone the portrait fills the screen and the title sits over its lower half. */
   .ed-end{position:relative;display:flex;align-items:flex-end;min-height:calc(100svh - var(--nav-h));padding:0}
