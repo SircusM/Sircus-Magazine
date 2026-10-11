@@ -1893,11 +1893,14 @@ footer {
 .ew-mid-b { grid-column: 5 / 9;  min-height: 340px; }
 .ew-mid-c { grid-column: 9 / 13; min-height: 340px; }
 
-/* Row 2 — two stacked left | tall | large portrait: row 1 mirrored */
-.ew2-stack-top    { grid-column: 1 / 5;  grid-row: 3 / 4; min-height: 252px; }
-.ew2-stack-bottom { grid-column: 1 / 5;  grid-row: 4 / 5; min-height: 252px; }
-.ew2-tall         { grid-column: 5 / 8;  grid-row: 3 / 5; min-height: 520px; }
-.ew2-large        { grid-column: 8 / 13; grid-row: 3 / 5; min-height: 520px; }
+/* Row 2: a full-width frame. The whole photograph shows on tablets and most of it on phones. */
+.ew-band { grid-column: 1 / -1; grid-row: 3 / 4; min-height: 520px; }
+.ew-band img { position:absolute; inset:0; object-position: center 62%; }
+/* Row 3 — two stacked left | tall | large portrait: row 1 mirrored */
+.ew2-stack-top    { grid-column: 1 / 5;  grid-row: 4 / 5; min-height: 252px; }
+.ew2-stack-bottom { grid-column: 1 / 5;  grid-row: 5 / 6; min-height: 252px; }
+.ew2-tall         { grid-column: 5 / 8;  grid-row: 4 / 6; min-height: 520px; }
+.ew2-large        { grid-column: 8 / 13; grid-row: 4 / 6; min-height: 520px; }
 /* The images are fitted to their slots so portraits do not stretch the row. */
 @media(min-width:1081px) {
   .ew2-stack-top img, .ew2-stack-bottom img, .ew2-tall img, .ew2-large img { position:absolute; inset:0; }
@@ -1906,18 +1909,15 @@ footer {
   .ew2-stack-bottom img { object-position:center 30%; }
 }
 
-/* Row 3 — full bleed */
+/* Row 4 — wide | portrait */
 .ew-full  { grid-column: 1 / -1; min-height: 520px; }
 .ew-wide     { grid-column: 1 / 9;  min-height: 520px; }
 .ew-portrait { grid-column: 9 / 13; min-height: 520px; }
 
-/* Row 4 — portrait | wide, the mirror of row 3 */
+/* Row 5 — portrait | wide, the mirror of row 4 */
 .ew4-b      { grid-column: 1 / 5;  min-height: 520px; }
 .ew-wide-r  { grid-column: 5 / 13; min-height: 520px; }
 .ew-wide-r img { object-position: 38% top; }
-/* Row 5: a full-width frame. The whole photograph shows on tablets and most of it on phones. */
-.ew5-band { grid-column: 1 / -1; min-height: 520px; }
-.ew5-band img { position:absolute; inset:0; object-position: center 62%; }
 
 /* A portrait in the lead slot is fitted to the row so the top row keeps its height. */
 @media(min-width:701px) {
@@ -1965,8 +1965,8 @@ footer {
   .ew-portrait { grid-column: span 6; min-height: 340px; }
   .ew4-b { grid-column: span 6; min-height: 340px; }
   .ew-wide-r { grid-column: 1 / -1; }
-  .ew5-band { min-height: 0; aspect-ratio: 16 / 9; }
-  .ew5-band img { object-position: center; }
+  .ew-band { grid-row: auto; min-height: 0; aspect-ratio: 16 / 9; }
+  .ew-band img { object-position: center; }
 }
 
 @media(max-width:700px) {
@@ -1992,9 +1992,9 @@ footer {
   /* On phones the wide tile is a tall crop: keep Michael's face in it. */
   .ew-wide-r { min-height: 520px; }
   .ew-wide-r img { object-position: 58% top; }
-  /* The closing frame is cropped a little on a phone: her face and the gold stay in it. */
-  .ew5-band { aspect-ratio: 4 / 3; }
-  .ew5-band img { object-position: 14% center; }
+  /* The full-width frame is cropped a little on a phone: her face and the gold stay in it. */
+  .ew-band { aspect-ratio: 4 / 3; }
+  .ew-band img { object-position: 14% center; }
 }
 
 
@@ -2539,7 +2539,12 @@ footer { padding:2.4rem 0; }
 <img alt="SIRCUS editorial: Solenne in orange shearling beside a yellow sports car, palms overhead" data-caption="Solenne · A SIRCUS original · Unseen anywhere else" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791640822/Solenne_Drive2_mbjseq.jpg"/>
 <span aria-hidden="true" class="ew-cue"><span class="ew-cue__mark"><svg aria-hidden="true" focusable="false" height="18" viewBox="262 176 466 628" width="13"><path d="M640.14,623.83c-46.44-119.67-234.83-127.14-292.39-241.19-24.11-47.78-13.11-101.14,23.75-138.11,0,0-16.86,13.25-22.11,18.11-50.92,47.14-55.19,123.39-17.97,181.81,3.22,5.08,6.58,10.03,10.14,14.83h0s17.67,36.97,136.78,97.53h0c13.5,7.22,26.25,13.92,35.42,18.83,34.53,18.94,70.5,41.92,89.81,75.86,15,26.39,13.94,58.17-4.33,83.08-13.86,18.92-34.67,31.03-57.44,37.5-66.19,18.86-135.58-8.67-180.06-59.33-37.06-42.22-54-87.19-67.53-140.11l-.25,190.89c13.61-8.42,28.72-12.58,44.19-8.06l53.42,15.64c63.67,22.25,140.36,31.17,198.83-5.19,47.92-29.78,70.28-89.17,49.72-142.11l.03.03Z" fill="#fff"/><path d="M658,507.75c-21.39-22.33-45.19-41.25-72.67-55.92l-87.31-46.58c-35.53-18.94-76.86-41.25-96.83-75.72-19.19-33.14-8.31-73.08,25.89-91.72,35.25-19.19,77.94-19.25,114.72-2.81,61.19,30.14,95.86,91.78,112.19,155.97l.31-164.17c-12.25,9-27.33,12.56-42.03,8.47l-44.14-12.25c-56.61-17.19-124.17-21.72-170.22,17.94-35.42,30.47-45.83,79.97-27.94,122.78,18.03,43.17,57.19,70.69,98.11,92.31l73.92,39.03c27.03,14.28,51.89,30.19,74.81,50.22,48.83,42.69,74.08,100.94,47.72,162.47-7.78,21.11-21.42,36.67-36.86,53.78,25.86-15.39,45.28-37.25,59.11-63.19,35.5-66.58,23.39-136.17-28.72-190.58l-.06-.03Z" fill="#fff"/></svg></span></span>
 </a>
-<!-- Row 2: stacked pair | tall | large, the mirror of row 1. Lauren leads in the markup so she comes first on phones. -->
+<!-- Row 2: one panoramic frame, the full width of the wall, opens the Erikka editorial -->
+<a aria-label="View the editorial: Onyx &amp; Gold, featuring Erikka" class="editorial-wall__item ew-band ew-linked" href="/editorials/erikka-gold">
+<img alt="SIRCUS editorial: Erikka lying on gold blocks on a lawn with her eyes closed, in a black swimsuit and gold jewellery, from the Issue 9 Special Swimwear Edition" data-caption="Erikka · From Issue 9 · Special Swimwear Edition" loading="lazy" sizes="(max-width:700px) 100vw, (max-width:1080px) 96vw, 1152px" src="/editorials/erikka-gold-assets/Erikka_Gold6.jpg" srcset="/editorials/erikka-gold-assets/Erikka_Gold6-1000.webp 1000w, /editorials/erikka-gold-assets/Erikka_Gold6-1672.webp 1672w"/>
+<span aria-hidden="true" class="ew-cue"><span class="ew-cue__mark"><svg aria-hidden="true" focusable="false" height="18" viewBox="262 176 466 628" width="13"><path d="M640.14,623.83c-46.44-119.67-234.83-127.14-292.39-241.19-24.11-47.78-13.11-101.14,23.75-138.11,0,0-16.86,13.25-22.11,18.11-50.92,47.14-55.19,123.39-17.97,181.81,3.22,5.08,6.58,10.03,10.14,14.83h0s17.67,36.97,136.78,97.53h0c13.5,7.22,26.25,13.92,35.42,18.83,34.53,18.94,70.5,41.92,89.81,75.86,15,26.39,13.94,58.17-4.33,83.08-13.86,18.92-34.67,31.03-57.44,37.5-66.19,18.86-135.58-8.67-180.06-59.33-37.06-42.22-54-87.19-67.53-140.11l-.25,190.89c13.61-8.42,28.72-12.58,44.19-8.06l53.42,15.64c63.67,22.25,140.36,31.17,198.83-5.19,47.92-29.78,70.28-89.17,49.72-142.11l.03.03Z" fill="#fff"/><path d="M658,507.75c-21.39-22.33-45.19-41.25-72.67-55.92l-87.31-46.58c-35.53-18.94-76.86-41.25-96.83-75.72-19.19-33.14-8.31-73.08,25.89-91.72,35.25-19.19,77.94-19.25,114.72-2.81,61.19,30.14,95.86,91.78,112.19,155.97l.31-164.17c-12.25,9-27.33,12.56-42.03,8.47l-44.14-12.25c-56.61-17.19-124.17-21.72-170.22,17.94-35.42,30.47-45.83,79.97-27.94,122.78,18.03,43.17,57.19,70.69,98.11,92.31l73.92,39.03c27.03,14.28,51.89,30.19,74.81,50.22,48.83,42.69,74.08,100.94,47.72,162.47-7.78,21.11-21.42,36.67-36.86,53.78,25.86-15.39,45.28-37.25,59.11-63.19,35.5-66.58,23.39-136.17-28.72-190.58l-.06-.03Z" fill="#fff"/></svg></span></span>
+</a>
+<!-- Row 3: stacked pair | tall | large, the mirror of row 1. Lauren leads in the markup so she comes first on phones. -->
 <button aria-label="Open editorial image" class="editorial-wall__item ew2-large" type="button">
 <img alt="SIRCUS editorial: Lauren, cover model of Issue 10, in a magenta dress with a matching clutch against a concrete wall" data-caption="Lauren · Cover model of Issue 10 · Art &amp; Beauty" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1600/v1791692981/lb-322_sbc7rq.jpg"/>
 </button>
@@ -2552,25 +2557,20 @@ footer { padding:2.4rem 0; }
 <button aria-label="Open editorial image" class="editorial-wall__item ew2-stack-bottom" type="button">
 <img alt="SIRCUS editorial: Olivia, red curls backlit on a sunlit city street" data-caption="Olivia · A SIRCUS original · Unseen anywhere else" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto/v1791640705/Olivia_B_jjkx8w.png"/>
 </button>
-<!-- Row 3: wide | portrait -->
+<!-- Row 4: wide | portrait -->
 <button aria-label="Open editorial image" class="editorial-wall__item ew-wide" type="button">
 <img alt="SIRCUS editorial: Jasmine in a teal sequined dress, reclining in a tufted teal and gilt armchair in a candlelit salon, from Issue 15, Electric Baroque" data-caption="Jasmine · From Issue 15 · Electric Baroque" loading="lazy" style="object-position:68% top;" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791668534/Jasmine_recline_f1f7ee.jpg" srcset="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791668534/Jasmine_recline_f1f7ee.jpg 1400w, https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_2400/v1791668534/Jasmine_recline_f1f7ee.jpg 2400w" sizes="(max-width:1080px) 100vw, 66vw"/>
 </button>
 <button aria-label="Open editorial image" class="editorial-wall__item ew-portrait" type="button">
 <img alt="SIRCUS editorial: Namara in gold, full-length fashion portrait" data-caption="Namara · From Issue 16 · Sunlit Reverie" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1790914687/Namara_golden_pntmnu.png"/>
 </button>
-<!-- Row 4: portrait | wide, the mirror of row 3 -->
+<!-- Row 5: portrait | wide, the mirror of row 4 -->
 <button aria-label="Open editorial image" class="editorial-wall__item ew4-b" type="button">
 <img alt="SIRCUS editorial: a woman in a strapless brocade gown beneath crystal chandeliers in a ballroom, from Issue 15, Electric Baroque" data-caption="From Issue 15 · Electric Baroque" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791683982/Electric_Baroque_Ballroom_Glamour_mh3cmb.jpg"/>
 </button>
 <button aria-label="Open editorial image" class="editorial-wall__item ew-wide-r" type="button">
 <img alt="SIRCUS editorial: Michael in a blue brocade jacket, seated before a gilded baroque chair, from Issue 15, Electric Baroque" data-caption="Michael · From Issue 15 · Electric Baroque" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791684361/Michael_Blue_dcpvxv.jpg" srcset="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791684361/Michael_Blue_dcpvxv.jpg 1400w, https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_2400/v1791684361/Michael_Blue_dcpvxv.jpg 2400w" sizes="(max-width:1080px) 100vw, 66vw"/>
 </button>
-<!-- Row 5: one panoramic frame closes the wall and opens the Erikka editorial -->
-<a aria-label="View the editorial: Onyx &amp; Gold, featuring Erikka" class="editorial-wall__item ew5-band ew-linked" href="/editorials/erikka-gold">
-<img alt="SIRCUS editorial: Erikka lying on gold blocks on a lawn with her eyes closed, in a black swimsuit and gold jewellery, from the Issue 9 Special Swimwear Edition" data-caption="Erikka · From Issue 9 · Special Swimwear Edition" loading="lazy" sizes="(max-width:700px) 100vw, (max-width:1080px) 96vw, 1152px" src="/editorials/erikka-gold-assets/Erikka_Gold6.jpg" srcset="/editorials/erikka-gold-assets/Erikka_Gold6-1000.webp 1000w, /editorials/erikka-gold-assets/Erikka_Gold6-1672.webp 1672w"/>
-<span aria-hidden="true" class="ew-cue"><span class="ew-cue__mark"><svg aria-hidden="true" focusable="false" height="18" viewBox="262 176 466 628" width="13"><path d="M640.14,623.83c-46.44-119.67-234.83-127.14-292.39-241.19-24.11-47.78-13.11-101.14,23.75-138.11,0,0-16.86,13.25-22.11,18.11-50.92,47.14-55.19,123.39-17.97,181.81,3.22,5.08,6.58,10.03,10.14,14.83h0s17.67,36.97,136.78,97.53h0c13.5,7.22,26.25,13.92,35.42,18.83,34.53,18.94,70.5,41.92,89.81,75.86,15,26.39,13.94,58.17-4.33,83.08-13.86,18.92-34.67,31.03-57.44,37.5-66.19,18.86-135.58-8.67-180.06-59.33-37.06-42.22-54-87.19-67.53-140.11l-.25,190.89c13.61-8.42,28.72-12.58,44.19-8.06l53.42,15.64c63.67,22.25,140.36,31.17,198.83-5.19,47.92-29.78,70.28-89.17,49.72-142.11l.03.03Z" fill="#fff"/><path d="M658,507.75c-21.39-22.33-45.19-41.25-72.67-55.92l-87.31-46.58c-35.53-18.94-76.86-41.25-96.83-75.72-19.19-33.14-8.31-73.08,25.89-91.72,35.25-19.19,77.94-19.25,114.72-2.81,61.19,30.14,95.86,91.78,112.19,155.97l.31-164.17c-12.25,9-27.33,12.56-42.03,8.47l-44.14-12.25c-56.61-17.19-124.17-21.72-170.22,17.94-35.42,30.47-45.83,79.97-27.94,122.78,18.03,43.17,57.19,70.69,98.11,92.31l73.92,39.03c27.03,14.28,51.89,30.19,74.81,50.22,48.83,42.69,74.08,100.94,47.72,162.47-7.78,21.11-21.42,36.67-36.86,53.78,25.86-15.39,45.28-37.25,59.11-63.19,35.5-66.58,23.39-136.17-28.72-190.58l-.06-.03Z" fill="#fff"/></svg></span></span>
-</a>
 </div>
 </section>
 <div aria-hidden="true" class="editorial-to-detonation"></div>
