@@ -1909,15 +1909,17 @@ footer {
   .ew2-stack-bottom img { object-position:center 30%; }
 }
 
-/* Row 4 — wide | portrait */
+/* Row 4 — half-width lead | two portraits */
+.ew-r4-lead { grid-column: 1 / 7; min-height: 520px; }
+.ew-r4-lead img { object-position: 85% top; }
 .ew-full  { grid-column: 1 / -1; min-height: 520px; }
-.ew-wide     { grid-column: 1 / 9;  min-height: 520px; }
-.ew-portrait { grid-column: 9 / 13; min-height: 520px; }
+.ew-portrait { grid-column: 7 / 10; min-height: 520px; }
 
-/* Row 5 — portrait | wide, the mirror of row 4 */
-.ew4-b      { grid-column: 1 / 5;  min-height: 520px; }
-.ew-wide-r  { grid-column: 5 / 13; min-height: 520px; }
-.ew-wide-r img { object-position: 38% top; }
+/* Row 5 — two halves */
+.ew4-b      { grid-column: 10 / 13; min-height: 520px; }
+.ew-wide     { grid-column: 1 / 7;  min-height: 520px; }
+.ew-wide-r  { grid-column: 7 / 13; min-height: 520px; }
+.ew-wide-r img { object-position: 46% top; }
 
 /* A portrait in the lead slot is fitted to the row so the top row keeps its height. */
 @media(min-width:701px) {
@@ -1961,7 +1963,7 @@ footer {
   .ew1-b { grid-column: span 6; }
   .ew2-large, .ew2-tall, .ew2-stack-top, .ew2-stack-bottom { grid-column: span 6; grid-row: auto; }
   .ew2-stack-top, .ew2-stack-bottom { min-height: 340px; }
-  .ew-full, .ew-wide { grid-column: 1 / -1; }
+  .ew-full, .ew-wide, .ew-r4-lead { grid-column: 1 / -1; }
   .ew-portrait { grid-column: span 6; min-height: 340px; }
   .ew4-b { grid-column: span 6; min-height: 340px; }
   .ew-wide-r { grid-column: 1 / -1; }
@@ -1985,13 +1987,16 @@ footer {
   .editorial-wall__item,
   .ew-large, .ew-tall, .ew-stack-top, .ew-stack-bottom,
   .ew-mid-a, .ew-mid-b, .ew-mid-c, .ew-full, .ew-wide, .ew-portrait,
-  .ew1-b, .ew4-b, .ew-wide-r,
+  .ew1-b, .ew4-b, .ew-wide-r, .ew-r4-lead,
   .ew2-large, .ew2-tall, .ew2-stack-top, .ew2-stack-bottom {
     grid-column: 1 / -1;
   }
   /* On phones the wide tile is a tall crop: keep Michael's face in it. */
   .ew-wide-r { min-height: 520px; }
   .ew-wide-r img { object-position: 58% top; }
+  /* Tanya sits right of centre: a tall phone crop keeps her whole. */
+  .ew-r4-lead { min-height: 440px; }
+  .ew-r4-lead img { object-position: 90% top; }
   /* The full-width frame is cropped a little on a phone: her face and the gold stay in it. */
   .ew-band { aspect-ratio: 4 / 3; }
   .ew-band img { object-position: 14% center; }
@@ -2557,16 +2562,19 @@ footer { padding:2.4rem 0; }
 <button aria-label="Open editorial image" class="editorial-wall__item ew2-stack-bottom" type="button">
 <img alt="SIRCUS editorial: Olivia, red curls backlit on a sunlit city street" data-caption="Olivia · A SIRCUS original · Unseen anywhere else" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto/v1791640705/Olivia_B_jjkx8w.png"/>
 </button>
-<!-- Row 4: wide | portrait -->
-<button aria-label="Open editorial image" class="editorial-wall__item ew-wide" type="button">
-<img alt="SIRCUS editorial: Jasmine in a teal sequined dress, reclining in a tufted teal and gilt armchair in a candlelit salon, from Issue 15, Electric Baroque" data-caption="Jasmine · From Issue 15 · Electric Baroque" loading="lazy" style="object-position:68% top;" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791668534/Jasmine_recline_f1f7ee.jpg" srcset="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791668534/Jasmine_recline_f1f7ee.jpg 1400w, https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_2400/v1791668534/Jasmine_recline_f1f7ee.jpg 2400w" sizes="(max-width:1080px) 100vw, 66vw"/>
+<!-- Row 4: Tanya, half the width | two portraits -->
+<button aria-label="Open editorial image" class="editorial-wall__item ew-r4-lead" type="button">
+<img alt="SIRCUS editorial: Tanya reclining against dark, barnacled rocks in a nude cage bustier and a red tulle skirt, one hand in her hair. Tanya is the cover model of Issue 7 and also appears in Issue 9" data-caption="Tanya · Cover model of Issue 7 · Also inside Issue 9" loading="lazy" sizes="(max-width:700px) 100vw, (max-width:1080px) 96vw, 50vw" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791756827/01_Red_Editorial_xsojoe.png" srcset="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_800/v1791756827/01_Red_Editorial_xsojoe.png 800w, https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1536/v1791756827/01_Red_Editorial_xsojoe.png 1536w"/>
 </button>
 <button aria-label="Open editorial image" class="editorial-wall__item ew-portrait" type="button">
 <img alt="SIRCUS editorial: Namara in gold, full-length fashion portrait" data-caption="Namara · From Issue 16 · Sunlit Reverie" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1790914687/Namara_golden_pntmnu.png"/>
 </button>
-<!-- Row 5: portrait | wide, the mirror of row 4 -->
 <button aria-label="Open editorial image" class="editorial-wall__item ew4-b" type="button">
 <img alt="SIRCUS editorial: a woman in a strapless brocade gown beneath crystal chandeliers in a ballroom, from Issue 15, Electric Baroque" data-caption="From Issue 15 · Electric Baroque" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791683982/Electric_Baroque_Ballroom_Glamour_mh3cmb.jpg"/>
+</button>
+<!-- Row 5: the two Electric Baroque interiors, side by side -->
+<button aria-label="Open editorial image" class="editorial-wall__item ew-wide" type="button">
+<img alt="SIRCUS editorial: Jasmine in a teal sequined dress, reclining in a tufted teal and gilt armchair in a candlelit salon, from Issue 15, Electric Baroque" data-caption="Jasmine · From Issue 15 · Electric Baroque" loading="lazy" style="object-position:68% top;" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791668534/Jasmine_recline_f1f7ee.jpg" srcset="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791668534/Jasmine_recline_f1f7ee.jpg 1400w, https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_2400/v1791668534/Jasmine_recline_f1f7ee.jpg 2400w" sizes="(max-width:1080px) 100vw, 66vw"/>
 </button>
 <button aria-label="Open editorial image" class="editorial-wall__item ew-wide-r" type="button">
 <img alt="SIRCUS editorial: Michael in a blue brocade jacket, seated before a gilded baroque chair, from Issue 15, Electric Baroque" data-caption="Michael · From Issue 15 · Electric Baroque" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791684361/Michael_Blue_dcpvxv.jpg" srcset="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791684361/Michael_Blue_dcpvxv.jpg 1400w, https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_2400/v1791684361/Michael_Blue_dcpvxv.jpg 2400w" sizes="(max-width:1080px) 100vw, 66vw"/>
