@@ -29,7 +29,8 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#080808">
-<link rel="preload" as="image" href="/editorials/erikka-gold-assets/film-poster.jpg">
+<link rel="preload" as="image" href="/editorials/erikka-gold-assets/film-poster.jpg" media="(min-width:861px) and (min-aspect-ratio:1/1)">
+<link rel="preload" as="image" href="/editorials/erikka-gold-assets/film-poster-phone.jpg" media="(max-width:860px), (max-aspect-ratio:1/1)">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&family=Source+Sans+3:wght@600&display=swap">
 <style>
 /* Brand tokens. Replace these six values and three font stacks with the
@@ -249,6 +250,8 @@ main{padding-top:var(--nav-h)}
 .ed-byline{font:400 .78rem/1.5 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:#fff;margin-top:1.5em}
 .ed-toggle{flex:none;font:500 .68rem/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:#fff;background:rgba(8,8,8,.42);border:1px solid rgba(255,255,255,.55);padding:.95em 1.3em;cursor:pointer;transition:background-color .25s,border-color .25s}
 .ed-toggle:hover{background:var(--gold);border-color:var(--gold)}
+/* The wide cut shows frames side by side, so on a landscape screen the film is never cropped at the sides. */
+@media (min-width:861px) and (min-aspect-ratio:1/1){.ed-film{height:min(calc(100svh - var(--nav-h)),56.25vw)}}
 /* One arrival: the title rises once as the film opens. */
 @media (prefers-reduced-motion:no-preference){
   .ed-kicker,.ed-title,.ed-byline{opacity:0;transform:translateY(26px);animation:ed-rise 1.25s cubic-bezier(.2,.7,.1,1) forwards}
@@ -396,7 +399,7 @@ main{padding-top:var(--nav-h)}
 <main class="ed">
 
 <header class="ed-film" aria-labelledby="ed-title">
-  <video id="edFilm" muted loop playsinline preload="none" poster="/editorials/erikka-gold-assets/film-poster.jpg" data-large="/editorials/erikka-gold-assets/film-1080.mp4" data-small="/editorials/erikka-gold-assets/film-720.mp4" aria-label="A seventeen second film of Erikka in a black swimsuit and gold jewelry, on gold blocks beside a lake"></video>
+  <video id="edFilm" muted loop playsinline preload="none" data-large="/editorials/erikka-gold-assets/film-1080.mp4" data-small="/editorials/erikka-gold-assets/film-phone.mp4" data-poster-large="/editorials/erikka-gold-assets/film-poster.jpg" data-poster-small="/editorials/erikka-gold-assets/film-poster-phone.jpg" aria-label="A seventeen second film of Erikka in a black swimsuit and gold jewelry, on gold blocks beside a lake"></video>
   <div class="ed-film__copy">
     <div>
       <p class="ed-kicker">From SIRCUS Issue 9 &middot; Special Swimwear Edition</p>
@@ -549,8 +552,10 @@ main{padding-top:var(--nav-h)}
   var film=document.getElementById('edFilm');
   var toggle=document.getElementById('edToggle');
   var wanted=!calm;
-  /* One file is fetched: the smaller cut on phones, the full cut elsewhere. */
-  film.src=window.matchMedia('(max-width: 860px)').matches?film.getAttribute('data-small'):film.getAttribute('data-large');
+  /* One file is fetched: an upright cut on phones and upright tablets, the wide cut elsewhere. */
+  var cut=window.matchMedia('(max-width: 860px), (max-aspect-ratio: 1/1)').matches?'small':'large';
+  film.poster=film.getAttribute('data-poster-'+cut);
+  film.src=film.getAttribute('data-'+cut);
   function label(){toggle.textContent=film.paused?'Play film':'Pause film';}
   var inView=true;
   /* A refusal to autoplay ends the attempt; a pause because the tab is in the background does not. */
