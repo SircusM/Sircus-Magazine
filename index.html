@@ -1907,10 +1907,11 @@ footer {
 .ew-wide     { grid-column: 1 / 9;  min-height: 520px; }
 .ew-portrait { grid-column: 9 / 13; min-height: 520px; }
 
-/* Row 4 — portrait | wide, the mirror of row 3 */
-.ew-portrait-l { grid-column: 1 / 5;  min-height: 520px; }
-.ew-wide-r     { grid-column: 5 / 13; min-height: 520px; }
-.ew-wide-r img { object-position: 38% top; }
+/* Row 4 — portrait | portrait | wide: the wide tile sits right, the mirror of row 3 */
+.ew4-a      { grid-column: 1 / 4;  min-height: 520px; }
+.ew4-b      { grid-column: 4 / 7;  min-height: 520px; }
+.ew-wide-r  { grid-column: 7 / 13; min-height: 520px; }
+.ew-wide-r img { object-position: 50% top; }
 
 /* A portrait in the lead slot is fitted to the row so the top row keeps its height. */
 @media(min-width:1081px) {
@@ -1936,7 +1937,8 @@ footer {
 
 @media(max-width:1080px) {
   .editorial-wall {
-    grid-auto-rows: minmax(150px, 18vw);
+    /* Rows take the height of their tiles. A fixed row height here let taller tiles overlap the rows beneath. */
+    grid-auto-rows: auto;
     gap: 12px;
     padding: 0 12px;
   }
@@ -1952,8 +1954,9 @@ footer {
   .ew2-stack-top, .ew2-stack-bottom { min-height: 340px; }
   .ew-full, .ew-wide { grid-column: 1 / -1; }
   .ew-portrait { grid-column: span 6; min-height: 340px; }
-  .ew-portrait-l { grid-column: span 6; min-height: 340px; }
-  .ew-wide-r { grid-column: 1 / -1; }
+  .ew4-a, .ew4-b, .ew-wide-r { grid-column: span 6; min-height: 340px; }
+  /* Beside a portrait, Michael's tile is a tall crop: keep his face in it. */
+  .ew-wide-r img { object-position: 58% top; }
 }
 
 @media(max-width:700px) {
@@ -1972,7 +1975,7 @@ footer {
   .editorial-wall__item,
   .ew-large, .ew-tall, .ew-stack-top, .ew-stack-bottom,
   .ew-mid-a, .ew-mid-b, .ew-mid-c, .ew-full, .ew-wide, .ew-portrait,
-  .ew-portrait-l, .ew-wide-r,
+  .ew4-a, .ew4-b, .ew-wide-r,
   .ew2-large, .ew2-tall, .ew2-stack-top, .ew2-stack-bottom {
     grid-column: 1 / -1;
   }
@@ -2540,8 +2543,11 @@ footer { padding:2.4rem 0; }
 <button aria-label="Open editorial image" class="editorial-wall__item ew-portrait" type="button">
 <img alt="SIRCUS editorial: Namara in gold, full-length fashion portrait" data-caption="Namara · From Issue 16 · Sunlit Reverie" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1790914687/Namara_golden_pntmnu.png"/>
 </button>
-<!-- Row 4: portrait | wide, the mirror of row 3 -->
-<button aria-label="Open editorial image" class="editorial-wall__item ew-portrait-l" type="button">
+<!-- Row 4: portrait | portrait | wide. The wide tile sits right, the mirror of row 3. -->
+<button aria-label="Open editorial image" class="editorial-wall__item ew4-a" type="button">
+<img alt="SIRCUS editorial: Erikka in a coral and black bustier bikini with a gold cage bag, leaning against a tree, from the Issue 9 Special Swimwear Edition" data-caption="Erikka · From Issue 9 · Special Swimwear Edition" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1200/v1791749144/em-172---2_qmhirl.jpg"/>
+</button>
+<button aria-label="Open editorial image" class="editorial-wall__item ew4-b" type="button">
 <img alt="SIRCUS editorial: a woman in a strapless brocade gown beneath crystal chandeliers in a ballroom, from Issue 15, Electric Baroque" data-caption="From Issue 15 · Electric Baroque" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791683982/Electric_Baroque_Ballroom_Glamour_mh3cmb.jpg"/>
 </button>
 <button aria-label="Open editorial image" class="editorial-wall__item ew-wide-r" type="button">
