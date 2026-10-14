@@ -2134,6 +2134,24 @@ a.story-expand-card { text-decoration: none; }
 .carry-band__how b { color: var(--gold); font-weight: 600; }
 </style>
 <!-- Vercel Web Analytics -->
+<script>
+/* Vercel Web Analytics: queue, plus a self-exclusion switch.
+   Visit any page with ?va-disable=1 once per browser to stop counting your own visits; ?va-disable=0 turns counting back on. */
+window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+(function () {
+  try {
+    var q = new URLSearchParams(location.search);
+    if (q.has('va-disable')) {
+      if (q.get('va-disable') === '0') localStorage.removeItem('va-disable');
+      else localStorage.setItem('va-disable', '1');
+    }
+  } catch (err) {}
+})();
+window.va('beforeSend', function (event) {
+  try { if (localStorage.getItem('va-disable')) return null; } catch (err) {}
+  return event;
+});
+</script>
 <script defer src="/_vercel/insights/script.js"></script>
 
 <style>
@@ -3422,7 +3440,15 @@ setTimeout(runCycle, 1800);
       'curated-realness': '/issues/16-sunlit-reverie.html',
       'unregistered-spatula': '/issues/16-sunlit-reverie.html'
     };
-    if (wanted && moved[wanted]) { location.replace(moved[wanted]); return; }
+    if (wanted && moved[wanted]) {
+      /* Carry campaign tags (utm_*) through to the new page so the visit keeps its source */
+      var dest = moved[wanted], keep = [];
+      try {
+        new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0) keep.push(encodeURIComponent(k) + '=' + encodeURIComponent(v)); });
+      } catch (err) {}
+      if (keep.length) { var hash = dest.indexOf('#'); dest = hash < 0 ? dest + '?' + keep.join('&') : dest.slice(0, hash) + '?' + keep.join('&') + dest.slice(hash); }
+      location.replace(dest); return;
+    }
     if (wanted) {
       var match = Array.prototype.filter.call(document.querySelectorAll('.story-expand-card'), function (card) {
         return slugOf(card) === wanted;

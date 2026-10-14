@@ -336,6 +336,24 @@ main{padding-top:var(--nav-h)}
   .ed-lb img{max-height:74vh}
 }
 </style>
+<script>
+/* Vercel Web Analytics: queue, plus a self-exclusion switch.
+   Visit any page with ?va-disable=1 once per browser to stop counting your own visits; ?va-disable=0 turns counting back on. */
+window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+(function () {
+  try {
+    var q = new URLSearchParams(location.search);
+    if (q.has('va-disable')) {
+      if (q.get('va-disable') === '0') localStorage.removeItem('va-disable');
+      else localStorage.setItem('va-disable', '1');
+    }
+  } catch (err) {}
+})();
+window.va('beforeSend', function (event) {
+  try { if (localStorage.getItem('va-disable')) return null; } catch (err) {}
+  return event;
+});
+</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
