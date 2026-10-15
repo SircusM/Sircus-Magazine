@@ -2273,7 +2273,7 @@ footer { padding:2.4rem 0; }
 <li><a href="#stories">Stories</a></li>
 <li><a href="#video">Video</a></li>
 <li><a href="#about">About</a></li>
-<li><a href="contact.html">Contact</a></li>
+<li><a href="/contact">Contact</a></li>
 </ul>
 <!-- UPDATE: this button's label and link change each issue -->
 <a class="nav-btn desktop-only" href="/issues/16-sunlit-reverie">Explore Issue 16</a>
@@ -2289,7 +2289,7 @@ footer { padding:2.4rem 0; }
 <li><a href="#stories">Stories</a></li>
 <li><a href="#video">Video</a></li>
 <li><a href="#about">About</a></li>
-<li><a href="contact.html">Contact</a></li>
+<li><a href="/contact">Contact</a></li>
 </ul>
 <a class="mobile-cta" href="/issues/16-sunlit-reverie">Explore Issue 16</a>
 </div>
@@ -2403,7 +2403,7 @@ footer { padding:2.4rem 0; }
 <a class="det-cta__btn det-cta__btn--primary" href="/issues/16-sunlit-reverie#own">
             Own Issue 16
           </a>
-<a class="det-cta__btn det-cta__btn--collector" href="/issues/16-sunlit-reverie.html">Explore Sunlit Reverie</a>
+<a class="det-cta__btn det-cta__btn--collector" href="/issues/16-sunlit-reverie">Explore Sunlit Reverie</a>
 </div>
 <!-- UPDATE: this note names the current issue -->
 <p class="det-cta__note">Issue 16 is available in print and digital from MagCloud, and in paperback and on Kindle from Amazon. The MagCloud Collector Edition, printed on premium paper with richer saturation, may include a slightly expanded layout. The content is the same everywhere. The experience is a matter of format.</p>
@@ -2444,7 +2444,7 @@ footer { padding:2.4rem 0; }
 <span class="issue-num">Issue 16  ·  October 2026</span>
 <span class="issue-name">Sunlit Reverie</span>
 <a class="card-buy" href="https://www.magcloud.com/browse/issue/3412009" rel="noopener" target="_blank">Collector's Edition →</a>
-<a class="card-amazon" href="/issues/16-sunlit-reverie.html" style="margin-bottom:0;">Explore the Issue →</a>
+<a class="card-amazon" href="/issues/16-sunlit-reverie" style="margin-bottom:0;">Explore the Issue →</a>
 <a class="card-amazon" href="https://www.amazon.com/dp/B0HMFF9XFX" rel="noopener" target="_blank">Buy on Amazon →</a>
 </div>
 <div class="issue-card">
@@ -2612,7 +2612,7 @@ footer { padding:2.4rem 0; }
 <a class="view-all" href="/issues/16-sunlit-reverie">Read Issue 16 →</a>
 </div>
 <div class="story-expand-grid">
-<a class="story-expand-card" data-slug="redrawing-masculinity" href="/issues/16-sunlit-reverie.html#redrawing-masculinity">
+<a class="story-expand-card" data-slug="redrawing-masculinity" href="/issues/16-sunlit-reverie#redrawing-masculinity">
 <span class="story-expand-card__image">
 <img alt="The Feminization of Men Through Fashion story preview" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/sircus-i16-redrawing-masculinity_lys9pq.jpg"/>
 </span>
@@ -3436,9 +3436,9 @@ setTimeout(runCycle, 1800);
     try { wanted = new URLSearchParams(location.search).get('story'); } catch (err) { wanted = null; }
     /* Stories that now live on the Issue 16 page: send old shared links there */
     var moved = {
-      'redrawing-masculinity': '/issues/16-sunlit-reverie.html#redrawing-masculinity',
-      'curated-realness': '/issues/16-sunlit-reverie.html',
-      'unregistered-spatula': '/issues/16-sunlit-reverie.html'
+      'redrawing-masculinity': '/issues/16-sunlit-reverie#redrawing-masculinity',
+      'curated-realness': '/issues/16-sunlit-reverie',
+      'unregistered-spatula': '/issues/16-sunlit-reverie'
     };
     if (wanted && moved[wanted]) {
       /* Carry campaign tags (utm_*) through to the new page so the visit keeps its source */
