@@ -137,6 +137,7 @@ h1,h2,h3,p,figure,dl,dd{margin:0}
 .nav-links a{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.92);text-decoration:none;transition:color .3s;font-weight:600}
 #nav.stuck .nav-links a{color:rgba(255,255,255,.85)}
 .nav-links a:hover,#nav.stuck .nav-links a:hover{color:var(--site-gold)}
+.nav-links a[aria-current="page"],.mobile-links a[aria-current="page"]{color:var(--site-gold)}
 .nav-btn{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;background:transparent;border:1px solid rgba(255,255,255,.5);padding:.65rem 1.6rem;text-decoration:none;transition:all .3s}
 #nav.stuck .nav-btn{border-color:rgba(255,255,255,.4)}
 .nav-btn:hover,#nav.stuck .nav-btn:hover{background:var(--site-gold);border-color:var(--site-gold);color:#fff}
@@ -367,7 +368,7 @@ window.va('beforeSend', function (event) {
 <li><a href="/#issues">Issues</a></li>
 <li><a href="/#editorials">Editorials</a></li>
 <li><a href="/#stories">Stories</a></li>
-<li><a href="/#video">Video</a></li>
+<li><a href="/journal" aria-current="page">Journal</a></li>
 <li><a href="/#about">About</a></li>
 <li><a href="/contact">Contact</a></li>
 </ul>
@@ -381,7 +382,7 @@ window.va('beforeSend', function (event) {
 <li><a href="/#issues">Issues</a></li>
 <li><a href="/#editorials">Editorials</a></li>
 <li><a href="/#stories">Stories</a></li>
-<li><a href="/#video">Video</a></li>
+<li><a href="/journal" aria-current="page">Journal</a></li>
 <li><a href="/#about">About</a></li>
 <li><a href="/contact">Contact</a></li>
 </ul>
