@@ -6,7 +6,7 @@ The name is written "SIRCUS Magazine": SIRCUS in capitals, Magazine in title cas
 
 ## The magazine
 
-- [About SIRCUS Magazine](https://www.sircusmagazine.com/#about): what the magazine is, why it exists, and answers to common questions
+- [About SIRCUS Magazine](https://www.sircusmagazine.com/about): what the magazine is, why it exists, and answers to common questions
 - [Issue 16: Sunlit Reverie](https://www.sircusmagazine.com/issues/16-sunlit-reverie): the current issue (October 2026), a study of light as an instrument of revelation, with prices and where to buy
 - [All issues on MagCloud](https://www.magcloud.com/browse/magazine/599779): every live issue, in print and digital
 

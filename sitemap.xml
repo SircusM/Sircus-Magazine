@@ -26,6 +26,15 @@
   </url>
 
   <url>
+    <loc>https://www.sircusmagazine.com/about</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto/v1790914222/hf_20260927_030636_17ae4654-bf8e-46d2-b997-9b33cb7ca3c8_kg52la.png</image:loc></image:image>
+    <image:image><image:loc>https://www.sircusmagazine.com/assets/sircus-issues-table-1280.webp</image:loc></image:image>
+  </url>
+
+  <url>
     <loc>https://www.sircusmagazine.com/contact</loc>
     <lastmod>2026-10-18</lastmod>
     <changefreq>yearly</changefreq>
