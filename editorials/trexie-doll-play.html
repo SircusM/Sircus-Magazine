@@ -445,6 +445,8 @@ main{padding-top:var(--nav-h)}
 .ed-col--square{width:min(100% - 2 * var(--pad),calc(100svh - var(--nav-h) - 120px))}
 /* The closing frame is 16:9 with Trexie at the left: keep her in frame when the hold crops it. */
 .ed-exit.is-live .ed-exit__car{object-position:left center}
+/* No warm light over the closing frame on this page: it washed out her colour. */
+.ed-exit.is-live .ed-exit__sun{display:none}
 /* Lines run the full measure; only a lone last word is prevented. The standfirst fills the column. */
 .ed-stand{max-width:none}
 .ed-cap span,.ed-kicker,.ed-end__note,.ed-stand{text-wrap:pretty}
