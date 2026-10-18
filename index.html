@@ -293,54 +293,6 @@ Do not perform full-page rewrites. Make surgical edits by section only.
 </script>
 
 <!-- ── STRUCTURED DATA: FAQ (AEO / GEO answer extraction) ── -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is SIRCUS Magazine?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "SIRCUS is an independent fashion and beauty editorial magazine built against the industry's trade of storytelling for clicks. It publishes cinematic photography, long-form cultural essays, and high-fashion editorials designed to be owned and returned to. Not scrolled past. Available in print and digital on MagCloud and Amazon."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Where can I buy SIRCUS Magazine?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Every live issue is available in print and as a digital download via MagCloud. Recent issues are also available on Amazon, in paperback and on Kindle. The MagCloud Collector Edition may carry a slightly expanded layout and sharper editorial presentation. The content is the same across all formats. The difference is in how it lands on the page."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is SIRCUS Issue 16 about?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Issue 16 is titled Sunlit Reverie. It is a study of light as an instrument of revelation. Illumination neither flatters nor conceals. It settles across form, across skin, across thought, and discloses what holds. Published October 2026."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is SIRCUS Magazine an independent publication?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. SIRCUS is fully independent, editorially uncompromised, and not affiliated with any major publishing conglomerate. It operates as a direct-to-reader print publication with digital presence."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What kind of content does SIRCUS publish?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "SIRCUS publishes cinematic fashion editorials, high-fashion photography, cultural criticism, beauty features, and provocative long-form essays. The editorial voice is bold, literary, and visually driven."
-      }
-    }
-  ]
-}
-</script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&amp;display=swap" rel="stylesheet"/>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -2236,7 +2188,7 @@ footer { padding:2.4rem 0; }
 <li><a href="#editorials">Editorials</a></li>
 <li><a href="#stories">Stories</a></li>
 <li><a href="/journal">Journal</a></li>
-<li><a href="#about">About</a></li>
+<li><a href="/about">About</a></li>
 <li><a href="/contact">Contact</a></li>
 </ul>
 <!-- UPDATE: this button's label and link change each issue -->
@@ -2252,7 +2204,7 @@ footer { padding:2.4rem 0; }
 <li><a href="#editorials">Editorials</a></li>
 <li><a href="#stories">Stories</a></li>
 <li><a href="/journal">Journal</a></li>
-<li><a href="#about">About</a></li>
+<li><a href="/about">About</a></li>
 <li><a href="/contact">Contact</a></li>
 </ul>
 <a class="mobile-cta" href="/issues/16-sunlit-reverie">Explore Issue 16</a>
@@ -2691,52 +2643,14 @@ but to the intention to be seen…" data-image="https://res.cloudinary.com/dk8dx
      ABOUT — Brand philosophy + AEO/GEO answer extraction.
      Styled to match the site's existing footer tone.
      ═══════════════════════════════════════════════════════════ -->
-<section id="about" aria-label="About SIRCUS Magazine" class="about">
+<section id="about" aria-label="About SIRCUS Magazine" class="about about--teaser">
 <div class="about-in">
 <div class="about-top">
 <span class="eyebrow">About</span>
 <h2 class="about-hed">Why <em>SIRCUS</em> exists.</h2>
 </div>
-
-<!-- Brand philosophy: editorial voice, not FAQ register -->
 <p class="about-lead">The magazine was once an object worth keeping. A thing you returned to. For the photography, for the writing, for the world it built around you. Editorial fashion had authority. Beauty had depth. Culture had stakes. Issues were collected, not scrolled past.</p>
-
-<figure class="about-img">
-<img alt="Three issues of SIRCUS Magazine on a marble table in afternoon light: Opulence &amp; Desire, A Velvet Fevered Bloom and Electric Baroque" loading="lazy" width="1280" height="1658" src="/assets/sircus-issues-table-1280.webp" srcset="/assets/sircus-issues-table-720.webp 720w, /assets/sircus-issues-table-1280.webp 1280w" sizes="(max-width:860px) calc(100vw - 4rem), 560px"/>
-</figure>
-
-<!-- The body and the questions share one column that runs the full height of the photograph -->
-<div class="about-side">
-<div class="about-main">
-<p>That deteriorated. Not slowly. Decisively. The industry traded storytelling for traffic, editorial vision for influencer adjacency, legacy for the algorithm's appetite. Most magazines now report on what is trending. By the time ink meets paper, the moment has already passed. They are documents of now, which means they age into nothing.</p>
-<p>SIRCUS was built against that. Every issue is cinematic, considered, and made to be owned. Not consumed. The photography is editorial, not content. The essays are written to outlast the season they appear in. The covers are designed to be held. This is not a magazine that chases relevance. It is built to <em>create</em> it.</p>
-</div>
-
-<!-- Answers for search and answer engines. Kept in the page, folded until asked for. -->
-<div class="about-qs">
-<span class="about-label">Questions</span>
-<details itemscope itemtype="https://schema.org/Question">
-<summary itemprop="name">What is SIRCUS Magazine?</summary>
-<div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><p itemprop="text">An independent print magazine publishing cinematic fashion editorials, cultural essays, and high-fashion photography without advertiser influence.</p></div>
-</details>
-<details itemscope itemtype="https://schema.org/Question">
-<summary itemprop="name">Where can I buy SIRCUS Magazine?</summary>
-<div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><p itemprop="text">Every live issue is available in print and as a digital download via MagCloud. Recent issues are also available on Amazon, in paperback and on Kindle. The Collector Edition may carry a slightly expanded layout. The content is identical across all formats. The difference is in how it lands on the page.</p></div>
-</details>
-<details itemscope itemtype="https://schema.org/Question">
-<summary itemprop="name">What is SIRCUS Issue 16: Sunlit Reverie?</summary>
-<div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><p itemprop="text">The current live issue. A study of light as an instrument of revelation, where garments breathe rather than command and each frame unfolds at a cadence that refuses urgency. Published October 2026.</p></div>
-</details>
-<details itemscope itemtype="https://schema.org/Question">
-<summary itemprop="name">What kind of content does SIRCUS publish?</summary>
-<div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><p itemprop="text">Cinematic fashion editorials, high-fashion photography, beauty features, and long-form cultural essays. For readers who find most fashion media too safe.</p></div>
-</details>
-<details itemscope itemtype="https://schema.org/Question">
-<summary itemprop="name">Is SIRCUS an independent magazine?</summary>
-<div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><p itemprop="text">Yes. No publishing conglomerate, no advertising network. Every editorial decision serves the work.</p></div>
-</details>
-</div>
-</div>
+<a class="view-all" href="/about" style="grid-area:side;justify-self:start;margin-top:-2rem">Read why SIRCUS exists →</a>
 </div>
 </section>
 
