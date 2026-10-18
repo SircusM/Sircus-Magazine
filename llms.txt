@@ -13,6 +13,7 @@ The name is written "SIRCUS Magazine": SIRCUS in capitals, Magazine in title cas
 ## The Journal
 
 - [The Journal](https://www.sircusmagazine.com/journal): editorials and cover stories, newest first ([RSS feed](https://www.sircusmagazine.com/feed.xml))
+- [Doll Play](https://www.sircusmagazine.com/editorials/trexie-doll-play): an editorial with Trexie Dorrell, cover model of Issue 12, Fashion & Beauty
 - [Stone & Sequin](https://www.sircusmagazine.com/editorials/darya-stone): an editorial with Darya, from Issue 13, Opulence & Desire
 - [Married to the Racist That Is Me](https://www.sircusmagazine.com/stories/married-to-the-racist-that-is-me): the cover story of Issue 15, Electric Baroque
 - [Onyx & Gold](https://www.sircusmagazine.com/editorials/erikka-gold): an editorial with Erikka, from Issue 9, the Special Swimwear Edition

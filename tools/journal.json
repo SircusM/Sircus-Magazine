@@ -1,5 +1,20 @@
 [
   {
+    "path": "/editorials/trexie-doll-play",
+    "kind": "Editorial",
+    "issue": "Issue 12 · Fashion & Beauty",
+    "title": "Doll Play",
+    "dek": "Sequins on the fairway and the court, then red and black in the woods and on the terrace.",
+    "credit": "Featuring Trexie Dorrell",
+    "published": "2026-10-18T12:08:33-07:00",
+    "card": "/editorials/trexie-doll-play-assets/Trexie_Fence-1200.webp",
+    "card_large": "/editorials/trexie-doll-play-assets/Trexie_Fence-2000.webp",
+    "focus": "28% 40%",
+    "image": "/editorials/trexie-doll-play-assets/Trexie_Fence.jpg",
+    "alt": "Trexie Dorrell reclining in the sun against a wire fence, in a red top and a black and floral skirt",
+    "cta": "View the editorial"
+  },
+  {
     "path": "/editorials/darya-stone",
     "kind": "Editorial",
     "issue": "Issue 13 · Opulence & Desire",
