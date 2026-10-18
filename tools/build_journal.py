@@ -109,7 +109,7 @@ def feed(items):
     for it in items:
         url = SITE + it["path"]
         img = SITE + it["image"]
-        size = os.path.getsize(os.path.join(ROOT, it["image"].lstrip("/")))
+        size = os.path.getsize(os.path.join(ROOT, it["image"].split("?")[0].lstrip("/")))
         body = (
             f'<p><a href="{url}"><img src="{img}" alt="{e(it["alt"])}" width="600" style="max-width:100%;height:auto"></a></p>'
             f'<p>{e(it["dek"])}</p><p>{e(it["credit"])}. {e(it["kind"])}, {e(it["issue"])}.</p>'
@@ -145,7 +145,8 @@ def main():
     items = load()
     for it in items:
         for key in ("card", "card_large", "image"):
-            if not os.path.exists(os.path.join(ROOT, it[key].lstrip("/"))):
+            # A "?v=N" cache version on a replaced image is allowed; check the file itself.
+            if not os.path.exists(os.path.join(ROOT, it[key].split("?")[0].lstrip("/"))):
                 sys.exit(f"Missing file for {it['title']}: {it[key]}")
     with open(PAGE, encoding="utf-8") as f:
         page = f.read()
