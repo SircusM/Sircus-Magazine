@@ -80,6 +80,11 @@ def jsonld(items):
             ],
         },
     }
+    # The same SIRCUS identity every page carries (tools/organization.json).
+    with open(os.path.join(ROOT, "tools", "organization.json"), encoding="utf-8") as f:
+        org = json.load(f)
+    page = {k: v for k, v in data.items() if k != "@context"}
+    data = {"@context": "https://schema.org", "@graph": [page, org]}
     return '<script type="application/ld+json">\n' + json.dumps(data, ensure_ascii=False, indent=2) + "\n</script>"
 
 
