@@ -2093,6 +2093,8 @@ footer { padding:2.4rem 0; }
 .ab-hero__title .about-hed{margin:0;font-size:clamp(1.15rem,3vw,2.7rem);line-height:1.05;white-space:nowrap;text-shadow:0 2px 24px rgba(0,0,0,.55)}
 /* Without the heading row, the opening paragraph leads the section. */
 @media (min-width:1280px){.about--page .about-in{grid-template-areas:"lead lead" "img side"}}
+/* The opening paragraph stands alone under the photograph: centred, with lines of even length. */
+.about--page .about-lead{justify-self:center;max-width:34em;text-align:center;text-wrap:balance;margin-inline:auto}
 @media (max-width:1279px){.about--page .about-in{grid-template-areas:"lead" "img" "side"}}
 .about--page{padding-top:clamp(40px,6vw,80px)}.about--page .about-hed{margin:0}
 </style>
