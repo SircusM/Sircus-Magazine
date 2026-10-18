@@ -2082,11 +2082,11 @@ footer { padding:2.4rem 0; }
 </style>
 <script src="/assets/ig-share.js"></script>
 <style>
-.ab-hero{position:relative;height:min(70vh,64vw);min-height:440px;background:#000;overflow:hidden}
-.ab-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:22% 30%;filter:contrast(1.05) saturate(.95)}
+.ab-hero{position:relative;margin-top:var(--ab-nav,96px);height:min(calc(78vh - var(--ab-nav,96px)),64vw);min-height:440px;background:#000;overflow:hidden}
+.ab-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:22% 8%;filter:contrast(1.05) saturate(.95)}
 .ab-hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:45%;background:linear-gradient(to top,var(--black,#080808),rgba(8,8,8,0));pointer-events:none}
 @media (prefers-reduced-motion:no-preference){.ab-hero img{animation:ctaSlowZoom 18s ease-in-out infinite alternate}}
-@media (max-width:860px){.ab-hero{height:72svh;min-height:420px}}
+@media (max-width:860px){.ab-hero{height:calc(78svh - var(--ab-nav,80px));min-height:420px}}
 .about--page{padding-top:clamp(40px,6vw,80px)}.about--page .about-hed{margin:0}
 </style>
 </head>
@@ -2137,6 +2137,10 @@ footer { padding:2.4rem 0; }
 </div>
 </div>
 </aside>
+<script>
+/* The opening image starts beneath the navigation bar, so her head is never covered. */
+(function(){var n=document.getElementById('nav');if(!n)return;function fit(){if(!n.classList.contains('scrolled')&&!n.classList.contains('stuck'))document.documentElement.style.setProperty('--ab-nav',n.offsetHeight+'px');}fit();window.addEventListener('resize',fit);window.addEventListener('load',fit);})();
+</script>
 <!-- OPENING IMAGE: Namara -->
 <section class="ab-hero" aria-label="SIRCUS Magazine">
 <img src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto/v1790914222/hf_20260927_030636_17ae4654-bf8e-46d2-b997-9b33cb7ca3c8_kg52la.png" alt="SIRCUS editorial still: cinematic fashion portrait of Namara" fetchpriority="high" decoding="async">
