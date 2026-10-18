@@ -2243,6 +2243,7 @@ footer { padding:2.4rem 0; }
 .footer-bottom { padding-top:0; border-top:0; }
 
 </style>
+<script src="/assets/ig-share.js"></script>
 </head>
 <body>
 <!-- NAV -->
@@ -3328,9 +3329,21 @@ setTimeout(runCycle, 1800);
     }
 
     /* Instagram accepts nothing from a website, so its icon copies the excerpt and link and opens Instagram for pasting. */
-    function copyForInstagram() {
+    /* Instagram takes nothing from a website. On phones the story image goes to the share sheet,
+       where Instagram is listed; the excerpt and link are copied for the caption and a link sticker. */
+    function igImage(card) {
+      var src = (card && card.dataset.image) || '';
+      return src.indexOf('/image/upload/') > -1 ? src.replace('/image/upload/', '/image/upload/f_jpg,q_auto,w_1080/') : src;
+    }
+    function copyForInstagram(event) {
       if (!current) return;
-      copyText(shareText(current) + '\n' + shareUrl(current), 'Excerpt and link copied. Paste them in Instagram.');
+      var text = shareText(current) + '\n' + shareUrl(current);
+      if (window.sircusInstagram && window.sircusInstagram.phone()) {
+        copyText(text, 'Excerpt and link copied. Choose Instagram, then paste the link into a link sticker on your Story.', 20000);
+        if (window.sircusInstagram.share(igImage(current), current.dataset.title || 'SIRCUS Magazine', text) && event) event.preventDefault();
+        return;
+      }
+      copyText(text, 'Excerpt and link copied. Instagram takes no links from a computer: post from the Instagram app on your phone and paste the link into a Story link sticker.', 20000);
     }
 
     /* Facebook does not let a website fill in the post text, and it dropped its quote option.
@@ -3347,6 +3360,7 @@ setTimeout(runCycle, 1800);
 
     function openCard(card) {
       current = card;
+      if (window.sircusInstagram) window.sircusInstagram.prepare(igImage(card));
       shareNote.classList.remove('show');
       var page = shareUrl(card);
       if (shareFacebook) shareFacebook.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(page);

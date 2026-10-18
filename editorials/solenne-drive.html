@@ -354,6 +354,7 @@ window.va('beforeSend', function (event) {
 });
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script src="/assets/ig-share.js"></script>
 </head>
 <body>
 
@@ -631,7 +632,9 @@ window.va('beforeSend', function (event) {
       try{popup=window.open(fbBtn.href,'sircus_share','width=640,height=720,left='+((window.screenX||0)+24)+',top='+((window.screenY||0)+90));}catch(err){popup=null;}
       if(popup){e.preventDefault();}
     });}
-    if(igBtn){igBtn.addEventListener('click',function(){copyText(caption+'\n'+pageUrl,'Caption and link copied. Paste them in Instagram.');});}
+    var igImg=(function(){var m=document.querySelector('meta[property="og:image"]');try{return m?new URL(m.content).pathname:'';}catch(err){return '';}})();
+    if(window.sircusInstagram){window.sircusInstagram.prepare(igImg);}
+    if(igBtn){igBtn.addEventListener('click',function(e){var text=caption+'\n'+pageUrl;if(window.sircusInstagram&&window.sircusInstagram.phone()){copyText(text,'Caption and link copied. Choose Instagram, then paste the link into a link sticker on your Story.',20000);if(window.sircusInstagram.share(igImg,document.title,text)){e.preventDefault();}return;}copyText(text,'Caption and link copied. Instagram takes no links from a computer: post from the Instagram app on your phone and paste the link into a Story link sticker.',20000);});}
   }
   bindShare(shareRow,document.getElementById('edShareNote'));
   var fly=document.getElementById('edFlyShare');
