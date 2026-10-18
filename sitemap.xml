@@ -3,7 +3,7 @@
 
   <url>
     <loc>https://www.sircusmagazine.com/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -32,6 +32,13 @@
   <url>
     <loc>https://www.sircusmagazine.com/editorials/solenne-drive</loc>
     <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.sircusmagazine.com/stories/married-to-the-racist-that-is-me</loc>
+    <lastmod>2026-10-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
