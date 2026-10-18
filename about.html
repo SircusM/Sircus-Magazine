@@ -2092,10 +2092,12 @@ footer { padding:2.4rem 0; }
 .ab-hero__title .eyebrow{display:block;margin-bottom:clamp(.5rem,1vw,1rem)}
 .ab-hero__title .about-hed{margin:0;font-size:clamp(1.15rem,3vw,2.7rem);line-height:1.05;white-space:nowrap;text-shadow:0 2px 24px rgba(0,0,0,.55)}
 /* Without the heading row, the opening paragraph leads the section. */
-@media (min-width:1280px){.about--page .about-in{grid-template-areas:"lead lead" "img side"}}
-/* The opening paragraph stands alone under the photograph: centred, with lines of even length. */
-.about--page .about-lead{justify-self:center;max-width:34em;text-align:center;text-wrap:balance;margin-inline:auto}
-@media (max-width:1279px){.about--page .about-in{grid-template-areas:"lead" "img" "side"}}
+@media (min-width:1280px){.about--page .about-in{grid-template-areas:"img side"}}
+@media (max-width:1279px){.about--page .about-in{grid-template-areas:"img" "side"}}
+/* The white break: the opening line set large and centred, black on white. */
+.ab-quote{background:#fff;padding:clamp(72px,10vw,150px) var(--pad,2rem);text-align:center}
+.ab-quote::before{content:"";display:block;width:44px;height:1px;background:var(--gold,#B8820E);margin:0 auto clamp(28px,3.5vw,48px)}
+.ab-quote__text{max-width:30em;margin:0 auto;font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.45rem,2.6vw,2.4rem);line-height:1.42;color:#080808;text-wrap:balance}
 .about--page{padding-top:clamp(40px,6vw,80px)}.about--page .about-hed{margin:0}
 </style>
 </head>
@@ -2160,11 +2162,14 @@ footer { padding:2.4rem 0; }
 </div>
 </div>
 </section>
+<!-- OPENING LINE: a white break between the photograph and the essay -->
+<section class="ab-quote" aria-label="Why SIRCUS exists">
+<p class="ab-quote__text">The magazine was once an object worth keeping. A thing you returned to. For the photography, for the writing, for the world it built around you. Editorial fashion had authority. Beauty had depth. Culture had stakes. Issues were collected, not scrolled past.</p>
+</section>
 <section id="about" aria-label="About SIRCUS Magazine" class="about about--page">
 <div class="about-in">
 
 <!-- Brand philosophy: editorial voice, not FAQ register -->
-<p class="about-lead">The magazine was once an object worth keeping. A thing you returned to. For the photography, for the writing, for the world it built around you. Editorial fashion had authority. Beauty had depth. Culture had stakes. Issues were collected, not scrolled past.</p>
 
 <figure class="about-img">
 <img alt="Three issues of SIRCUS Magazine on a marble table in afternoon light: Opulence &amp; Desire, A Velvet Fevered Bloom and Electric Baroque" loading="lazy" width="1280" height="1658" src="/assets/sircus-issues-table-1280.webp" srcset="/assets/sircus-issues-table-720.webp 720w, /assets/sircus-issues-table-1280.webp 1280w" sizes="(max-width:860px) calc(100vw - 4rem), 560px"/>
