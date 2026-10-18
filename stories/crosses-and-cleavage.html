@@ -460,6 +460,12 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #B882
 .cc-own a,.cc-own a:visited{color:#F7F5F0}
 .cc-own a.cc-btn,.cc-own a.cc-btn:visited{color:#080808}
 .cc-own a:hover{color:#B8820E}
+/* The title holds together: "& Cleavage" never breaks, and it scales with the column. */
+.cc-t1,.cc-t2{white-space:nowrap}
+.cc-t1{font-size:clamp(56px,6.4vw,104px)}
+.cc-t2{font-size:clamp(60px,6.6vw,108px)}
+.cc-hero__type{padding:64px clamp(40px,6vw,96px) 64px clamp(40px,6.6vw,104px)}
+@media (max-width:900px){.cc-t1{font-size:clamp(48px,13vw,72px)}.cc-t2{font-size:clamp(52px,14vw,78px)}.cc-hero__type{padding:48px 22px 64px}}
 /* Lines run the full measure; only a lone last word is prevented. */
 .cc-stand,.cc-spot p,.cc-own__left p{text-wrap:pretty}
 
