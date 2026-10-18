@@ -26,14 +26,6 @@
   </url>
 
   <url>
-    <loc>https://www.sircusmagazine.com/about</loc>
-    <lastmod>2026-10-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image><image:loc>https://www.sircusmagazine.com/assets/sircus-issues-table-1280.webp</image:loc></image:image>
-  </url>
-
-  <url>
     <loc>https://www.sircusmagazine.com/contact</loc>
     <lastmod>2026-10-18</lastmod>
     <changefreq>yearly</changefreq>

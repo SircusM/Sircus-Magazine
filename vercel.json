@@ -64,6 +64,7 @@
     }
   ],
   "routes": [
+    { "src": "/about", "status": 308, "headers": { "Location": "/#about" } },
     { "src": "/contact", "dest": "/contact.html" },
     { "src": "/", "dest": "/index.html" }
   ]
