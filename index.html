@@ -1901,9 +1901,17 @@ footer {
 .ew-wide     { grid-column: 1 / 7;  min-height: 520px; }
 .ew-wide-r  { grid-column: 7 / 13; min-height: 520px; }
 .ew-wide-r img { object-position: 46% top; }
-/* Row 6: Darya, the full width of the wall, a close-up that closes it as the Erikka band opens it. */
-.ew-close { grid-column: 1 / -1; min-height: 0; aspect-ratio: 1.85 / 1; }
-.ew-close img { position:absolute; inset:0; object-position: center 6%; }
+/* Last row on desktop: Jasmine, Michael, then Darya. Darya's tile takes her 4:5 frame, so she shows whole
+   and sets the row's height; the other two are fitted to it. */
+.ew-close { min-height: 0; aspect-ratio: 4 / 5; }
+.ew-close img { position:absolute; inset:0; object-position: center top; }
+@media(min-width:1081px) {
+  .ew-wide   { grid-column: 1 / 6;  min-height: 0; }
+  .ew-wide-r { grid-column: 6 / 9;  min-height: 0; }
+  .ew-close  { grid-column: 9 / 13; }
+  .ew-wide img, .ew-wide-r img { position:absolute; inset:0; }
+  .ew-wide-r img { object-position: 58% top; }
+}
 
 /* A portrait in the lead slot is fitted to the row so the top row keeps its height. */
 @media(min-width:701px) {
@@ -1950,11 +1958,12 @@ footer {
   .ew-full, .ew-wide, .ew-r4-lead { grid-column: 1 / -1; }
   .ew-portrait { grid-column: span 6; min-height: 340px; }
   .ew4-b { grid-column: span 6; min-height: 340px; }
-  .ew-wide-r { grid-column: 1 / -1; }
+  /* Michael and Darya pair off here; Darya keeps her whole frame. */
+  .ew-wide-r { grid-column: span 6; }
+  .ew-wide-r img { object-position: 58% top; }
+  .ew-close { grid-column: span 6; }
   .ew-band { grid-row: auto; min-height: 0; aspect-ratio: 16 / 9; }
   .ew-band img { object-position: center; }
-  .ew-close { min-height: 0; aspect-ratio: 16 / 9; }
-  .ew-close img { object-position: center 6%; }
 }
 
 @media(max-width:700px) {
@@ -1973,7 +1982,7 @@ footer {
   .editorial-wall__item,
   .ew-large, .ew-tall, .ew-stack-top, .ew-stack-bottom,
   .ew-mid-a, .ew-mid-b, .ew-mid-c, .ew-full, .ew-wide, .ew-portrait,
-  .ew1-b, .ew4-b, .ew-wide-r, .ew-r4-lead,
+  .ew1-b, .ew4-b, .ew-wide-r, .ew-r4-lead, .ew-close,
   .ew2-large, .ew2-tall, .ew2-stack-top, .ew2-stack-bottom {
     grid-column: 1 / -1;
   }
@@ -1986,9 +1995,6 @@ footer {
   /* The full-width frame is cropped a little on a phone: her face and the gold stay in it. */
   .ew-band { aspect-ratio: 4 / 3; }
   .ew-band img { object-position: 14% center; }
-  /* On phones the whole portrait shows. */
-  .ew-close { aspect-ratio: 4 / 5; }
-  .ew-close img { object-position: center top; }
 }
 
 
@@ -2581,16 +2587,16 @@ footer { padding:2.4rem 0; }
 <button aria-label="Open editorial image" class="editorial-wall__item ew4-b" type="button">
 <img alt="SIRCUS editorial: a woman in a strapless brocade gown beneath crystal chandeliers in a ballroom, from Issue 15, Electric Baroque" data-caption="From Issue 15 · Electric Baroque" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791683982/Electric_Baroque_Ballroom_Glamour_mh3cmb.jpg"/>
 </button>
-<!-- Row 5: the two Electric Baroque interiors, side by side -->
+<!-- Last row: the two Electric Baroque interiors, then Darya -->
 <button aria-label="Open editorial image" class="editorial-wall__item ew-wide" type="button">
 <img alt="SIRCUS editorial: Jasmine in a teal sequined dress, reclining in a tufted teal and gilt armchair in a candlelit salon, from Issue 15, Electric Baroque" data-caption="Jasmine · From Issue 15 · Electric Baroque" loading="lazy" style="object-position:68% top;" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791668534/Jasmine_recline_f1f7ee.jpg" srcset="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791668534/Jasmine_recline_f1f7ee.jpg 1400w, https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_2400/v1791668534/Jasmine_recline_f1f7ee.jpg 2400w" sizes="(max-width:1080px) 100vw, 66vw"/>
 </button>
 <button aria-label="Open editorial image" class="editorial-wall__item ew-wide-r" type="button">
 <img alt="SIRCUS editorial: Michael in a blue brocade jacket, seated before a gilded baroque chair, from Issue 15, Electric Baroque" data-caption="Michael · From Issue 15 · Electric Baroque" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791684361/Michael_Blue_dcpvxv.jpg" srcset="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1400/v1791684361/Michael_Blue_dcpvxv.jpg 1400w, https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_2400/v1791684361/Michael_Blue_dcpvxv.jpg 2400w" sizes="(max-width:1080px) 100vw, 66vw"/>
 </button>
-<!-- Row 6: Darya, full width, closing the wall -->
+<!-- Darya: closes the last row on desktop, shown whole -->
 <button aria-label="Open editorial image" class="editorial-wall__item ew-close" type="button">
-<img alt="SIRCUS editorial: Darya, dark curls and a pearl earring, in a strapless black corseted dress against a sunlit plaster wall, from Issue 13, Opulence &amp; Desire" data-caption="Darya · From Issue 13 · Opulence &amp; Desire" loading="lazy" sizes="(max-width:700px) 100vw, (max-width:1080px) 96vw, 1152px" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1600/v1792300711/darya_hadrrh.jpg" srcset="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1000/v1792300711/darya_hadrrh.jpg 1000w, https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1600/v1792300711/darya_hadrrh.jpg 1600w, https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_2062/v1792300711/darya_hadrrh.jpg 2062w"/>
+<img alt="SIRCUS editorial: Darya, dark curls and a pearl earring, in a strapless black corseted dress against a sunlit plaster wall, from Issue 13, Opulence &amp; Desire" data-caption="Darya · From Issue 13 · Opulence &amp; Desire" loading="lazy" sizes="(max-width:700px) 100vw, (max-width:1080px) 50vw, 33vw" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1600/v1792300711/darya_hadrrh.jpg" srcset="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1000/v1792300711/darya_hadrrh.jpg 1000w, https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1600/v1792300711/darya_hadrrh.jpg 1600w, https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_2062/v1792300711/darya_hadrrh.jpg 2062w"/>
 </button>
 </div>
 </section>
