@@ -2083,8 +2083,16 @@ footer { padding:2.4rem 0; }
 <script src="/assets/ig-share.js"></script>
 <style>
 /* The whole photograph is always shown: never cropped, never taller than the screen. */
-.ab-hero{margin-top:var(--ab-nav,96px);background:#000;display:flex;justify-content:center}
-.ab-hero img{display:block;width:100%;height:auto;max-height:calc(100svh - var(--ab-nav,96px));object-fit:contain}
+.ab-hero{margin-top:var(--ab-nav,96px);background:#000}
+/* The frame takes the photograph's own 3:2 shape, so the title is placed against the picture itself. */
+.ab-hero__frame{position:relative;width:min(100%,calc((100svh - var(--ab-nav,96px)) * 1.5));margin:0 auto}
+.ab-hero__frame img{display:block;width:100%;height:auto}
+/* The title sits upper right, level with her forehead. */
+.ab-hero__title{position:absolute;top:14%;right:6%;text-align:left}
+.ab-hero__title .eyebrow{display:block;margin-bottom:clamp(.5rem,1vw,1rem)}
+.ab-hero__title .about-hed{margin:0;font-size:clamp(1.15rem,3vw,2.7rem);line-height:1.05;white-space:nowrap;text-shadow:0 2px 24px rgba(0,0,0,.55)}
+/* Without the heading row, the opening paragraph leads the section. */
+.about--page .about-in{grid-template-areas:"lead lead" "img side"}
 .about--page{padding-top:clamp(40px,6vw,80px)}.about--page .about-hed{margin:0}
 </style>
 </head>
@@ -2141,14 +2149,16 @@ footer { padding:2.4rem 0; }
 </script>
 <!-- OPENING IMAGE: Namara -->
 <section class="ab-hero" aria-label="SIRCUS Magazine">
+<div class="ab-hero__frame">
 <img src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto/v1790914222/hf_20260927_030636_17ae4654-bf8e-46d2-b997-9b33cb7ca3c8_kg52la.png" alt="SIRCUS editorial still: cinematic fashion portrait of Namara" fetchpriority="high" decoding="async">
-</section>
-<section id="about" aria-label="About SIRCUS Magazine" class="about about--page">
-<div class="about-in">
-<div class="about-top">
+<div class="ab-hero__title">
 <span class="eyebrow">About</span>
 <h1 class="about-hed">Why <em>SIRCUS</em> exists.</h1>
 </div>
+</div>
+</section>
+<section id="about" aria-label="About SIRCUS Magazine" class="about about--page">
+<div class="about-in">
 
 <!-- Brand philosophy: editorial voice, not FAQ register -->
 <p class="about-lead">The magazine was once an object worth keeping. A thing you returned to. For the photography, for the writing, for the world it built around you. Editorial fashion had authority. Beauty had depth. Culture had stakes. Issues were collected, not scrolled past.</p>
