@@ -1,0 +1,62 @@
+[
+  {
+    "path": "/editorials/darya-stone",
+    "kind": "Editorial",
+    "issue": "Issue 13 · Opulence & Desire",
+    "title": "Stone & Sequin",
+    "dek": "Black lace on a terrace above the sea by day, emerald sequins above Manhattan after dark.",
+    "credit": "Featuring Darya",
+    "published": "2026-10-17T22:34:46-07:00",
+    "card": "/editorials/darya-stone-assets/Darya_Poolside-1200.webp",
+    "card_large": "/editorials/darya-stone-assets/Darya_Poolside-2000.webp",
+    "focus": "30% 40%",
+    "image": "/editorials/darya-stone-assets/Darya_Poolside.jpg",
+    "alt": "Darya reclining on a striped lounger on a stone terrace above the sea, in a strapless black lace dress",
+    "cta": "View the editorial"
+  },
+  {
+    "path": "/stories/married-to-the-racist-that-is-me",
+    "kind": "Cover Story",
+    "issue": "Issue 15 · Electric Baroque",
+    "title": "Married to the Racist That Is Me",
+    "dek": "A new colleague arrives on a Monday. She is certain she knows exactly who he is.",
+    "credit": "By Melanie Carter",
+    "published": "2026-10-17T17:30:48-07:00",
+    "card": "/stories/married-to-the-racist-that-is-me-assets/melanie-hero.jpg",
+    "card_large": "/stories/married-to-the-racist-that-is-me-assets/melanie-hero.jpg",
+    "focus": "43% 35%",
+    "image": "/stories/married-to-the-racist-that-is-me-assets/og-melanie.jpg",
+    "alt": "Melanie in a white silk blouse in a high-rise office at sunset",
+    "cta": "Read the cover story"
+  },
+  {
+    "path": "/editorials/erikka-gold",
+    "kind": "Editorial",
+    "issue": "Issue 9 · Special Swimwear Edition",
+    "title": "Onyx & Gold",
+    "dek": "Erikka in black and gold, on gold blocks between a lawn and a lake.",
+    "credit": "Featuring Erikka",
+    "published": "2026-10-11T13:59:05-07:00",
+    "card": "/editorials/erikka-gold-assets/Erikka_Gold1-1000.webp",
+    "card_large": "/editorials/erikka-gold-assets/Erikka_Gold1-1672.webp",
+    "focus": "22% 55%",
+    "image": "/editorials/erikka-gold-assets/Erikka_Gold1.jpg",
+    "alt": "Erikka lying back across gold blocks on a lawn in a black swimsuit and gold jewelry",
+    "cta": "View the editorial"
+  },
+  {
+    "path": "/editorials/solenne-drive",
+    "kind": "Editorial",
+    "issue": "A SIRCUS Web Exclusive",
+    "title": "Acid & Amber",
+    "dek": "Solenne, an orange shearling coat, and a chartreuse sports car.",
+    "credit": "Featuring Solenne",
+    "published": "2026-10-10T07:36:21-07:00",
+    "card": "/editorials/solenne-drive-assets/Solenne_Drive5-1280.webp",
+    "card_large": "/editorials/solenne-drive-assets/Solenne_Drive5-2400.webp",
+    "focus": "50% 35%",
+    "image": "/editorials/solenne-drive-assets/Solenne_Drive5-1600.jpg",
+    "alt": "Solenne seated against a chartreuse sports car in an orange shearling coat",
+    "cta": "View the editorial"
+  }
+]
