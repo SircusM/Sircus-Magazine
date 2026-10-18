@@ -13,7 +13,7 @@ Do not perform full-page rewrites. Make surgical edits by section only.
 <title>SIRCUS Magazine | Cinematic Fashion Editorial</title>
 <meta name="description" content="SIRCUS is an independent fashion and beauty editorial magazine publishing cinematic photography, cultural essays, and high-fashion stories. Available in print and digital on MagCloud and Amazon."/>
 <meta name="author" content="SIRCUS Magazine"/>
-<meta name="robots" content="index, follow"/>
+<meta name="robots" content="index, follow, max-image-preview:large, max-video-preview:-1"/>
 <link rel="canonical" href="https://www.sircusmagazine.com/"/>
 <link rel="alternate" type="application/rss+xml" title="SIRCUS Magazine: The Journal" href="https://www.sircusmagazine.com/feed.xml">
 
@@ -105,14 +105,30 @@ Do not perform full-page rewrites. Make surgical edits by section only.
   "publisher": {
     "@id": "https://www.sircusmagazine.com/#organization"
   },
-  "genre": ["Fashion", "Beauty", "Culture", "Editorial Photography"],
+  "genre": [
+    "Fashion",
+    "Beauty",
+    "Culture",
+    "Editorial Photography"
+  ],
   "inLanguage": "en-US",
   "offers": {
     "@type": "Offer",
     "url": "https://www.magcloud.com/browse/magazine/599779",
     "availability": "https://schema.org/InStock",
     "priceCurrency": "USD"
-  }
+  },
+  "hasPart": [
+    {
+      "@id": "https://www.sircusmagazine.com/#issue-16"
+    },
+    {
+      "@id": "https://www.sircusmagazine.com/#issue-15"
+    }
+  ],
+  "sameAs": [
+    "https://www.magcloud.com/browse/magazine/599779"
+  ]
 }
 </script>
 
@@ -132,29 +148,58 @@ Do not perform full-page rewrites. Make surgical edits by section only.
   "offers": [
     {
       "@type": "Offer",
-      "name": "Collector Edition on MagCloud",
+      "name": "Collector's Edition, print and digital, on MagCloud",
       "url": "https://www.magcloud.com/browse/issue/3412009",
-      "availability": "https://schema.org/InStock",
       "price": "29.99",
-      "priceCurrency": "USD"
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "MagCloud"
+      }
     },
     {
       "@type": "Offer",
-      "name": "Kindle edition on Amazon",
-      "url": "https://www.amazon.com/dp/B0HMBZBS2N",
+      "name": "Digital edition on MagCloud",
+      "url": "https://www.magcloud.com/browse/issue/3412009",
+      "price": "10.00",
+      "priceCurrency": "USD",
       "availability": "https://schema.org/InStock",
-      "price": "12.99",
-      "priceCurrency": "USD"
+      "seller": {
+        "@type": "Organization",
+        "name": "MagCloud"
+      }
     },
     {
       "@type": "Offer",
       "name": "Paperback on Amazon",
       "url": "https://www.amazon.com/dp/B0HMFF9XFX",
-      "availability": "https://schema.org/InStock",
       "price": "27.99",
-      "priceCurrency": "USD"
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Amazon"
+      }
+    },
+    {
+      "@type": "Offer",
+      "name": "Kindle edition on Amazon",
+      "url": "https://www.amazon.com/dp/B0HMBZBS2N",
+      "price": "12.99",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Amazon"
+      }
     }
-  ]
+  ],
+  "url": "https://www.sircusmagazine.com/issues/16-sunlit-reverie",
+  "image": "https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto,w_1200/v1790912436/I.16_frt_dj9qkg.png",
+  "publisher": {
+    "@id": "https://www.sircusmagazine.com/#organization"
+  }
 }
 </script>
 
@@ -174,14 +219,14 @@ Do not perform full-page rewrites. Make surgical edits by section only.
   "offers": [
     {
       "@type": "Offer",
-      "name": "Collector Edition — MagCloud",
+      "name": "Collector Edition on MagCloud",
       "url": "https://www.magcloud.com/browse/issue/3260300",
       "availability": "https://schema.org/InStock",
       "priceCurrency": "USD"
     },
     {
       "@type": "Offer",
-      "name": "Buy on Amazon",
+      "name": "Paperback on Amazon",
       "url": "https://www.amazon.com/dp/B0GMPZJPPN",
       "availability": "https://schema.org/InStock",
       "priceCurrency": "USD"
@@ -191,99 +236,19 @@ Do not perform full-page rewrites. Make surgical edits by section only.
 </script>
 
 <!-- ── STRUCTURED DATA: Article: Curated Realness ── -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Curated Realness",
-  "description": "An essay from SIRCUS Issue 16: Sunlit Reverie. Authenticity is no longer discovered. It is designed.",
-  "isPartOf": {
-    "@id": "https://www.sircusmagazine.com/#issue-16"
-  },
-  "publisher": {
-    "@id": "https://www.sircusmagazine.com/#organization"
-  },
-  "image": "https://res.cloudinary.com/dk8dxerks/image/upload/sircus-i16-curated-realness_qucne7.jpg",
-  "inLanguage": "en-US",
-  "datePublished": "2026-10"
-}
-</script>
+
 
 <!-- ── STRUCTURED DATA: Article: The Unregistered Spatula ── -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "The Unregistered Spatula",
-  "description": "An essay from SIRCUS Issue 16: Sunlit Reverie. There is an app for that. There should not be.",
-  "isPartOf": {
-    "@id": "https://www.sircusmagazine.com/#issue-16"
-  },
-  "publisher": {
-    "@id": "https://www.sircusmagazine.com/#organization"
-  },
-  "image": "https://res.cloudinary.com/dk8dxerks/image/upload/sircus-i16-unregistered-spatula_wwletb.jpg",
-  "inLanguage": "en-US",
-  "datePublished": "2026-10"
-}
-</script>
+
 
 <!-- ── STRUCTURED DATA: Article: The Feminization of Men Through Fashion ── -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "The Feminization of Men Through Fashion",
-  "description": "An essay on redrawing masculinity through menswear, from SIRCUS Issue 16: Sunlit Reverie.",
-  "isPartOf": {
-    "@id": "https://www.sircusmagazine.com/#issue-16"
-  },
-  "publisher": {
-    "@id": "https://www.sircusmagazine.com/#organization"
-  },
-  "image": "https://res.cloudinary.com/dk8dxerks/image/upload/sircus-i16-redrawing-masculinity_lys9pq.jpg",
-  "inLanguage": "en-US",
-  "datePublished": "2026-10"
-}
-</script>
+
 
 <!-- ── STRUCTURED DATA: Article — Bald By Design ── -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Bald By Design",
-  "description": "A philosophical reframing from SIRCUS Issue 14. On evolutionary elegance, the cultural meaning of baldness, and what subtraction reveals about identity.",
-  "isPartOf": {
-    "@id": "https://www.sircusmagazine.com/#periodical"
-  },
-  "publisher": {
-    "@id": "https://www.sircusmagazine.com/#organization"
-  },
-  "image": "https://res.cloudinary.com/dk8dxerks/image/upload/v1777758939/Bald3_oooccj.jpg",
-  "inLanguage": "en-US",
-  "datePublished": "2025-12"
-}
-</script>
+
 
 <!-- ── STRUCTURED DATA: Article — Crosses & Cleavage ── -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Crosses & Cleavage",
-  "description": "A cultural provocation from SIRCUS Issue 13. On religious imagery as fashion accessory and what happens when conviction becomes optics.",
-  "isPartOf": {
-    "@id": "https://www.sircusmagazine.com/#periodical"
-  },
-  "publisher": {
-    "@id": "https://www.sircusmagazine.com/#organization"
-  },
-  "image": "https://res.cloudinary.com/dk8dxerks/image/upload/v1777759337/woman_cross_ugf0na.jpg",
-  "inLanguage": "en-US",
-  "datePublished": "2025-11"
-}
-</script>
+
 
 <!-- ── STRUCTURED DATA: BreadcrumbList ── -->
 <script type="application/ld+json">
@@ -2269,7 +2234,7 @@ footer { padding:2.4rem 0; }
 <li><a href="#editorials">Editorials</a></li>
 <li><a href="#stories">Stories</a></li>
 <li><a href="/journal">Journal</a></li>
-<li><a href="#about">About</a></li>
+<li><a href="/about">About</a></li>
 <li><a href="/contact">Contact</a></li>
 </ul>
 <!-- UPDATE: this button's label and link change each issue -->
@@ -2285,7 +2250,7 @@ footer { padding:2.4rem 0; }
 <li><a href="#editorials">Editorials</a></li>
 <li><a href="#stories">Stories</a></li>
 <li><a href="/journal">Journal</a></li>
-<li><a href="#about">About</a></li>
+<li><a href="/about">About</a></li>
 <li><a href="/contact">Contact</a></li>
 </ul>
 <a class="mobile-cta" href="/issues/16-sunlit-reverie">Explore Issue 16</a>
@@ -2746,6 +2711,7 @@ but to the intention to be seen…" data-image="https://res.cloudinary.com/dk8dx
 </div>
 
 <!-- Answers for search and answer engines. Kept in the page, folded until asked for. -->
+<a class="view-all" href="/about">More about SIRCUS →</a>
 <div class="about-qs">
 <span class="about-label">Questions</span>
 <details itemscope itemtype="https://schema.org/Question">
