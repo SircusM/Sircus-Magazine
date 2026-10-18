@@ -2082,11 +2082,9 @@ footer { padding:2.4rem 0; }
 </style>
 <script src="/assets/ig-share.js"></script>
 <style>
-.ab-hero{position:relative;margin-top:var(--ab-nav,96px);height:min(calc(78vh - var(--ab-nav,96px)),64vw);min-height:440px;background:#000;overflow:hidden}
-.ab-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:22% 8%;filter:contrast(1.05) saturate(.95)}
-.ab-hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:45%;background:linear-gradient(to top,var(--black,#080808),rgba(8,8,8,0));pointer-events:none}
-@media (prefers-reduced-motion:no-preference){.ab-hero img{animation:ctaSlowZoom 18s ease-in-out infinite alternate}}
-@media (max-width:860px){.ab-hero{height:calc(78svh - var(--ab-nav,80px));min-height:420px}}
+/* The whole photograph is always shown: never cropped, never taller than the screen. */
+.ab-hero{margin-top:var(--ab-nav,96px);background:#000;display:flex;justify-content:center}
+.ab-hero img{display:block;width:100%;height:auto;max-height:calc(100svh - var(--ab-nav,96px));object-fit:contain}
 .about--page{padding-top:clamp(40px,6vw,80px)}.about--page .about-hed{margin:0}
 </style>
 </head>
