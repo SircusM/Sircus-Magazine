@@ -11,6 +11,7 @@ Do not perform full-page rewrites. Make surgical edits by section only.
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>About SIRCUS Magazine | Why SIRCUS Exists</title>
+<link rel="preload" as="image" href="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto/v1790914222/hf_20260927_030636_17ae4654-bf8e-46d2-b997-9b33cb7ca3c8_kg52la.png">
 <meta name="description" content="Why SIRCUS exists: an independent print and digital fashion magazine of cinematic editorials, high-fashion photography and cultural essays, in print for more than a decade."/>
 <meta name="author" content="SIRCUS Magazine"/>
 <meta name="robots" content="index, follow, max-image-preview:large, max-video-preview:-1"/>
@@ -2080,7 +2081,14 @@ footer { padding:2.4rem 0; }
 
 </style>
 <script src="/assets/ig-share.js"></script>
-<style>.about--page{padding-top:calc(var(--nav-h,6rem) + clamp(48px,7vw,96px))}.about--page .about-hed{margin:0}</style>
+<style>
+.ab-hero{position:relative;height:min(70vh,64vw);min-height:440px;background:#000;overflow:hidden}
+.ab-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:22% 30%;filter:contrast(1.05) saturate(.95)}
+.ab-hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:45%;background:linear-gradient(to top,var(--black,#080808),rgba(8,8,8,0));pointer-events:none}
+@media (prefers-reduced-motion:no-preference){.ab-hero img{animation:ctaSlowZoom 18s ease-in-out infinite alternate}}
+@media (max-width:860px){.ab-hero{height:72svh;min-height:420px}}
+.about--page{padding-top:clamp(40px,6vw,80px)}.about--page .about-hed{margin:0}
+</style>
 </head>
 <body>
 <!-- NAV -->
@@ -2129,6 +2137,10 @@ footer { padding:2.4rem 0; }
 </div>
 </div>
 </aside>
+<!-- OPENING IMAGE: Namara -->
+<section class="ab-hero" aria-label="SIRCUS Magazine">
+<img src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto/v1790914222/hf_20260927_030636_17ae4654-bf8e-46d2-b997-9b33cb7ca3c8_kg52la.png" alt="SIRCUS editorial still: cinematic fashion portrait of Namara" fetchpriority="high" decoding="async">
+</section>
 <section id="about" aria-label="About SIRCUS Magazine" class="about about--page">
 <div class="about-in">
 <div class="about-top">
@@ -2191,17 +2203,6 @@ footer { padding:2.4rem 0; }
 </details>
 </div>
 </div>
-</div>
-</section>
-<!-- CLOSING IMAGE: the last picture on the page, after About -->
-<section aria-label="Own SIRCUS Issue 16" class="final-cta">
-<div class="final-cta__image">
-<img alt="SIRCUS editorial still: cinematic fashion portrait of Namara" loading="lazy" src="https://res.cloudinary.com/dk8dxerks/image/upload/f_auto,q_auto/v1790914222/hf_20260927_030636_17ae4654-bf8e-46d2-b997-9b33cb7ca3c8_kg52la.png" style="object-position:22% 30%;"/>
-</div>
-<div class="final-cta__overlay">
-<span class="final-cta__kicker">Issue 16: Sunlit Reverie</span>
-<p class="final-cta__line">The issue is the experience.</p>
-<a class="final-cta__button" href="/issues/16-sunlit-reverie#own">Own Issue 16</a>
 </div>
 </section>
 <!-- ═══════════════════════════════════════════ -->
