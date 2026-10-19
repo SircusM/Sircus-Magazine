@@ -42,7 +42,7 @@ The redirect line in each file has this form (only the slug in `u` changes):
 <script>(function(){var u='/?story=SLUG';try{var q=new URLSearchParams(location.search);if(!q.has('utm_source')&&document.referrer){var h=new URL(document.referrer).hostname;if(h&&h!==location.hostname){q.set('utm_source',h.replace(/^(www|m|l|lm)\./,''));q.set('utm_medium','referral');}}q.delete('story');var r=q.toString();if(r)u+='&'+r;}catch(e){}location.replace(u);})();</script>
 ```
 
-**Every new story share page** uses this form, never a bare `location.replace('/?story=SLUG')`.
+**Every new story share page** uses this form, never a bare `location.replace('/?story=SLUG')`. When the share page forwards to a story's own page instead of `/?story=`, the joiner is `?` rather than `&` (`if(r)u+='?'+r;`), or the forwarded address 404s.
 
 ## 3. Redirects inside the site keep `utm_` tags
 
