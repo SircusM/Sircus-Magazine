@@ -28,7 +28,7 @@ window.va('beforeSend', function (event) {
 <script defer src="/_vercel/insights/script.js"></script>
 ```
 
-Pages that carry it today (checked October 18, 2026): `index.html`, `about.html`, `journal.html`, `contact.html`, `issues/16-sunlit-reverie.html`, `stories/married-to-the-racist-that-is-me.html`, `editorials/darya-stone.html`, `editorials/trexie-doll-play.html`, `editorials/erikka-gold.html`, `editorials/solenne-drive.html`.
+Pages that carry it today (checked October 18, 2026): `index.html`, `about.html`, `journal.html`, `contact.html`, `issues/16-sunlit-reverie.html`, `stories/married-to-the-racist-that-is-me.html`, `stories/crosses-and-cleavage.html`, `editorials/darya-stone.html`, `editorials/trexie-doll-play.html`, `editorials/erikka-gold.html`, `editorials/solenne-drive.html`.
 
 **Every new page** (a new issue page, a new editorial, any new section) gets the full block above in its `<head>`. When a new page is built from an existing one as a template, confirm the block came across intact.
 

@@ -100,4 +100,12 @@
     <image:image><image:loc>https://www.sircusmagazine.com/stories/married-to-the-racist-that-is-me-assets/og-melanie.jpg</image:loc></image:image>
   </url>
 
+  <url>
+    <loc>https://www.sircusmagazine.com/stories/crosses-and-cleavage</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://www.sircusmagazine.com/stories/crosses-and-cleavage-assets/og-crosses.jpg</image:loc></image:image>
+  </url>
+
 </urlset>
