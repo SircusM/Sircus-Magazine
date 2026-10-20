@@ -1869,8 +1869,8 @@ footer {
 /* ── UPDATE: story card that links to the Issue 16 page ── */
 a.story-expand-card { text-decoration: none; }
 .story-expand-card[hidden] { display: none; }
-@media (min-width:981px) and (max-width:1439px){ .story-expand-grid{grid-template-columns:repeat(3,1fr)} }
-@media (min-width:1440px){ .story-expand-grid{grid-template-columns:repeat(5,1fr)} }
+@media (min-width:981px){ .story-expand-grid{grid-template-columns:repeat(6,1fr)} .story-expand-grid > .story-expand-card{grid-column:span 2} .story-expand-grid > .story-expand-card:nth-child(4){grid-column:2 / span 2} }
+
 
 /* ── UPDATE: Inner Signal ── */
 .signal-band { background: var(--obsidian); border-top: 1px solid rgba(184,130,14,.12); padding: 5rem var(--pad); }
