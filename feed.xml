@@ -7,13 +7,24 @@
 <description>Editorials and cover stories from SIRCUS Magazine, newest first.</description>
 <language>en-us</language>
 <copyright>2026 SIRCUS Magazine</copyright>
-<lastBuildDate>Sun, 18 Oct 2026 21:37:07 -0700</lastBuildDate>
+<lastBuildDate>Mon, 19 Oct 2026 21:35:00 -0700</lastBuildDate>
 <image>
 <url>https://www.sircusmagazine.com/favicon-96x96.png</url>
 <title>SIRCUS Magazine: The Journal</title>
 <link>https://www.sircusmagazine.com/journal</link>
 <width>96</width><height>96</height>
 </image>
+<item>
+<title>Curated Realness</title>
+<link>https://www.sircusmagazine.com/stories/curated-realness</link>
+<guid isPermaLink="true">https://www.sircusmagazine.com/stories/curated-realness</guid>
+<pubDate>Mon, 19 Oct 2026 21:35:00 -0700</pubDate>
+<category>Essay</category>
+<dc:creator>SIRCUS Magazine</dc:creator>
+<description><![CDATA[<p><a href="https://www.sircusmagazine.com/stories/curated-realness"><img src="https://www.sircusmagazine.com/stories/curated-realness-assets/cr-portrait.jpg" alt="A woman with bare, unretouched skin in late sun against a dark background" width="600" style="max-width:100%;height:auto"></a></p><p>Authenticity is no longer discovered. It is designed.</p><p>From Issue 16. Essay, Issue 16 · Sunlit Reverie.</p><p><a href="https://www.sircusmagazine.com/stories/curated-realness">Read the essay</a></p>]]></description>
+<enclosure url="https://www.sircusmagazine.com/stories/curated-realness-assets/cr-portrait.jpg" length="204352" type="image/jpeg"/>
+<media:content url="https://www.sircusmagazine.com/stories/curated-realness-assets/cr-portrait.jpg" medium="image" type="image/jpeg"><media:description>A woman with bare, unretouched skin in late sun against a dark background</media:description></media:content>
+</item>
 <item>
 <title>Crosses &amp; Cleavage</title>
 <link>https://www.sircusmagazine.com/stories/crosses-and-cleavage</link>

@@ -108,4 +108,14 @@
     <image:image><image:loc>https://www.sircusmagazine.com/stories/crosses-and-cleavage-assets/og-crosses.jpg</image:loc></image:image>
   </url>
 
+  <url>
+    <loc>https://www.sircusmagazine.com/stories/curated-realness</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://www.sircusmagazine.com/stories/curated-realness-assets/og-curated.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.sircusmagazine.com/stories/curated-realness-assets/cr-portrait.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.sircusmagazine.com/stories/curated-realness-assets/cr-sunlit-v3.jpg</image:loc></image:image>
+    <image:image><image:loc>https://www.sircusmagazine.com/stories/curated-realness-assets/cr-marks-v2.jpg</image:loc></image:image>
+  </url>
 </urlset>

@@ -103,5 +103,20 @@
     "image": "/issues/16-sunlit-reverie-assets/lead.jpg",
     "alt": "A man with lavender hair wearing layered pearls and an open lace jacket",
     "cta": "Read the feature"
+  },
+  {
+    "path": "/stories/curated-realness",
+    "kind": "Essay",
+    "issue": "Issue 16 · Sunlit Reverie",
+    "title": "Curated Realness",
+    "dek": "Authenticity is no longer discovered. It is designed.",
+    "credit": "From Issue 16",
+    "published": "2026-10-19T21:35:00-07:00",
+    "card": "/stories/curated-realness-assets/cr-portrait-1000.webp",
+    "card_large": "/stories/curated-realness-assets/cr-portrait-1600.webp",
+    "focus": "50% 30%",
+    "image": "/stories/curated-realness-assets/cr-portrait.jpg",
+    "alt": "A woman with bare, unretouched skin in late sun against a dark background",
+    "cta": "Read the essay"
   }
 ]

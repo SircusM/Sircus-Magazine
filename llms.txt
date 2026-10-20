@@ -14,6 +14,7 @@ The name is written "SIRCUS Magazine": SIRCUS in capitals, Magazine in title cas
 ## The Journal
 
 - [The Journal](https://www.sircusmagazine.com/journal): editorials and cover stories, newest first ([RSS feed](https://www.sircusmagazine.com/feed.xml))
+- [Curated Realness](https://www.sircusmagazine.com/stories/curated-realness): an essay from Issue 16, Sunlit Reverie, on the unretouched image and the authenticity economy
 - [Crosses & Cleavage](https://www.sircusmagazine.com/stories/crosses-and-cleavage): an essay from Issue 13, Opulence & Desire, on the cross as a fashion accessory
 - [Doll Play](https://www.sircusmagazine.com/editorials/trexie-doll-play): an editorial with Trexie Dorrell, cover model of Issue 12, Fashion & Beauty
 - [Stone & Sequin](https://www.sircusmagazine.com/editorials/darya-stone): an editorial with Darya, from Issue 13, Opulence & Desire
