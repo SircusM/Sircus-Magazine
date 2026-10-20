@@ -88,5 +88,20 @@
     "image": "/stories/crosses-and-cleavage-assets/og-crosses.jpg",
     "alt": "A silver cross on a heavy chain over a black plunging neckline",
     "cta": "Read the essay"
+  },
+  {
+    "path": "/issues/16-sunlit-reverie#redrawing-masculinity",
+    "kind": "Essay",
+    "issue": "Issue 16 · Sunlit Reverie",
+    "title": "The Feminization of Men Through Fashion",
+    "dek": "Pearls, lace and sheer shirts in menswear: redrawing a boundary is not the same as erasing it.",
+    "credit": "The lead feature",
+    "published": "2026-10-04T11:30:39-07:00",
+    "card": "/issues/16-sunlit-reverie-assets/lead.jpg",
+    "card_large": "/issues/16-sunlit-reverie-assets/lead.jpg",
+    "focus": "50% 30%",
+    "image": "/issues/16-sunlit-reverie-assets/lead.jpg",
+    "alt": "A man with lavender hair wearing layered pearls and an open lace jacket",
+    "cta": "Read the feature"
   }
 ]
