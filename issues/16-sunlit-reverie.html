@@ -380,6 +380,8 @@ main{padding-top:var(--nav-h)}
 .story h3{font:500 clamp(1.6rem,2.8vw,2.1rem)/1.1 var(--sans);letter-spacing:-.02em;margin-top:22px}
 .story .line{font:italic 400 clamp(1.25rem,2vw,1.5rem)/1.3 var(--serif);color:var(--gold);margin-top:.45em}
 .story details{margin-top:22px}
+.story .story-cta{display:inline-flex;align-items:center;min-height:48px;margin-top:22px;padding:0 1.4em;border:1px solid var(--gold);color:var(--gold);font:500 .72rem/1.2 var(--sans);letter-spacing:.24em;text-transform:uppercase;text-decoration:none;transition:background-color .2s,color .2s}
+.story .story-cta:hover{background:var(--gold);color:var(--black)}
 .story summary{list-style:none;display:inline-flex;align-items:center;min-height:48px;padding:0 1.4em;border:1px solid var(--gold);color:var(--gold);font:500 .72rem/1.2 var(--sans);letter-spacing:.24em;text-transform:uppercase;cursor:pointer;transition:background-color .2s,color .2s}
 .story summary::-webkit-details-marker{display:none}
 .story summary:hover{background:var(--gold);color:var(--black)}
@@ -733,13 +735,7 @@ window.va('beforeSend', function (event) {
         <img src="16-sunlit-reverie-assets/cr.jpg" alt="Close portrait of a woman's face in hard sunlight, skin texture fully visible" width="935" height="702">
         <h3>Curated Realness</h3>
         <p class="line">Authenticity is no longer discovered. It is designed.</p>
-        <a class="textlink" href="/stories/curated-realness">Read the essay &rarr;</a>
-        <details>
-          <summary>Read a short excerpt</summary>
-          <p>The poster towers above the cosmetics aisle, a monument to manufactured honesty. &ldquo;This image has not been retouched,&rdquo; it declares in clean sans-serif type, as if transparency were a brand promise rather than a moral imperative. Below the text, a model stares back with visible pores, a small scar threading through her eyebrow, stretch marks mapping the curve of her hip. She is stunning. Of course she is stunning.</p>
-          <a class="textlink" href="#own">Continue inside Issue 16 &darr;</a>
-          <p class="buyline">Print from $27.99 &middot; Digital from $10.00 &middot; MagCloud and Amazon</p>
-        </details>
+        <a class="story-cta" href="/stories/curated-realness">Read a short excerpt</a>
       </article>
       <article class="story">
         <img src="16-sunlit-reverie-assets/bp.jpg" alt="A wood-panelled living room with a turntable, a low orange sofa and a city view at dusk" width="907" height="756">
