@@ -283,6 +283,7 @@ a{color:#B8820E;text-decoration:none}a:hover{color:#D29A1E}
 .mk-row{display:flex;flex-wrap:wrap}
 .mk-split{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);align-items:stretch}
 .mk-split.mk-two{grid-template-columns:minmax(0,2fr) minmax(0,3fr)}
+@media (min-width:861px){.mk-split.mk-two.cr-wide{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}.cr-wide .mk-premise-copy{padding:64px 56px 64px 48px !important;gap:32px !important}}
 .mk-media{position:relative;overflow:hidden}
 .mk-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 @media (max-width:860px){
@@ -449,9 +450,9 @@ window.va('beforeSend', function (event) {
 </div>
 </header>
 
-<section class="mk-split mk-two" style="background: #080808; border-top: 1px solid rgba(255,255,255,0.12)" aria-label="The premise">
+<section class="mk-split mk-two cr-wide" style="background: #080808; border-top: 1px solid rgba(255,255,255,0.12)" aria-label="The premise">
 <div class="mk-media" style="min-height: 600px">
-<img loading="lazy" src="/stories/curated-realness-assets/cr-sunlit-v3.jpg" srcset="/stories/curated-realness-assets/cr-sunlit-v3-1200.webp 1200w, /stories/curated-realness-assets/cr-sunlit-v3-2000.webp 2000w" sizes="(max-width:860px) 100vw, 40vw" alt="A woman with her arms raised above her head in low golden sun, every line of her face and neck visible, gold sculpted earrings catching the light" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 58% 35%; display: block">
+<img loading="lazy" src="/stories/curated-realness-assets/cr-sunlit-v3.jpg" srcset="/stories/curated-realness-assets/cr-sunlit-v3-1200.webp 1200w, /stories/curated-realness-assets/cr-sunlit-v3-2000.webp 2000w, /stories/curated-realness-assets/cr-sunlit-v3-2576.webp 2576w" sizes="(max-width:860px) 100vw, 90vw" alt="A woman with her arms raised above her head in low golden sun, every line of her face and neck visible, gold sculpted earrings catching the light" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 55% 30%; display: block">
 </div>
 <div class="mk-premise-copy" style="display: flex; gap: 56px; flex-wrap: wrap; padding: 64px 80px 64px 64px; box-sizing: border-box; align-content: center">
 <div style="flex: 0 0 150px; align-self: stretch; border-right: 1px solid rgba(184,130,14,0.6); box-sizing: border-box; font-family: 'Myriad Pro', 'Source Sans 3', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; line-height: 24px">
